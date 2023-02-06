@@ -1,0 +1,43 @@
+
+Verificacion de las ruta de jwtAuth
+### ===== Login, Register and Verificacion =====
+
+### login  ==>> OK
+POST https://node-server-navy-rho.vercel.app/auth/login
+Content-Type: application/json
+
+{"email": "Jose-prueba@Correo.com", "password": "a1b2c3A$"}
+
+### login  ==>> Password Errado
+POST http://localhost:3500/auth/login
+Content-Type: application/json
+
+{"email": "Jose-prueba@Correo.com", "password": "a1b2c3$"}
+
+### register  ==>> OK
+POST https://node-server-navy-rho.vercel.app/auth/register
+Content-Type: application/json
+
+{
+    "firstname": "Maria",
+    "lastname": "Perez",
+    "email": "Maria.Perez@Correo.com",
+    "password": "2%AC134534ff",
+    "phone": "12345678"
+ }
+
+
+### Get All users
+GET https://node-server-navy-rho.vercel.app/auth/
+Content-Type: application/json
+
+
+### Get All Jobs
+GET  https://node-server-navy-rho.vercel.app/jobs/
+Content-Type: application/json
+
+
+### Verify ==>> OK
+GET https://e-mall-backend.vercel.app/auth/is-verify
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiam9zZUBjb3JyZW8uY29tIiwiaWF0IjoxNjM2NDc3MzAyLCJleHAiOjE2MzY0ODA5MDJ9.6pNcmIPJk6u3oWPc3Gvhb5Pa1BxkTCtdFgwuzN_S0Po
+Content-Type: application/json
