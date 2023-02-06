@@ -45,7 +45,7 @@ export const ForgotPasswordScreen = () => {
     <ScrollView>
       <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>¿Olvidó su Password?</Text>
+        <Text style={styles.title}>¿Olvidó su Password? o que le pasa</Text>
         <CustomInput name="email" control={control} placeholder="email" />
         <CustomButton onPress={handleSubmit(handleSendEmail)} text="Enviar" />
         <CustomButton
