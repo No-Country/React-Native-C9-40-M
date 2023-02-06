@@ -28,8 +28,7 @@ export function HomeScreen() {
         />
         <View>
           <Text> Bienvenido : {currentUser.firstname}</Text>
-          <Text> Apellido: {currentUser.lastname}</Text>
-          <Text> Correo: {currentUser.email}</Text>
+
         </View>
         <View style={styles.buttonContainer}>
           <Button
