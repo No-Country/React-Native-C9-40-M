@@ -8,15 +8,13 @@ import * as yup from 'yup';
 import logo from '../assets/images/logo.png';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
-import SocialLoging from '../components/SocialLoging';
+// import SocialLoging from '../components/SocialLoging';
 
 import { useRegister } from '../hooks/useRegister';
 
 import { regExp } from '../utils/regExp';
 const schema = yup
   .object({
-    firstname: yup.string().required('Requerido'),
-    lastname: yup.string().required('Requerido'),
     email: yup.string().email('Email invalido').required('Requerido'),
     password: yup
       .string()
@@ -33,8 +31,6 @@ const schema = yup
   .required();
 
 type FormValues = {
-  firstname: string;
-  lastname: string;
   email: string;
   password: string;
   pwdConfirm: string;
@@ -50,8 +46,6 @@ export const RegisterScreen = () => {
   } = useForm<FormValues>({
     defaultValues: {
       email: '',
-      firstname: '',
-      lastname: '',
       password: '',
       pwdConfirm: '',
     },
@@ -79,8 +73,9 @@ export const RegisterScreen = () => {
     <ScrollView>
       <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>CREAR CUENTA</Text>
-
+        <Text style={styles.title}>Vamos a crear tu cuenta</Text>
+      </View>
+      <View style={styles.formContainer}>
         {registerRes && (
           <View style={styles.errorMsg}>
             <Text style={styles.errorText}> {registerRes}</Text>
@@ -88,35 +83,37 @@ export const RegisterScreen = () => {
         )}
 
         <CustomInput
-          name="firstname"
+          name="email"
+          label="E-Mail"
           control={control}
-          placeholder="Nombre del Usuario"
+          placeholder="Ingrese su Email"
         />
-        <CustomInput
-          name="lastname"
-          control={control}
-          placeholder="Apellidos"
-        />
-        <CustomInput name="email" control={control} placeholder="Email" />
-
         <CustomInput
           name="password"
+          label="Contraseña"
           control={control}
-          placeholder="password"
+          placeholder="Ingrese su contraseña"
           secureTextEntry
-        />
-        <CustomInput
-          name="pwdConfirm"
-          control={control}
-          placeholder="Confirmar clave"
-          secureTextEntry
-        />
-        <CustomButton
-          onPress={handleSubmit(handleRegister)}
-          text="Registrarse"
         />
 
-        <SocialLoging />
+        <CustomInput
+          name="pwdConfirm"
+          label="Confirma tu contraseña"
+          control={control}
+          placeholder="Ingrese su contraseña"
+          secureTextEntry
+        />
+
+        <CustomButton
+          onPress={handleSubmit(handleRegister)}
+          text="Registrarme"
+          type="Primary"
+          bgColor=""
+          txColor="#f3f3f3"
+          icon="sign-in"
+        />
+
+        {/* <SocialLoging /> */}
 
         <Text style={styles.text}>
           Al presionar registrarse esta aceptando los{' '}
@@ -127,7 +124,7 @@ export const RegisterScreen = () => {
         </Text>
 
         <Text style={styles.text}>
-          ¿Ya formas parte de FindYourDreamJob?{' '}
+          ¿Ya formas parte de ClipJobs?{' '}
           <Text onPress={goToLogin} style={styles.link}>
             Iniciar sesión
           </Text>
@@ -142,25 +139,33 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#a3a3a3',
+  },
+  formContainer: {
+    flex: 1,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     textAlign: 'center',
     marginBottom: 20,
   },
-  text: {
-    fontSize: 12,
+  subtitle: {
+    fontSize: 22,
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
+  },
+  bold: {
+    fontWeight: '700',
+  },
+  text: {
+    textAlign: 'center',
   },
   link: {
     color: 'blue',
   },
   logo: {
     width: '100%',
-    maxWidth: 75,
-    height: 75,
+    maxWidth: 100,
+    height: 100,
     resizeMode: 'contain',
   },
   buttonContainer: {

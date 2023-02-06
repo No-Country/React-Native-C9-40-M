@@ -18,6 +18,7 @@ export const Navigation = (props: Props) => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
         <Stack.Screen
           name="Landing"
           component={LandingScreen}
@@ -35,7 +36,6 @@ export const Navigation = (props: Props) => {
         />
         <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       </Stack.Navigator>
     </NavigationContainer>

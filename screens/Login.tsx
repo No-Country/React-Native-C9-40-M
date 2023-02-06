@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import logo from '../assets/images/logo.png';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
-import SocialLoging from '../components/SocialLoging';
+// import SocialLoging from '../components/SocialLoging';
 
 import { useLogin } from '../hooks/useLogin';
 import { UserContext } from '../GlobalStates/userContext';
@@ -69,37 +69,50 @@ export const LoginScreen = () => {
     <ScrollView>
       <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>INGRESAR</Text>
+        <Text style={styles.title}>
+          <Text style={styles.bold}>¡ClipJobs</Text> te da la bienvenida!
+        </Text>
+        <Text style={styles.subtitle}>
+          La manera más fácil para postularte a tu trabajo ideal
+        </Text>
+      </View>
 
+      <View style={styles.formContainer}>
         {loginRes && (
           <View style={styles.errorMsg}>
             <Text style={styles.errorText}> {loginRes}</Text>
           </View>
         )}
-
-        <CustomInput name="email" control={control} placeholder="email" />
+        <CustomInput
+          name="email"
+          label="E-Mail"
+          control={control}
+          placeholder="Ingrese su Email"
+        />
         <CustomInput
           name="password"
+          label="Contraseña"
           control={control}
-          placeholder="password"
+          placeholder="Ingrese su contraseña"
           secureTextEntry
         />
-
-        <CustomButton onPress={handleSubmit(handleLogin)} text="Aceptar" />
-
+        <CustomButton
+          onPress={handleSubmit(handleLogin)}
+          text="Inicial Sesión"
+          type="Primary"
+          bgColor=""
+          txColor="#f3f3f3"
+          icon="sign-in"
+        />
         <CustomButton
           onPress={goToForgotPassword}
           text="¿Olvidó su clave de acceso?"
           type="Link"
         />
-
-        <SocialLoging />
-
-        <Text style={styles.text}>
-          ¿No tiene cuenta?{' '}
-          <Text onPress={goToRegister} style={styles.link}>
-            Afiliese aquí
-          </Text>
+        {/* <SocialLoging /> */}
+        <Text style={styles.text}>¿Aún no tienes una cuenta? </Text>
+        <Text onPress={goToRegister} style={[styles.text, styles.link]}>
+          Accede aquí y crea una cuenta
         </Text>
       </View>
     </ScrollView>
@@ -112,15 +125,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+  formContainer: {
+    flex: 1,
+  },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     textAlign: 'center',
     marginBottom: 20,
   },
-  text: {
-    fontSize: 12,
+  subtitle: {
+    fontSize: 22,
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
+  },
+  bold: {
+    fontWeight: '700',
+  },
+  text: {
+    textAlign: 'center',
   },
   link: {
     color: 'blue',

@@ -36,7 +36,6 @@ export const ResetPasswordScreen = () => {
   });
 
   const handleReset = () => {
-    console.warn('Se reseteo el password');
     navigation.navigate('Login');
   };
   const goToLogin = () => {
@@ -48,28 +47,44 @@ export const ResetPasswordScreen = () => {
       <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.title}>Reset Password</Text>
+      </View>
+      <View style={styles.formContainer}>
         <CustomInput
           name="code"
+          label="Código enviado a su E-mail"
           control={control}
-          placeholder="codigo de confirmación"
+          placeholder="ingresa el código enviado a tu E-mail"
         />
         <CustomInput
           name="password"
+          label="Contraseña"
           control={control}
-          placeholder="password"
+          placeholder="Ingrese su contraseña"
           secureTextEntry
         />
+
         <CustomInput
           name="pwdConfirm"
+          label="Confirma tu contraseña"
           control={control}
-          placeholder="Confirmar clave"
+          placeholder="Ingrese su contraseña"
           secureTextEntry
         />
-        <CustomButton onPress={handleSubmit(handleReset)} text="Reset" />
+        <CustomButton
+          onPress={handleSubmit(handleReset)}
+          text="Registrarme"
+          type="Primary"
+          bgColor=""
+          txColor="#f3f3f3"
+          icon="sign-in"
+        />
+
         <CustomButton
           onPress={goToLogin}
           text="Regresar a Login"
           type={'Link'}
+          bgColor=""
+          txColor=""
         />
       </View>
     </ScrollView>
@@ -82,10 +97,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+  formContainer: {
+    flex: 1,
+  },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     textAlign: 'center',
     marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 22,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  bold: {
+    fontWeight: '700',
   },
   logo: {
     width: '100%',

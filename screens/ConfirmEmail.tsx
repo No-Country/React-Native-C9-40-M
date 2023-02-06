@@ -44,24 +44,41 @@ export const ConfirmEmailScreen = () => {
     <ScrollView>
       <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>Confirmar el Correo</Text>
+        <Text style={styles.title}>Confirma tu E-Mail</Text>
+      </View>
+
+      <View style={styles.formContainer}>
         <CustomInput
           name="code"
+          label="Codigo de Confirmación"
           control={control}
-          placeholder="Codigo de confirmación"
+          placeholder="Ingresa el codigo de confirmación enviado a tu E-mail"
         />
-        <CustomButton onPress={handleSubmit(handleConfirm)} text="Confirmar" />
+
+        <CustomButton
+          onPress={handleSubmit(handleConfirm)}
+          text="Confirmar"
+          type="Primary"
+          bgColor=""
+          txColor="#f3f3f3"
+          icon="check"
+        />
 
         <CustomButton
           onPress={onResendCode}
           text="Reenviar codigo"
           type="Secondary"
+          bgColor=""
+          txColor=""
+          icon="send"
         />
 
         <CustomButton
           onPress={goToLogin}
           text="Regresar a Login"
           type={'Link'}
+          bgColor=""
+          txColor=""
         />
       </View>
     </ScrollView>
@@ -74,13 +91,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+  formContainer: {
+    flex: 1,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 22,
     textAlign: 'center',
     marginBottom: 20,
   },
@@ -89,8 +109,5 @@ const styles = StyleSheet.create({
     maxWidth: 100,
     height: 100,
     resizeMode: 'contain',
-  },
-  buttonContainer: {
-    marginBottom: 50,
   },
 });

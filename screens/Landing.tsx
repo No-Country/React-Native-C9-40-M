@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
 
 import miImagen from '../assets/images/home2.jpg';
+import { CustomButton } from '../components/CustomButton';
 
 const DATA = [
   {
@@ -61,6 +62,10 @@ export function LandingScreen() {
     navigation.navigate('Login');
   };
 
+  const onPressRegister = (): void => {
+    navigation.navigate('Register');
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -79,10 +84,27 @@ export function LandingScreen() {
           initialNumToRender={0}
         />
 
-        <Pressable onPress={onPressLogin} style={styles.pressableContainer}>
-          <Text style={styles.textButton}>Login</Text>
+        {/* <Pressable onPress={onPressLogin} style={styles.pressableContainer}>
+          <Text style={styles.textButton}>Iniciar Sesión</Text>
           <Entypo name="login" size={24} color="white" />
-        </Pressable>
+        </Pressable> */}
+
+        <CustomButton
+          onPress={onPressLogin}
+          text="Inicial Sesión"
+          type="Primary"
+          bgColor=""
+          txColor="#f3f3f3"
+          icon="sign-in"
+        />
+        <CustomButton
+          onPress={onPressRegister}
+          text="Registrarse"
+          type="Secondary"
+          bgColor=""
+          txColor="blue"
+          icon="user-plus"
+        />
       </View>
     </ScrollView>
   );
