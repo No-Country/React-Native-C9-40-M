@@ -7,7 +7,5 @@ type LoginProps = {
 };
 type RegisterProps = {
   email: string;
-  firstname: string;
-  lastname: string;
   password: string;
 };

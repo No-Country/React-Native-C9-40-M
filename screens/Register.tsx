@@ -56,7 +56,8 @@ export const RegisterScreen = () => {
     navigation.navigate('Login');
   };
   const handleRegister = async (data: FormValues) => {
-    const registerResult = await useRegister(data);
+    const user = { email: data.email, password: data.password };
+    const registerResult = await useRegister(user);
     if (registerResult.success) {
       navigation.navigate('Home');
     } else {
