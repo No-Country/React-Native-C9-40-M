@@ -87,6 +87,7 @@ export const LoginScreen = () => {
           name="email"
           label="E-Mail"
           control={control}
+          keyboardType="email-address"
           placeholder="Ingrese su Email"
         />
         <CustomInput

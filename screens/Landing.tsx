@@ -14,27 +14,8 @@ import { Entypo } from '@expo/vector-icons';
 
 import miImagen from '../assets/images/home2.jpg';
 import { CustomButton } from '../components/CustomButton';
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Full Stack MERN',
-    type: 'Hibrido',
-    nivel: 'semi Senior',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Java',
-    type: 'Presencial',
-    nivel: 'Senior',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Java Programmer',
-    type: 'Hibrido',
-    nivel: 'Experto',
-  },
-];
+import { JobsOfert } from '../assets/data/fakeData';
+import OffersCard from '../components/OffersCard';
 
 type ItemProps = {
   item: {
@@ -44,16 +25,6 @@ type ItemProps = {
     nivel: string;
   };
 };
-
-const Item = ({ item }: ItemProps) => (
-  <Pressable onPress={() => console.warn('ver trabajo')}>
-    <View style={styles.item}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.text}>{item.type}</Text>
-      <Text style={styles.text}>{item.nivel}</Text>
-    </View>
-  </Pressable>
-);
 
 export function LandingScreen() {
   const navigation = useNavigation();
@@ -77,8 +48,8 @@ export function LandingScreen() {
 
         <FlatList
           style={styles.itemContainer}
-          data={DATA}
-          renderItem={({ item }) => <Item item={item} />}
+          data={JobsOfert}
+          renderItem={({ item }) => <OffersCard item={item} />}
           keyExtractor={(item) => item.id}
           horizontal={true}
           initialNumToRender={0}
@@ -127,13 +98,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     textAlign: 'center',
-  },
-  item: {
-    width: 250,
-    backgroundColor: 'yellow',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
   },
   image: {
     width: '100%',
