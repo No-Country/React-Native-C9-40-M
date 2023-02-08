@@ -3,7 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { schema } from '../utils/validationSchema/register';
 
 import logo from '../assets/images/logo.png';
 import { CustomInput } from '../components/CustomInput';
@@ -11,24 +11,6 @@ import { CustomButton } from '../components/CustomButton';
 // import SocialLoging from '../components/SocialLoging';
 
 import { useRegister } from '../hooks/useRegister';
-
-import { regExp } from '../utils/regExp';
-const schema = yup
-  .object({
-    email: yup.string().email('Email invalido').required('Requerido'),
-    password: yup
-      .string()
-      .required('Obligatorio')
-      .matches(
-        regExp.password,
-        'debe tener entre 4 y 8 caracteres al menos una Mayuscula y un numero'
-      ),
-    pwdConfirm: yup
-      .string()
-      .oneOf([yup.ref('password')], 'Las claves no coinciden')
-      .required('Obligatorio'),
-  })
-  .required();
 
 type FormValues = {
   email: string;
@@ -59,11 +41,11 @@ export const RegisterScreen = () => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
     if (registerResult.success) {
-      navigation.navigate('Home');
+      navigation.navigate('Login');
     } else {
       setRegisterRes(registerResult.msg);
     }
-    console.warn('Creand el user');
+    console.warn('Usuario Creando satisfactoriamente');
   };
 
   const goToPolicy = () => {

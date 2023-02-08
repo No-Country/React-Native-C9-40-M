@@ -23,7 +23,8 @@
     "react-native-screens": "~3.18.0",
     "react-native-web": "~0.18.9",
     "yup": "^0.32.11",
-    "@expo/webpack-config": "^0.17.2"
+    "@expo/webpack-config": "^0.17.2",
+    "expo-document-picker": "~11.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

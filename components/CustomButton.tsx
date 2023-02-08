@@ -6,8 +6,8 @@ import { FontAwesome } from '@expo/vector-icons';
 type Props = {
   text: string;
   type: string;
-  bgColor: string;
-  txColor: string;
+  bgColor?: string;
+  txColor?: string;
   icon?: string;
   onPress: () => void;
 };

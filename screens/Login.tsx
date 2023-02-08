@@ -3,7 +3,6 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 import logo from '../assets/images/logo.png';
 import { CustomInput } from '../components/CustomInput';
@@ -13,13 +12,7 @@ import { CustomButton } from '../components/CustomButton';
 import { useLogin } from '../hooks/useLogin';
 import { UserContext } from '../GlobalStates/userContext';
 
-const schema = yup
-  .object({
-    email: yup.string().email('Email invalido').required('Requerido'),
-    password: yup.string().required('Debe de indicar la clave'),
-  })
-  .required();
-
+import { schema } from '../utils/validationSchema/login';
 type FormValues = {
   password: string;
   email: string;

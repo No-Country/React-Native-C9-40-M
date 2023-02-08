@@ -9,6 +9,7 @@ import { ResetPasswordScreen } from '../screens/ResetPassword';
 import { ForgotPasswordScreen } from '../screens/ForgotPassword';
 import { ConfirmEmailScreen } from '../screens/ConfirmEmail';
 import { LandingScreen } from '../screens/Landing';
+import ProfileAdd from '../screens/ProfileAdd';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ export const Navigation = (props: Props) => {
           options={{ title: '', headerShown: true }}
         />
         <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
+        <Stack.Screen name="GetCV" component={ProfileAdd} />
         <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />

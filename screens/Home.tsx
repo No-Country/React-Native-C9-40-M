@@ -10,7 +10,8 @@ import OffersCard from '../components/OffersCard';
 export function HomeScreen() {
   const navigation = useNavigation();
   const { currentUser } = useContext(UserContext);
-
+  const userName =
+    currentUser.firstname === null ? currentUser.email : currentUser.firstname;
   return (
     <>
       <View style={styles.container}>
@@ -21,8 +22,7 @@ export function HomeScreen() {
         /> */}
         <View>
           <Text style={styles.title}>
-            <Text style={styles.bold}>¡Hola</Text>, {currentUser.firstname}{' '}
-            bienvenido!
+            <Text style={styles.bold}>¡Hola</Text>, {userName} bienvenido!
           </Text>
           <Text style={styles.subtitle}>
             Estas son las vacantes disponibles
