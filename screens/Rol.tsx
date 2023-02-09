@@ -9,9 +9,12 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
-import { SelectList } from "react-native-dropdown-select-list";
-import { Ionicons } from '@expo/vector-icons';
+import React, { useEffect, useState } from "react";
+import {
+  MultipleSelectList,
+  SelectList,
+} from "react-native-dropdown-select-list";
+import { Ionicons } from "@expo/vector-icons";
 
 const dataBase = [
   "UX/UI",
@@ -25,8 +28,15 @@ const dataBase = [
 ];
 
 export function Rol() {
-  const [selected, setSelected] = useState("");
-  const [country, setCountry] = useState();
+  const [selectedRol, setselectedRol] = useState("");
+  const [selectStack, setSelectStack] = useState([]);
+
+
+
+  useEffect(() => {
+    alert('Hola mundo')
+    setSelectStack([]);
+  }, [selectedRol]);
 
   const data = [
     { key: "1", value: "Frontend" },
@@ -40,13 +50,28 @@ export function Rol() {
   ];
 
   const technology = [
-    { key: "1", value: "Javascript" },
-    { key: "2", value: "React" },
-    { key: "3", value: "Typescript" },
-    { key: "4", value: "React-Native" },
-    { key: "5", value: "Angular" },
-    { key: "6", value: "Vue" },
-    { key: "7", value: "Svelte" },
+    { key: 'Javascript', type: "Frontend", value: "Javascript" },
+    { type: "Frontend", value: "HTML" },
+    { type: "Frontend", value: "React" },
+    { type: "Frontend", value: "Typescript" },
+    { type: "Frontend", value: "React-Native" },
+    { type: "Frontend", value: "Angular" },
+    { type: "Frontend", value: "Vue" },
+    { type: "Frontend", value: "Svelte" },
+    { type: "Backend", value: "Node" },
+    { type: "Backend", value: "PHP" },
+    { type: "Backend", value: "Java" },
+    { type: "Backend", value: "C#" },
+    { type: "Backend", value: "Kotlin" },
+    { type: "Backend", value: "Python" },
+    { type: "Backend", value: "MongoDb" },
+    { type: "Backend", value: "MySQL" },
+    { type: "UX/UI", value: "Adobe Photoshop" },
+    { type: "UX/UI", value: "Adobe XD" },
+    { type: "UX/UI", value: "Metodologias" },
+    { type: "UX/UI", value: "UX Writing" },
+    { type: "UX/UI", value: "Sketch" },
+    { type: "UX/UI", value: "Balsamiq" },
   ];
 
   return (
@@ -55,37 +80,48 @@ export function Rol() {
       <Text style={styles.descriptionText}>
         Cuéntanos cual es el rol que mas te identifica. (Selecciona solo una)
       </Text>
-      <View style={{marginTop: 20}}>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputText}>Tu rol principal es:</Text>
-        <SelectList
-          style={styles.input}
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          dropdownStyles={{ backgroundColor: "#EBEBEB" }}
-          dropdownItemStyles={{ marginHorizontal: 5, fontWeight: 'bold' }}
-          placeholder="Rol"
-          maxHeight={130}
-          notFoundText="No se encontro ningun rol"
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.inputText}>Tecnologias asociadas:</Text>
-        <SelectList
-          style={styles.input}
-          setSelected={(val) => setSelected(val)}
-          data={technology}
-          dropdownStyles={{ backgroundColor: "#EBEBEB" }}
-          dropdownItemStyles={{ marginHorizontal: 5, fontWeight: 'bold' }}
-          placeholder="Rol"
-          maxHeight={130}
-          notFoundText="No se encontro ningun rol"
-        />
-      </View>
+      <Text>
+        {selectStack.map((text) => (
+          <Text>{text}</Text>
+        ))}
+      </Text>
+      <View style={{ marginTop: 20 }}>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputText}>Tu rol principal es: </Text>
+          <SelectList
+            style={styles.input}
+            setSelected={(val) => setselectedRol(val)}
+            data={data}
+            save="value"
+            dropdownStyles={{ backgroundColor: "#EBEBEB" }}
+            dropdownItemStyles={{ marginHorizontal: 5, fontWeight: "bold" }}
+            placeholder="Selecciona una opción"
+            searchPlaceholder="Busca tu rol en el mundo IT"
+            maxHeight={130}
+            notFoundText="No se encontro ningun rol"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputText}>Tecnologias asociadas al {selectedRol}</Text>
+          
+          <MultipleSelectList
+            style={styles.input}
+            setSelected={(val) => setSelectStack(val)}
+            data={technology.filter((tecno) => tecno.type == selectedRol)}
+            dropdownStyles={{ backgroundColor: "#EBEBEB" }}
+            dropdownItemStyles={{ marginHorizontal: 5, fontWeight: "bold" }}
+            placeholder="Tecnologias"
+            label="Stack"
+            searchPlaceholder="Elige tus tecnologías"
+            maxHeight={250}
+            notFoundText="No se encontro ningun rol"
+            badgeStyles={{ backgroundColor: "black" }}
+          />
+        </View>
       </View>
       <View style={styles.nextContainer}>
-      <Ionicons name="ios-arrow-forward" size={30} color="#000" />
-    </View>
+        <Ionicons name="ios-arrow-forward" size={30} color="#000" />
+      </View>
     </View>
   );
 }
@@ -125,7 +161,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   titleText: {
-    fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: "bold",
     width: 301,
@@ -143,10 +178,9 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   descriptionText: {
-    fontFamily: "Inter",
     fontStyle: "normal",
     width: 301,
     height: 52,
@@ -179,19 +213,19 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   nextContainer: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
+    position: "absolute",
+    bottom: 30,
+    right: 20,
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
     width: 50,
     height: 50,
-    backgroundColor: '#EBEBEB',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#EBEBEB",
+
+    justifyContent: "center",
     borderWidth: 1,
-    borderColor: '#4D4A4A',
-    borderRadius: 8
+    borderColor: "#4D4A4A",
+    borderRadius: 8,
   },
   buttonContainer: {
     marginTop: 20,

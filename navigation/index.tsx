@@ -20,11 +20,11 @@ type Props = {};
 export const Navigation = (props: Props) => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{ headerShown: true }}>
         <Stack.Screen
           name="Landing"
-          component={LandingScreen}
-          options={{ title: "Welcome to FindYourDreamJob" }}
+          component={Rol}
+          options={{ title: "" }}
         />
         <Stack.Screen
           name="Home"
