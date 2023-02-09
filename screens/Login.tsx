@@ -3,16 +3,16 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { schema } from '../utils/validationSchema/login';
 
 import logo from '../assets/images/logo.png';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
-// import SocialLoging from '../components/SocialLoging';
 
 import { useLogin } from '../hooks/useLogin';
 import { UserContext } from '../GlobalStates/userContext';
+import { COLORS } from '../constants';
 
-import { schema } from '../utils/validationSchema/login';
 type FormValues = {
   password: string;
   email: string;
@@ -60,10 +60,12 @@ export const LoginScreen = () => {
 
   return (
     <ScrollView>
-      <View style={styles.container}>
+      <View style={styles.header}>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.title}>
-          <Text style={styles.bold}>¡ClipJobs</Text> te da la bienvenida!
+          <Text style={[styles.bold, styles.gold]}>¡Jobs</Text>
+          <Text style={[styles.bold, styles.blue]}> Match</Text> te da la
+          bienvenida!
         </Text>
         <Text style={styles.subtitle}>
           La manera más fácil para postularte a tu trabajo ideal
@@ -103,55 +105,62 @@ export const LoginScreen = () => {
           text="¿Olvidó su clave de acceso?"
           type="Link"
         />
-        {/* <SocialLoging /> */}
-        <Text style={styles.text}>¿Aún no tienes una cuenta? </Text>
-        <Text onPress={goToRegister} style={[styles.text, styles.link]}>
-          Accede aquí y crea una cuenta
-        </Text>
       </View>
+      <Text style={styles.text}>¿Aún no tienes una cuenta? </Text>
+      <Text onPress={goToRegister} style={[styles.text, styles.link]}>
+        Accede aquí y crea una cuenta
+      </Text>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  header: {
     flex: 1,
+    width: '100%',
     alignItems: 'center',
-    padding: 20,
   },
   formContainer: {
     flex: 1,
+    width: '100%',
+    marginBottom: 20,
   },
   title: {
-    fontSize: 28,
+    fontSize: 26,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   subtitle: {
-    fontSize: 22,
+    fontSize: 20,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   bold: {
     fontWeight: '700',
   },
+  gold: {
+    color: COLORS.logoGold,
+  },
+  blue: {
+    color: COLORS.logoBlue,
+  },
   text: {
     textAlign: 'center',
+    marginBottom: 10,
   },
   link: {
     color: 'blue',
   },
   logo: {
     width: '100%',
-    maxWidth: 100,
-    height: 100,
+    maxWidth: 200,
+    height: 150,
     resizeMode: 'contain',
   },
-  buttonContainer: {
-    marginBottom: 50,
-  },
   errorMsg: {
-    width: '70%',
+    marginHorizontal: 20,
+    padding: 10,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'purple',

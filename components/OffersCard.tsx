@@ -3,7 +3,7 @@ type Props = {};
 const OffersCard = ({ item }: Props) => {
   return (
     <Pressable>
-      <View style={styles.item}>
+      <View style={[styles.item, styles.shadow]}>
         <Text style={[styles.title, styles.highlight]}>{item.company}</Text>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.text}>{item.type}</Text>
@@ -36,5 +36,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'purple',
     textAlign: 'center',
+  },
+  shadow: {
+    shadowColor: 'blue',
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 10,
+
+    elevation: 10,
   },
 });

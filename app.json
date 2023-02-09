@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "login-rhf-ts",
-    "slug": "login-rhf-ts",
+    "name": "jobs-match",
+    "slug": "jobs-match",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffff00"
+      "backgroundColor": "#3d3d3"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
