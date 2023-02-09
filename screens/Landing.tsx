@@ -61,6 +61,16 @@ export function LandingScreen() {
     navigation.navigate('Login');
   };
 
+  const onPressJobs = (): void => {
+    navigation.navigate('Jobs');
+  };
+
+  const onPressRol = (): void => {
+    navigation.navigate('Rol');
+  };
+
+
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -83,6 +93,17 @@ export function LandingScreen() {
           <Text style={styles.textButton}>Login</Text>
           <Entypo name="login" size={24} color="white" />
         </Pressable>
+
+        <Pressable onPress={onPressJobs} style={styles.pressableContainer}>
+          <Text style={styles.textButton}>Jobs</Text>
+          <Entypo name="login" size={24} color="white" />
+        </Pressable>
+
+        <Pressable onPress={onPressRol} style={styles.pressableContainer}>
+          <Text style={styles.textButton}>Rol</Text>
+          <Entypo name="login" size={24} color="white" />
+        </Pressable>
+
       </View>
     </ScrollView>
   );

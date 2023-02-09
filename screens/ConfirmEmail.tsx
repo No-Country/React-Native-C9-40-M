@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import logo from '../assets/images/logo.png';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
+import logo from "../assets/images/logo.png";
+import { CustomInput } from "../components/CustomInput";
+import { CustomButton } from "../components/CustomButton";
 
 const schema = yup
   .object({
-    code: yup.string().required('Requerido'),
+    code: yup.string().required("Requerido"),
   })
   .required();
 
@@ -25,19 +25,19 @@ export const ConfirmEmailScreen = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      code: '',
+      code: "",
     },
     resolver: yupResolver(schema),
   });
   const handleConfirm = () => {
-    console.warn('Se confirmo el Correo');
-    navigation.navigate('Home');
+    console.warn("Se confirmo el Correo");
+    navigation.navigate("Home");
   };
   const goToLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate("Login");
   };
   const onResendCode = () => {
-    console.warn('Se reenvio el codigo de confirmación');
+    console.warn("Se reenvio el codigo de confirmación");
   };
 
   return (
@@ -61,7 +61,7 @@ export const ConfirmEmailScreen = () => {
         <CustomButton
           onPress={goToLogin}
           text="Regresar a Login"
-          type={'Link'}
+          type={"Link"}
         />
       </View>
     </ScrollView>
@@ -71,24 +71,24 @@ export const ConfirmEmailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   title: {
     fontSize: 24,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   logo: {
-    width: '100%',
+    width: "100%",
     maxWidth: 100,
     height: 100,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   buttonContainer: {
     marginBottom: 50,

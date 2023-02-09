@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { LoginScreen } from '../screens/Login';
 import { RegisterScreen } from '../screens/Register';
+import Jobs from '../screens/Jobs';
 
 export type TabStackParamList = {
   Customer: undefined;
