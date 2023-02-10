@@ -5,8 +5,8 @@ type Props = {};
 const ProfileAdd = (props: Props) => {
   return (
     <View>
-      <RolTech />
-      {/* <GetCV /> */}
+      {/* <RolTech /> */}
+      <GetCV />
     </View>
   );
 };

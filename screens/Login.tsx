@@ -95,9 +95,6 @@ export const LoginScreen = () => {
         <CustomButton
           onPress={handleSubmit(handleLogin)}
           text="Inicial Sesión"
-          type="Primary"
-          bgColor=""
-          txColor="#f3f3f3"
           icon="sign-in"
         />
         <CustomButton

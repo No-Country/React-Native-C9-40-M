@@ -21,18 +21,21 @@ export const SocialLoging = (props: Props) => {
         text="Ingresar con Google"
         bgColor="#fae9ea"
         txColor="#dd4d44"
+        icon="google"
       />
       <CustomButton
         onPress={onRegisterWithFaceBook}
         text="Ingresar con Facebook"
         bgColor="#e7eaf4"
         txColor="#4765a9"
+        icon="facebook-official"
       />
       <CustomButton
         onPress={onRegisterWithApple}
         text="Ingresar con Apple"
         bgColor="#e3e3e3"
         txColor="#363636"
+        icon="apple"
       />
     </>
   );

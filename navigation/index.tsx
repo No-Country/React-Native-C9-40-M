@@ -20,7 +20,7 @@ export const Navigation = (props: Props) => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName={'Profile'}
+        initialRouteName={'Landing'}
       >
         <Stack.Screen
           name="Landing"

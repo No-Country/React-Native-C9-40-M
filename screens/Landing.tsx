@@ -23,17 +23,12 @@ export function LandingScreen() {
       <CustomButton
         onPress={onPressLogin}
         text="Inicial Sesión"
-        type="Primary"
-        bgColor=""
-        txColor="#f3f3f3"
         icon="sign-in"
       />
       <CustomButton
         onPress={onPressRegister}
         text="Registrarse"
         type="Secondary"
-        bgColor=""
-        txColor="blue"
         icon="user-plus"
       />
     </View>

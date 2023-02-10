@@ -7,29 +7,16 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { schema } from '../utils/validationSchema/getCV';
+
+import { CustomButton } from './CustomButton';
 import { CustomInput } from './CustomInput';
 
-import { useNavigation } from '@react-navigation/native';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
 import logo from '../assets/images/logo.png';
-import { CustomButton } from './CustomButton';
-
-const schema = yup
-  .object({
-    linkedInUrl: yup
-      .string()
-      // .url('no cumple con el formato')
-      .required('Requerido'),
-    gitUrl: yup
-      .string()
-      // .url('no cumple con el formato')
-      .required('Requerido'),
-  })
-  .required();
 
 type FormValues = {
   linkedInUrl: string;
@@ -99,7 +86,7 @@ const GetCV = () => {
 
   return (
     <ScrollView>
-      <View style={styles.container}>
+      <View style={styles.header}>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.title}>Completa tu curriculum</Text>
         <Text style={styles.subtitle}>
@@ -112,7 +99,9 @@ const GetCV = () => {
           <Text style={styles.label}>Adjunta tu CV</Text>
           <Button title="Seleccionar archivo" onPress={pickDocument} />
           {fileLoadMsg && (
-            <Text style={styles.error}>{fileLoadMsg || 'Error'}</Text>
+            <View style={styles.errorMsg}>
+              <Text style={styles.error}>{fileLoadMsg || 'Error'}</Text>
+            </View>
           )}
         </View>
 
@@ -143,21 +132,21 @@ const GetCV = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  header: {
     flex: 1,
+    width: '100%',
     alignItems: 'center',
-    padding: 20,
   },
   formContainer: {
     flex: 1,
   },
   title: {
-    fontSize: 28,
+    fontSize: 26,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   subtitle: {
-    fontSize: 22,
+    fontSize: 20,
     textAlign: 'center',
     marginBottom: 20,
   },
@@ -166,21 +155,21 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
+    marginBottom: 10,
   },
   link: {
     color: 'blue',
   },
   logo: {
     width: '100%',
-    maxWidth: 100,
-    height: 100,
+    maxWidth: 200,
+    height: 150,
     resizeMode: 'contain',
   },
-  buttonContainer: {
-    marginBottom: 50,
-  },
   errorMsg: {
-    width: '70%',
+    marginHorizontal: 20,
+    padding: 10,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'purple',
