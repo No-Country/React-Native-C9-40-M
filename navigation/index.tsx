@@ -9,6 +9,7 @@ import { ResetPasswordScreen } from '../screens/ResetPassword';
 import { ForgotPasswordScreen } from '../screens/ForgotPassword';
 import { ConfirmEmailScreen } from '../screens/ConfirmEmail';
 import { LandingScreen } from '../screens/Landing';
+import { JobsScreen } from '../screens/Jobs';
 import ProfileAdd from '../screens/ProfileAdd';
 
 const Stack = createNativeStackNavigator();
@@ -20,12 +21,17 @@ export const Navigation = (props: Props) => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName={'Landing'}
+        initialRouteName={'Profile'}
       >
         <Stack.Screen
           name="Landing"
           component={LandingScreen}
           options={{ title: 'Welcome to FindYourDreamJob' }}
+        />
+        <Stack.Screen
+          name="Jobs"
+          component={JobsScreen}
+          options={{ title: 'Encuentra tu trabajo ideal' }}
         />
         <Stack.Screen
           name="Home"

@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -59,59 +61,61 @@ export const LoginScreen = () => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.header}>
-        <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>
-          <Text style={[styles.bold, styles.gold]}>¡Jobs</Text>
-          <Text style={[styles.bold, styles.blue]}> Match</Text> te da la
-          bienvenida!
-        </Text>
-        <Text style={styles.subtitle}>
-          La manera más fácil para postularte a tu trabajo ideal
-        </Text>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.header}>
+          <Image source={logo} style={styles.logo} />
+          <Text style={styles.subtitle}>
+            La manera más fácil para postularte a tu trabajo ideal
+          </Text>
+        </View>
 
-      <View style={styles.formContainer}>
-        {loginRes && (
-          <View style={styles.errorMsg}>
-            <Text style={styles.errorText}> {loginRes}</Text>
+        <View style={styles.formContainer}>
+          {loginRes && (
+            <View style={styles.errorMsg}>
+              <Text style={styles.errorText}> {loginRes}</Text>
+            </View>
+          )}
+          <CustomInput
+            name="email"
+            label="E-Mail"
+            control={control}
+            keyboardType="email-address"
+            placeholder="Ingrese su Email"
+          />
+          <CustomInput
+            name="password"
+            label="Contraseña"
+            control={control}
+            placeholder="Ingrese su contraseña"
+            secureTextEntry
+          />
+          <CustomButton
+            onPress={handleSubmit(handleLogin)}
+            text="Inicial Sesión"
+            bgColor={COLORS.logoBlue}
+          />
+
+          <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
+          <View style={styles.border}>
+            <CustomButton
+              onPress={goToForgotPassword}
+              text="Accede aquí y recuperala"
+              type="Link"
+              txColor={COLORS.logoGold}
+            />
           </View>
-        )}
-        <CustomInput
-          name="email"
-          label="E-Mail"
-          control={control}
-          keyboardType="email-address"
-          placeholder="Ingrese su Email"
-        />
-        <CustomInput
-          name="password"
-          label="Contraseña"
-          control={control}
-          placeholder="Ingrese su contraseña"
-          secureTextEntry
-        />
-        <CustomButton
-          onPress={handleSubmit(handleLogin)}
-          text="Inicial Sesión"
-          icon="sign-in"
-        />
-        <CustomButton
-          onPress={goToForgotPassword}
-          text="¿Olvidó su clave de acceso?"
-          type="Link"
-        />
-      </View>
-      <Text style={styles.text}>¿Aún no tienes una cuenta? </Text>
-      <Text onPress={goToRegister} style={[styles.text, styles.link]}>
-        Accede aquí y crea una cuenta
-      </Text>
-    </ScrollView>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flex: 1,
+  },
   header: {
     flex: 1,
     width: '100%',
@@ -124,6 +128,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 26,
+    fontWeight: '500',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -131,6 +136,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     marginBottom: 10,
+    color: COLORS.black,
   },
   bold: {
     fontWeight: '700',
@@ -165,5 +171,13 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'white',
     padding: 5,
+  },
+  border: {
+    width: '70%',
+    alignSelf: 'center',
+    marginTop: -30,
+    borderColor: 'transparent',
+    borderBottomColor: COLORS.logoGold,
+    borderWidth: 2,
   },
 });
