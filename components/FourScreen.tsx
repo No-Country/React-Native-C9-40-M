@@ -7,7 +7,6 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -15,6 +14,7 @@ import { schema } from '../utils/validationSchema/getCV';
 
 import { CustomButton } from './CustomButton';
 import { CustomInput } from './CustomInput';
+import { COLORS } from '../constants';
 
 import logo from '../assets/images/logo.png';
 
@@ -29,10 +29,18 @@ interface Document {
   type: string;
 }
 
-const GetCV = () => {
+type Direction = {
+  direction: 'next' | 'prev';
+};
+
+type Props = {
+  step: number;
+  handleGoTo: (direction: Direction) => void;
+};
+
+export const FourScreen = ({ handleGoTo }: Props) => {
   const [file, setFile] = useState<DocumentPicker.DocumentResult | null>(null);
   const [fileLoadMsg, setFileLoadMsg] = useState('');
-  const navigation = useNavigation();
   const {
     handleSubmit,
     control,
@@ -81,17 +89,35 @@ const GetCV = () => {
       setFileLoadMsg('Debe de subir su CV');
       return;
     }
-    //ir a la siguiente pantalla
+    setFileLoadMsg('');
+    console.log('carga exitosa se pasan los datos al backend');
+    handleNext();
+  };
+
+  // Para navegar entre las pantallas
+  const handleBack = () => {
+    handleGoTo('prev');
+  };
+  const handleNext = () => {
+    handleGoTo('next');
   };
 
   return (
     <ScrollView>
       <View style={styles.header}>
+        <View style={{ width: 50, position: 'absolute', top: 10, left: 10 }}>
+          <CustomButton
+            onPress={handleBack}
+            text=""
+            icon="arrow-circle-left"
+            bgColor={COLORS.logoBlue}
+          />
+        </View>
+
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>Completa tu curriculum</Text>
+        <Text style={styles.title}>Completa tu perfil</Text>
         <Text style={styles.subtitle}>
-          Te invitamos a que completes tu cv para que puedas encontrar tu
-          trabajo ideal.
+          El último paso para que puedas encontrar tu trabajo ideal.
         </Text>
       </View>
       <View style={styles.formContainer}>
@@ -103,6 +129,7 @@ const GetCV = () => {
               <Text style={styles.error}>{fileLoadMsg || 'Error'}</Text>
             </View>
           )}
+          {file && <Text> {file.name}</Text>}
         </View>
 
         <CustomInput
@@ -120,11 +147,8 @@ const GetCV = () => {
 
         <CustomButton
           onPress={handleSubmit(handleCV)}
-          text="Siguiente"
-          type="Secondary"
-          bgColor=""
-          txColor="#f3f3f3"
-          icon="sign-in"
+          text="Actualizar"
+          bgColor={COLORS.logoBlue}
         />
       </View>
     </ScrollView>
@@ -191,5 +215,3 @@ const styles = StyleSheet.create({
   },
   error: { color: 'red', alignSelf: 'stretch' },
 });
-
-export default GetCV;

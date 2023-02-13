@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -54,76 +55,60 @@ export const RegisterScreen = () => {
   // };
 
   return (
-    <ScrollView>
-      <View style={styles.header}>
-        <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>Vamos a crear tu cuenta</Text>
-      </View>
-      <View style={styles.formContainer}>
-        {registerRes && (
-          <View style={styles.errorMsg}>
-            <Text style={styles.errorText}> {registerRes}</Text>
-          </View>
-        )}
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.header}>
+          <Image source={logo} style={styles.logo} />
+          <Text style={styles.title}>Vamos a crear tu cuenta</Text>
+        </View>
+        <View style={styles.formContainer}>
+          {registerRes && (
+            <View style={styles.errorMsg}>
+              <Text style={styles.errorText}> {registerRes}</Text>
+            </View>
+          )}
 
-        <View style={{ alignContent: 'center' }}>
-          <CustomInput
-            name="email"
-            label="E-Mail"
-            control={control}
-            placeholder="Ingrese su Email"
-          />
-          <CustomInput
-            name="password"
-            label="Contraseña"
-            control={control}
-            placeholder="Ingrese su contraseña"
-            secureTextEntry
-          />
-
-          <CustomInput
-            name="pwdConfirm"
-            label="Confirma tu contraseña"
-            control={control}
-            placeholder="Ingrese su contraseña"
-            secureTextEntry
-          />
-          <View style={styles.center}>
-            <CustomButton
-              onPress={handleSubmit(handleRegister)}
-              text="Registrarme"
-              type="Primary"
-              bgColor=""
-              txColor="#f3f3f3"
-              icon="sign-in"
+          <View style={{ alignContent: 'center' }}>
+            <CustomInput
+              name="email"
+              label="E-Mail"
+              control={control}
+              placeholder="Ingrese su Email"
             />
+            <CustomInput
+              name="password"
+              label="Contraseña"
+              control={control}
+              placeholder="Ingrese su contraseña"
+              secureTextEntry
+            />
+
+            <CustomInput
+              name="pwdConfirm"
+              label="Confirma tu contraseña"
+              control={control}
+              placeholder="Ingrese su contraseña"
+              secureTextEntry
+            />
+            <View style={styles.center}>
+              <CustomButton
+                onPress={handleSubmit(handleRegister)}
+                text="Registrarme"
+                type="Primary"
+                bgColor={COLORS.logoBlue}
+              />
+            </View>
           </View>
         </View>
-        {/* <Text style={styles.text}>
-          Al presionar registrarse esta aceptando los{' '}
-          <Text onPress={goToPolicy} style={styles.link}>
-            terminos y politicas{' '}
-          </Text>
-          privacidad
-        </Text> */}
-
-        <Text style={styles.text}>
-          ¿Ya formas parte de <Text style={styles.blue}>Jobs</Text>{' '}
-          <Text style={styles.gold}> Match?</Text>{' '}
-          <Text onPress={goToLogin} style={styles.link}>
-            Iniciar sesión
-          </Text>
-        </Text>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     flex: 1,
-    alignItems: 'center',
-    padding: 20,
   },
   header: {
     flex: 1,
@@ -138,6 +123,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 26,
+    fontWeight: '500',
     textAlign: 'center',
     marginBottom: 20,
   },

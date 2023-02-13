@@ -8,7 +8,7 @@ export default {
   danger: '#FF0D0E',
   gray: '#666666',
   grayLight: '#ccc',
-  black: '#0a0a0a',
-  logoBlue: '#273469',
-  logoGold: '#EDA840',
+  black: '#080909',
+  logoBlue: '#0E1545',
+  logoGold: '#C27B34',
 };
