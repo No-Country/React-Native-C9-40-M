@@ -30,15 +30,13 @@ export const UserContextProvider = ({ children }) => {
     getInfo();
   }, []);
 
-  
-
   const value = {
     currentUser,
     setCurrentUser,
     jobs,
     setJobs,
     selectedRol,
-    setselectedRol
+    setselectedRol,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
