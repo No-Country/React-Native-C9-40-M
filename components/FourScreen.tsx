@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import { schema } from '../utils/validationSchema/getCV';
 import { CustomButton } from './CustomButton';
 import { CustomInput } from './CustomInput';
 import { COLORS } from '../constants';
+import { UserContext } from '../GlobalStates/userContext';
 
 import logo from '../assets/images/logo.png';
 
@@ -39,6 +40,17 @@ type Props = {
 };
 
 export const FourScreen = ({ handleGoTo }: Props) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  //para probar cuando viene un valor en el currentUser
+
+  const newCurrentUser = {
+    ...currentUser,
+    linkedInUrl: 'prueba de linkInUrl',
+    gitUrl: 'prueba del gitUrl',
+  };
+
+  // setCurrentUser(newCurrentUser);
+
   const [file, setFile] = useState<DocumentPicker.DocumentResult | null>(null);
   const [fileLoadMsg, setFileLoadMsg] = useState('');
   const {
@@ -47,8 +59,8 @@ export const FourScreen = ({ handleGoTo }: Props) => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      linkedInUrl: '',
-      gitUrl: '',
+      linkedInUrl: newCurrentUser.linkedInUrl,
+      gitUrl: newCurrentUser.gitUrl,
     },
     resolver: yupResolver(schema),
   });
@@ -85,6 +97,7 @@ export const FourScreen = ({ handleGoTo }: Props) => {
   };
 
   const handleCV = async (data: FormValues) => {
+    console.log('Debe de subir su CV');
     if (!file) {
       setFileLoadMsg('Debe de subir su CV');
       return;

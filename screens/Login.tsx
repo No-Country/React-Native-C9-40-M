@@ -39,16 +39,28 @@ export const LoginScreen = () => {
 
   const handleLogin = async (data: FormValues) => {
     const loginResult = await useLogin(data);
-    if (loginResult.success) {
+
+    if (loginResult.token) {
       setCurrentUser({
-        email: loginResult.email,
-        firstname: loginResult.firstname,
-        lastname: loginResult.lastname,
         token: loginResult.token,
+        email: loginResult.user.email,
+        firstname: loginResult.user.firstname,
+        lastname: loginResult.user.lastname,
+        about_me: loginResult.user.about_me,
+        age: loginResult.user.age,
+        article_1: loginResult.user.article_1,
+        avatar: loginResult.user.avatar,
+        id: loginResult.user.id,
+        country: loginResult.user.country,
+        region: loginResult.user.region,
+        phone: loginResult.user.phone,
+        url_portfolio: loginResult.url_portfolio,
       });
-      navigation.navigate('Home');
+      loginResult.user.firstname
+        ? navigation.navigate('Home')
+        : navigation.navigate('Profile');
     } else {
-      setLoginRes(loginResult.msg);
+      setLoginRes('hay errores');
     }
   };
 
