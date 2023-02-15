@@ -42,11 +42,11 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
   }
   const handleNext = (data) => {
     console.log(data);
-    //setCurrentUser({
-    //...currentUser,
-    // firstname: data.nombre,
-    //lastname: data.apellido,
-    // });
+    setCurrentUser({
+      ...currentUser,
+      firstname: data.nombre,
+      lastname: data.apellido,
+    });
 
     handleGoTo("next");
   };
@@ -185,11 +185,13 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           </TouchableOpacity>
         </View>
 
-        <CustomButton
-          onPress={() => handleSubmit(handleNext())}
-          text="Continuar"
-          bgColor={COLORS.logoBlue}
-        />
+        <View>
+          <CustomButton
+            onPress={handleSubmit(handleNext)}
+            text="Continuar"
+            bgColor={COLORS.logoBlue}
+          />
+        </View>
       </View>
     </ScrollView>
   );
