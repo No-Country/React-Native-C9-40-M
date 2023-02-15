@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import { COLORS } from "../constants";
-import { MultipleSelectList } from "react-native-dropdown-select-list";
-import { CustomButton } from "./CustomButton";
-import { useContext, useState } from "react";
-import { UserContext } from "../GlobalStates/userContext";
-import logo from "../assets/images/logo.png";
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { COLORS } from '../constants';
+import { MultipleSelectList } from 'react-native-dropdown-select-list';
+import { CustomButton } from './CustomButton';
+import { useContext, useState } from 'react';
+import { UserContext } from '../GlobalStates/userContext';
+import logo from '../assets/images/logo.png';
 
 type Direction = {
-  direction: "next" | "prev";
+  direction: 'next' | 'prev';
 };
 
 type Props = {
@@ -23,12 +23,12 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
   const setselectedRol = value.setselectedRol;
 
   const handleBack = () => {
-    handleGoTo("prev");
+    handleGoTo('prev');
   };
 
   const handleNext = () => {
-    console.log("Validar datos antes de pasar  la siguiente pantalla");
-    handleGoTo("next");
+    console.log('Validar datos antes de pasar  la siguiente pantalla');
+    handleGoTo('next');
   };
 
   const addStack = (val) => {
@@ -39,28 +39,28 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
   };
 
   const technology = [
-    { key: "Javascript", type: "Frontend", value: "Javascript" },
-    { type: "Frontend", value: "HTML" },
-    { type: "Frontend", value: "React" },
-    { type: "Frontend", value: "Typescript" },
-    { type: "Frontend", value: "React-Native" },
-    { type: "Frontend", value: "Angular" },
-    { type: "Frontend", value: "Vue" },
-    { type: "Frontend", value: "Svelte" },
-    { type: "Backend", value: "Node" },
-    { type: "Backend", value: "PHP" },
-    { type: "Backend", value: "Java" },
-    { type: "Backend", value: "C#" },
-    { type: "Backend", value: "Kotlin" },
-    { type: "Backend", value: "Python" },
-    { type: "Backend", value: "MongoDb" },
-    { type: "Backend", value: "MySQL" },
-    { type: "UX/UI", value: "Adobe Photoshop" },
-    { type: "UX/UI", value: "Adobe XD" },
-    { type: "UX/UI", value: "Metodologias" },
-    { type: "UX/UI", value: "UX Writing" },
-    { type: "UX/UI", value: "Sketch" },
-    { type: "UX/UI", value: "Balsamiq" },
+    { key: 'Javascript', type: 'Frontend', value: 'Javascript' },
+    { type: 'Frontend', value: 'HTML' },
+    { type: 'Frontend', value: 'React' },
+    { type: 'Frontend', value: 'Typescript' },
+    { type: 'Frontend', value: 'React-Native' },
+    { type: 'Frontend', value: 'Angular' },
+    { type: 'Frontend', value: 'Vue' },
+    { type: 'Frontend', value: 'Svelte' },
+    { type: 'Backend', value: 'Node' },
+    { type: 'Backend', value: 'PHP' },
+    { type: 'Backend', value: 'Java' },
+    { type: 'Backend', value: 'C#' },
+    { type: 'Backend', value: 'Kotlin' },
+    { type: 'Backend', value: 'Python' },
+    { type: 'Backend', value: 'MongoDb' },
+    { type: 'Backend', value: 'MySQL' },
+    { type: 'UX/UI', value: 'Adobe Photoshop' },
+    { type: 'UX/UI', value: 'Adobe XD' },
+    { type: 'UX/UI', value: 'Metodologias' },
+    { type: 'UX/UI', value: 'UX Writing' },
+    { type: 'UX/UI', value: 'Sketch' },
+    { type: 'UX/UI', value: 'Balsamiq' },
   ];
 
   return (
@@ -90,19 +90,20 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
           Cuéntanos cual es el rol que mas te identifica y que herramientas
           utilizas.
         </Text>
+        <Text> {selectStack.length}</Text>
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputText}>
             {selectedRol
               ? `Tecnologias asociadas al ${selectedRol}`
-              : "Tecnologias asociadas"}
+              : 'Tecnologias asociadas'}
           </Text>
           <MultipleSelectList
             setSelected={(val) => addStack(val)}
             data={technology.filter((tecno) => tecno.type == selectedRol)}
-            dropdownStyles={{ backgroundColor: "#EBEBEB", borderRadius: 5 }}
+            dropdownStyles={{ backgroundColor: '#EBEBEB', borderRadius: 5 }}
             save="value"
-            badgeStyles={{ backgroundColor: "#27358F" }}
+            badgeStyles={{ backgroundColor: '#27358F' }}
             label="Tu Stack:"
             placeholder="Selecciona tu stack de tecnologías"
             searchPlaceholder="Busca tus tecnologías"
@@ -124,46 +125,46 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   title: {
     fontSize: 26,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 20,
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
 
   headerContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
-    background: "#D9D9D9",
+    background: '#D9D9D9',
   },
   headerText: {
-    color: "white",
+    color: 'white',
     fontSize: 20,
     width: 80,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   logoText: {
     fontSize: 20,
   },
 
   titleText: {
-    fontStyle: "normal",
-    fontWeight: "bold",
+    fontStyle: 'normal',
+    fontWeight: 'bold',
     width: 301,
     height: 36,
     top: 21,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.011,
   },
   inputContainer: {
-    width: "100%",
+    width: '100%',
     marginTop: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -181,10 +182,10 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   descriptionText: {
-    fontStyle: "normal",
+    fontStyle: 'normal',
     width: 320,
     height: 52,
     top: 24,
@@ -194,40 +195,40 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   square: {
-    flexDirection: "column",
-    alignContent: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#EBEBEB",
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EBEBEB',
     borderWidth: 1,
-    borderColor: "#4D4A4A",
+    borderColor: '#4D4A4A',
     borderRadius: 8,
     width: 140,
     height: 60,
   },
   category: {
     flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 30,
     gap: 20,
     margin: 15,
   },
 
   stackItemContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 20,
   },
   buttonContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    top: 720,
-    alignSelf: "center",
+    top: 600,
+    alignSelf: 'center',
   },
 });

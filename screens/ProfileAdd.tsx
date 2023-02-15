@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { FirstScreen } from "../components/FirstScreen";
-import { SecondScreen } from "../components/SecondScreen";
-import { ThirdScreen } from "../components/ThirdScreen";
-import { FourScreen } from "../components/FourScreen";
-import { FiveScreen } from "../components/FiveScreen";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { FirstScreen } from '../components/FirstScreen';
+import { SecondScreen } from '../components/SecondScreen';
+import { ThirdScreen } from '../components/ThirdScreen';
+import { FourScreen } from '../components/FourScreen';
+import { FiveScreen } from '../components/FiveScreen';
 type Props = {};
 
 type Direction = {
-  direction: "next" | "prev";
+  direction: 'next' | 'prev';
 };
 
 const ProfileAdd = (props: Props) => {
@@ -18,7 +18,7 @@ const ProfileAdd = (props: Props) => {
   const handleGoTo = (direction: Direction) => {
     const prevScreen = Math.max(step - 1, 1);
     const nextScreen = Math.min(step + 1, 5);
-    direction === "next" ? setStep(nextScreen) : setStep(prevScreen);
+    direction === 'next' ? setStep(nextScreen) : setStep(prevScreen);
   };
 
   return (
@@ -36,7 +36,7 @@ const ProfileAdd = (props: Props) => {
 export default ProfileAdd;
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
     height: 200,
     flex: 1,
   },
