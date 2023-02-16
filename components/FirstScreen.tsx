@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,7 +6,6 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-
 } from "react-native";
 import image from "../assets/images/logo.png";
 import { useNavigation } from "@react-navigation/native";
@@ -19,7 +18,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS } from "../constants";
 import { useContext } from "react";
 import { UserContext } from "../GlobalStates/userContext";
-import * as ImagePicker from "expo-image-picker"
+import * as ImagePicker from "expo-image-picker";
 
 {
   /*---------------TYPES-------------------- */
@@ -29,7 +28,7 @@ type FormValues = {
 };
 
 type Direction = {
-  direction: 'next' | 'prev';
+  direction: "next" | "prev";
 };
 
 type Props = {
@@ -42,16 +41,25 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     /*----------------Funcion next-------------- */
   }
   const handleNext = (data) => {
-
     console.log(data);
     setCurrentUser({
       ...currentUser,
       firstname: data.nombre,
       lastname: data.apellido,
     });
-
-    handleGoTo("next");
-
+    const dataBasic = {
+      firstname: data.nombre,
+      lastname: data.apellido,
+      phone: data.telefono,
+      country: data.pais,
+      avatar: selectedImage,
+    };
+    const respuestaUpdate = useUpdateUser(dataBasic);
+    if (respuestaUpdate.status === "ok") {
+      handleGoTo("next");
+    } else {
+      console.warn("Ups hubo un error!");
+    }
   };
 
   {
@@ -64,15 +72,14 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      nombre: '',
-      apellido: '',
-      pais: '',
-      ciudad: '',
-      telefono: '',
+      nombre: "",
+      apellido: "",
+      pais: "",
+      ciudad: "",
+      telefono: "",
     },
 
     //resolver: yupResolver(schema),
-
   });
 
   {
@@ -84,7 +91,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionRe.granted === false) {
-      alert('Los permisos para acceder a la camara son requeridos');
+      alert("Los permisos para acceder a la camara son requeridos");
       return;
     }
 
@@ -94,6 +101,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
       return;
     }
     setSelectedImage({ localUri: pickRe.uri });
+    console.log(selectedImage);
   };
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -109,14 +117,14 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             uri:
               selectedImage !== null
                 ? selectedImage.localUri
-                : 'https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png',
+                : "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
           }}
           style={styles.image}
         />
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
+            flexDirection: "row",
+            justifyContent: "space-evenly",
             marginBottom: 20,
           }}
         >
@@ -130,8 +138,8 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             <Text
               style={{
                 fontSize: 21,
-                textDecorationLine: 'underline',
-                fontWeight: '500',
+                textDecorationLine: "underline",
+                fontWeight: "500",
               }}
             >
               Cargar foto de perfil
@@ -190,7 +198,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           </TouchableOpacity>
         </View>
 
-
         <View>
           <CustomButton
             onPress={handleSubmit(handleNext)}
@@ -198,7 +205,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             bgColor={COLORS.logoBlue}
           />
         </View>
-
       </View>
     </ScrollView>
   );
@@ -207,11 +213,11 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 const styles = StyleSheet.create({
   header: {
     flex: 1,
-    alignSelf: 'center',
+    alignSelf: "center",
     padding: 20,
   },
   logo: {
-    resizeMode: 'contain',
+    resizeMode: "contain",
     height: 100,
     width: 150,
   },
@@ -219,38 +225,38 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     borderRadius: 75,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginBottom: 20,
   },
   title: {
     fontSize: 30,
-    fontWeight: '500',
-    color: 'black',
+    fontWeight: "500",
+    color: "black",
     paddingBottom: 10,
   },
   subtitle: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   bold: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
   text: {
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 10,
   },
   row: {
     padding: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   btnLine: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   icon: {
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
