@@ -1,10 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import { COLORS } from "../constants";
-import { CustomButton } from "./CustomButton";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Keyboard,
+  ScrollView,
+} from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { UserContext } from "../GlobalStates/userContext";
 import logo from "../assets/images/logo.png";
+import { Entypo } from "@expo/vector-icons";
 
 type Direction = {
   direction: "next" | "prev";
@@ -15,46 +23,32 @@ type Props = {
   handleGoTo: (direction: Direction) => void;
 };
 
-const data = [
-  { key: "1", value: "Frontend" },
-  { key: "2", value: "Backend" },
-  { key: "3", value: "UX/UI" },
-  { key: "4", value: "Devops" },
-  { key: "5", value: "QA Tester" },
-  { key: "6", value: "QA Automation" },
-  { key: "7", value: "Product Owner" },
-  { key: "8", value: "Marketing Digital" },
-];
-
-const technology = [
-  { key: "Javascript", type: "Frontend", value: "Javascript" },
-  { type: "Frontend", value: "HTML" },
-  { type: "Frontend", value: "React" },
-  { type: "Frontend", value: "Typescript" },
-  { type: "Frontend", value: "React-Native" },
-  { type: "Frontend", value: "Angular" },
-  { type: "Frontend", value: "Vue" },
-  { type: "Frontend", value: "Svelte" },
-  { type: "Backend", value: "Node" },
-  { type: "Backend", value: "PHP" },
-  { type: "Backend", value: "Java" },
-  { type: "Backend", value: "C#" },
-  { type: "Backend", value: "Kotlin" },
-  { type: "Backend", value: "Python" },
-  { type: "Backend", value: "MongoDb" },
-  { type: "Backend", value: "MySQL" },
-  { type: "UX/UI", value: "Adobe Photoshop" },
-  { type: "UX/UI", value: "Adobe XD" },
-  { type: "UX/UI", value: "Metodologias" },
-  { type: "UX/UI", value: "UX Writing" },
-  { type: "UX/UI", value: "Sketch" },
-  { type: "UX/UI", value: "Balsamiq" },
-];
-
 export const SecondScreen = ({ step, handleGoTo }: Props) => {
-  const {selectedRol, setselectedRol} = useContext(UserContext);
+  const { selectedRol, setselectedRol, data } = useContext(UserContext);
   const [error, setError] = useState(false);
 
+  /* Teclado activo o no */
+  const [keyboardShown, setKeyboardShown] = useState(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardShown(true);
+    });
+
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardShown(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
+  /*Volvemos el array de los roles un objeto con clave para usar el buscador */
+  const rols = data.map((item) => ({ value: item }));
+
+  //Funciones de navegacion con sus condicionales
   const handleBack = () => {
     handleGoTo("prev");
     console.log("regresar");
@@ -70,92 +64,99 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     }
   };
 
+  //Si se vuelve a esta pagina restablecer el rol porque se da a entender que quiere cambiarlo
   useEffect(() => {
     setselectedRol(null);
   }, []);
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.logoContainer}>
-          <View style={{ width: 50 }}>
-            <CustomButton
-              onPress={handleBack}
-              text=""
-              icon="arrow-circle-left"
-              bgColor={COLORS.logoBlue}
-            />
+      <ScrollView style={styles.menu}>
+        <View style={styles.headerContainer}>
+          <View>
+            <View style={{ width: 50 }}>
+              <Entypo name="menu" size={50} color="black" />
+            </View>
+          </View>
+          <View>
+            <Image source={logo} style={{ width: 150, height: 80 }} />
           </View>
         </View>
-        <View style={styles.notificationContainer}>
-          <Image source={logo} style={{ width: 150, height: 80 }} />
-        </View>
-      </View>
-      <View style={styles.secondView}>
-        <Text style={styles.titleText}>¿A qué te dedicas?</Text>
-        <Text style={styles.descriptionText}>
-          Cuéntanos cual es el rol que mas te identifica y que herramientas
-          utilizas.
-        </Text>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputText}>
-            {selectedRol
-              ? `Tu rol principal es ${selectedRol}`
-              : "Tu rol principal"}
+        <View>
+          <Text style={styles.titleText}>¿A qué te dedicas?</Text>
+          <Text style={styles.descriptionText}>
+            Cuentanos cual es el rol que mas te identifica (selecciona solo una)
           </Text>
-          <SelectList
-            setSelected={(val) => setselectedRol(val)}
-            data={data}
-            save="value"
-            dropdownStyles={{ backgroundColor: "#EBEBEB", zIndex: 100 }}
-            dropdownItemStyles={{ marginHorizontal: 5, fontWeight: "bold" }}
-            placeholder="Selecciona una opción"
-            searchPlaceholder="Busca tu rol en el mundo IT"
-            maxHeight={130}
-            notFoundText="No se encontro ningun rol"
-          />
-          {error ? (
-            <Text style={styles.textError}>¡Debes seleccionar una Rol!</Text>
-          ) : (
-            ""
-          )}
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputText}>
+              {selectedRol
+                ? `Tu rol principal es ${selectedRol}`
+                : "Tu rol principal"}
+            </Text>
+            <SelectList
+              setSelected={(val) => setselectedRol(val)}
+              data={rols}
+              boxStyles={styles.dropdown}
+              dropdownStyles={styles.dropdown}
+              checkBoxStyles={styles.checkbox}
+              dropdownTextStyles={styles.textCheckbox}
+              badgeStyles={{ backgroundColor: "#27358F" }}
+              placeholder="Selecciona una opción"
+              searchPlaceholder={
+                error
+                  ? "No seleccionaste una opcion"
+                  : "Busca tu rol en el mundo IT"
+              }
+              maxHeight={200}
+              notFoundText="No se encontro ningun rol"
+            />
+            {error ? (
+              <Text style={styles.textError}>¡Debes seleccionar un Rol!</Text>
+            ) : (
+              ""
+            )}
+          </View>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          text="Confirmar"
-          bgColor={COLORS.logoBlue}
-          onPress={() => handleNext()}
-        />
-      </View>
+      </ScrollView>
+      {keyboardShown && (
+        <KeyboardAvoidingView
+          style={{ display: "none" }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          keyboardVerticalOffset={1000} // ajusta este valor para hacer que el elemento desaparezca
+        ></KeyboardAvoidingView>
+      )}
+      {!keyboardShown && (
+        <View>
+          {/* Contenido visible cuando el teclado no está activo */}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => handleBack()}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-left" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleNext()}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-right" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  title: {
-    fontSize: 26,
-    textAlign: "center",
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 20,
-  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
   },
 
-  secondView: {
+  menu: {
     flex: 1,
   },
+
   headerContainer: {
     width: "100%",
     display: "flex",
@@ -180,38 +181,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
+
   titleText: {
     fontStyle: "normal",
-    fontWeight: "bold",
+    fontWeight: "500",
+    color: "#0E1545",
     width: 301,
-    height: 36,
+    height: 50,
     top: 21,
-    left: 16,
+    left: 18,
     fontSize: 24,
-    marginBottom: 10,
     letterSpacing: -0.011,
   },
   inputContainer: {
+    zIndex: 100,
     width: "100%",
     marginTop: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
 
-  input: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundColor: "#F7F6F5",
-    borderRadius: 8,
-    shadowOffset: { width: 10, height: 10 },
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.25,
-    elevation: 4,
-  },
   inputText: {
     fontSize: 16,
     marginBottom: 10,
@@ -219,13 +208,11 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontStyle: "normal",
-    width: 320,
-    height: 52,
     top: 24,
     left: 20,
-    fontSize: 17,
+    fontSize: 16,
     lineHeight: 25,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   square: {
     flexDirection: "column",
@@ -250,34 +237,73 @@ const styles = StyleSheet.create({
     margin: 15,
   },
 
-  stackContainer: {
-    position: "absolute",
-    minHeight: 600,
-    left: 20,
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-  },
-
-  stackItemContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 20,
-  },
   textError: {
-    marginLeft: 20,
-    position: "absolute",
-    top: 100,
-    COLOR: "#0E1545",
+    top: 10,
+    color: "#AA1E1E",
     fontWeight: "bold",
   },
+
+  dropdown: {
+    marginTop: 10,
+    backgroundColor: "#E3E5FA",
+    borderRadius: 16,
+    borderColor: 0,
+    transition: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  dropdownError: {
+    backgroundColor: "#AA1E1E",
+    borderRadius: 16,
+    borderColor: "none",
+    transition: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  inputError: {
+    backgroundColor: "#AA1E1E",
+    height: 2,
+    top: 10,
+  },
+
+  textCheckbox: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "600",
+    fontSize: 16,
+  },
+
   buttonContainer: {
-    position: "absolute",
-    bottom: 0,
-    top: 720,
-    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 20,
+    zIndex: 10,
+  },
+  buttonStyles: {
+    width: 70,
+    height: 56,
+    backgroundColor: "#0E1545",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
