@@ -78,6 +78,7 @@ export const JobsScreen = () => {
               rol={job.rol}
               direccion={job.direccion}
               descripcion={job.descripcion}
+              bgColor={job.bgColor}
               isFirst={isFirst}
               swipe={swipe}
               tiltSign={tiltSign}

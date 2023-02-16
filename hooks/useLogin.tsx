@@ -1,11 +1,11 @@
 export const useLogin = (data: LoginProps) => {
   const fetchUsers = async (data: LoginProps) => {
     const response = await globalThis.fetch(
-      "https://node-server-navy-rho.vercel.app/auth/login",
+      'https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login',
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       }

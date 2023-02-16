@@ -1,43 +1,99 @@
-
-Verificacion de las ruta de jwtAuth
-### ===== Login, Register and Verificacion =====
-
-### login  ==>> OK
-POST https://node-server-navy-rho.vercel.app/auth/login
+##### Registrar un usuario
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register
 Content-Type: application/json
 
-{"email": "Jose-prueba@Correo.com", "password": "a1b2c3A$"}
+{"email": "gh2dd@gmail.com", "password": "a1b2c3A$"}
 
-### login  ==>> Password Errado
-POST http://localhost:3500/auth/login
+
+##### hacer Login
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "Jose-prueba@Correo.com", "password": "a1b2c3$"}
+{"email": "shultz12@gmail.com", "password": "18/569"}
 
-### register  ==>> OK
-POST https://node-server-navy-rho.vercel.app/auth/register
+
+##### get user information con base ene le token
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjU1MTMsImV4cCI6MTY3Njc4NTUxM30.kXVJaLRIe51BgyJsII_X-BL4JLIcI-Gd1FIy9lzZzS0QP5O_x9SglOM496_rXGhBvMYjOEvXtvNZJ4OTSNjCtg
+Content-Type: application/json
+
+
+##### get user information complementary con base ene le token
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/user_tecnology
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjU1MTMsImV4cCI6MTY3Njc4NTUxM30.kXVJaLRIe51BgyJsII_X-BL4JLIcI-Gd1FIy9lzZzS0QP5O_x9SglOM496_rXGhBvMYjOEvXtvNZJ4OTSNjCtg
+Content-Type: application/json
+
+##### update basic user information complementary con base ene le token
+PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjY3NjIsImV4cCI6MTY3Njc4Njc2Mn0.EDMm5Gc1uF1X6O12CyxCXqwfymziuKkogrL4481Eo_GXlR2DYhQGDZ3TXrg34c0KT6YPz4R94Qs3VLCEn6dlRQ
+Content-Type: application/json
+
+{   
+    "about_me": "Informacion que hay que definir donde se captura por ahora no se muestra en el diseño",
+    "article_1": "Definir que es este campo y donde se captura",
+    "age": 45,
+    "country": "Venezuela",
+    "region": "Miranda",
+    "phone": "1234567"
+}
+
+### get all users
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/all
+Content-Type: application/json
+
+
+### get un usuario particular con base en su id
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/2
+Content-Type: application/json
+
+### delete un usuario con base en el token
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0Njc4NDMsImV4cCI6MTY3NjgyNzg0M30.UCVHS84x1HF5kMbjZbhutOOIo4q9OEbaTohBmNSN-4TTn22wzw8D9dx7_hjpKDvG7VqDVajed80xiY3-zCyIxA
+Content-Type: application/json
+
+### requerimiento para los roles y las tecnologias relacionadas
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+
+
+### Get all Jobs
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/jobs?page=0&size=5
+
+
+### Get un trabajo en particular
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/jobs/2
+
+###
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+
+### todas las postulaciones de un usuario
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/postulation/user
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjU1MTMsImV4cCI6MTY3Njc4NTUxM30.kXVJaLRIe51BgyJsII_X-BL4JLIcI-Gd1FIy9lzZzS0QP5O_x9SglOM496_rXGhBvMYjOEvXtvNZJ4OTSNjCtg
+Content-Type: application/json
+
+### todas las tecnologias
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
+Content-Type: application/json
+
+### eliminar una tecnologia
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology/6
+Content-Type: application/json
+
+
+### crear tecnologias
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
 Content-Type: application/json
 
 {
-    "firstname": "Maria",
-    "lastname": "Perez",
-    "email": "Maria.Perez@Correo.com",
-    "password": "2%AC134534ff",
-    "phone": "12345678"
- }
+"name":"GIMP" 
+} 
 
 
-### Get All users
-GET https://node-server-navy-rho.vercel.app/auth/
+### crear tecnologia asociada a un rol
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_and_tecnology
 Content-Type: application/json
 
+{
+"rol_id":3,
+"tecnology_id":11
+} 
 
-### Get All Jobs
-GET  https://node-server-navy-rho.vercel.app/jobs/
-Content-Type: application/json
-
-
-### Verify ==>> OK
-GET https://e-mall-backend.vercel.app/auth/is-verify
-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiam9zZUBjb3JyZW8uY29tIiwiaWF0IjoxNjM2NDc3MzAyLCJleHAiOjE2MzY0ODA5MDJ9.6pNcmIPJk6u3oWPc3Gvhb5Pa1BxkTCtdFgwuzN_S0Po
-Content-Type: application/json

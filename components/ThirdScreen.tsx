@@ -1,3 +1,4 @@
+
 import {
   StyleSheet,
   Text,
@@ -15,8 +16,9 @@ import logo from "../assets/images/logo.png";
 import { useTechRol } from "../hooks/useTechRol";
 import { Entypo } from "@expo/vector-icons";
 
+
 type Direction = {
-  direction: "next" | "prev";
+  direction: 'next' | 'prev';
 };
 
 type Props = {
@@ -54,15 +56,16 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
-    handleGoTo("prev");
+    handleGoTo('prev');
   };
 
   const handleNext = () => {
+
     if (stackTecno.length >= 1) {
       handleGoTo("next");
-    } else {
-    }
+    } 
   };
+
 
   /*Obtenemos las tecnologias del rol que seleccionamos en la pantalla anteror */
   useEffect(() => {
@@ -77,6 +80,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
     setSelectedStack([]);
   }, []);
 
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.menu}>
@@ -90,6 +94,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
             <Image source={logo} style={{ width: 150, height: 80 }} />
           </View>
         </View>
+
         <View>
           <Text style={styles.titleText}>¿Qué tecnologias manejas?</Text>
           <Text style={styles.descriptionText}>
@@ -118,6 +123,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
               notFoundText="No se encontro ningun rol"
             />
           </View>
+
         </View>
       </ScrollView>
       {keyboardShown && (
@@ -148,9 +154,11 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 };
 
 const styles = StyleSheet.create({
+
+
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
 
   menu: {
@@ -158,19 +166,19 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
-    background: "#D9D9D9",
+    background: '#D9D9D9',
   },
   headerText: {
-    color: "white",
+    color: 'white',
     fontSize: 20,
     width: 80,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   logo: {},
   logoText: {
@@ -183,6 +191,7 @@ const styles = StyleSheet.create({
   },
 
   titleText: {
+
     fontStyle: "normal",
     fontWeight: "500",
     color: "#0E1545",
@@ -204,7 +213,7 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   descriptionText: {
     fontStyle: "normal",
@@ -216,17 +225,18 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   square: {
-    flexDirection: "column",
-    alignContent: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#EBEBEB",
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EBEBEB',
     borderWidth: 1,
-    borderColor: "#4D4A4A",
+    borderColor: '#4D4A4A',
     borderRadius: 8,
     width: 140,
     height: 60,
   },
+
   textCheckbox: {
     fontFamily: "Roboto",
     fontStyle: "normal",
@@ -270,6 +280,7 @@ const styles = StyleSheet.create({
     borderColor: "#363740",
     borderWidth: 2,
     color: "#fff",
+
   },
 
   buttonContainer: {

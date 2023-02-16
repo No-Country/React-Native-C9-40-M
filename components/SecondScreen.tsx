@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -14,8 +15,9 @@ import { UserContext } from "../GlobalStates/userContext";
 import logo from "../assets/images/logo.png";
 import { Entypo } from "@expo/vector-icons";
 
+
 type Direction = {
-  direction: "next" | "prev";
+  direction: 'next' | 'prev';
 };
 
 type Props = {
@@ -23,8 +25,10 @@ type Props = {
   handleGoTo: (direction: Direction) => void;
 };
 
+
 export const SecondScreen = ({ step, handleGoTo }: Props) => {
   const { selectedRol, setselectedRol, data } = useContext(UserContext);
+
   const [error, setError] = useState(false);
 
   /* Teclado activo o no */
@@ -50,12 +54,12 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
 
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
-    handleGoTo("prev");
-    console.log("regresar");
+    handleGoTo('prev');
+    console.log('regresar');
   };
   const handleNext = () => {
     if (selectedRol) {
-      handleGoTo("next");
+      handleGoTo('next');
     } else {
       setError(true);
       setTimeout(() => {
@@ -82,6 +86,7 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
             <Image source={logo} style={{ width: 150, height: 80 }} />
           </View>
         </View>
+
         <View>
           <Text style={styles.titleText}>¿A qué te dedicas?</Text>
           <Text style={styles.descriptionText}>
@@ -141,6 +146,8 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
               </View>
             </TouchableOpacity>
           </View>
+
+    
         </View>
       )}
     </View>
@@ -148,9 +155,10 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
 };
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
 
   menu: {
@@ -158,19 +166,19 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
-    background: "#D9D9D9",
+    background: '#D9D9D9',
   },
   headerText: {
-    color: "white",
+    color: 'white',
     fontSize: 20,
     width: 80,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   logo: {},
   logoText: {
@@ -178,7 +186,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     padding: 20,
   },
 
@@ -201,10 +209,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
 
+
+
   inputText: {
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   descriptionText: {
     fontStyle: "normal",
@@ -215,27 +225,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   square: {
-    flexDirection: "column",
-    alignContent: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#EBEBEB",
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EBEBEB',
     borderWidth: 1,
-    borderColor: "#4D4A4A",
+    borderColor: '#4D4A4A',
     borderRadius: 8,
     width: 140,
     height: 60,
   },
   category: {
     flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 30,
     gap: 20,
     margin: 15,
   },
+
 
   textError: {
     top: 10,
@@ -272,6 +283,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+
   },
 
   inputError: {
@@ -305,5 +317,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 4,
+
   },
 });
