@@ -25,6 +25,7 @@
     "react-hook-form": "^7.43.0",
     "react-native": "0.70.5",
     "react-native-dropdown-select-list": "^2.0.4",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
     "react-native-web": "~0.18.9",

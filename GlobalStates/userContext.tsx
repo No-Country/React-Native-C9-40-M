@@ -1,4 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react';
+
+import React, { createContext, useEffect, useState } from "react";
+import { useTechRol } from "../hooks/useTechRol";
+
+
 
 const currentUser = {
   email: '',
@@ -28,6 +32,8 @@ export const UserContextProvider = ({ children }) => {
 
   const [jobs, setJobs] = useState([]);
   const [selectedRol, setselectedRol] = useState(null);
+  const [selectedStack, setSelectedStack] = useState([]);
+  const [data, setData] = useState();
 
   function getInfo() {
     fetch('https://node-server-navy-rho.vercel.app/jobs/')
@@ -39,6 +45,17 @@ export const UserContextProvider = ({ children }) => {
     getInfo();
   }, []);
 
+
+  useEffect(() => {
+    const getRol = async () => {
+      const response = await useTechRol();
+      setData(response.map((res) => res.name));
+      console.log(data);
+    };
+    getRol();
+  }, []);
+
+
   const value = {
     currentUser,
     setCurrentUser,
@@ -46,6 +63,11 @@ export const UserContextProvider = ({ children }) => {
     setJobs,
     selectedRol,
     setselectedRol,
+    selectedStack,
+    setSelectedStack,
+    data,
+    setData,
+
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
