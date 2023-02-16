@@ -43,8 +43,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     /*----------------Funcion next-------------- */
   }
   const handleNext = (data) => {
-    console.log('lo que manda el hook-form ', data);
-    console.log('lo que manda el hook-form ', data);
     //setCurrentUser({
     //...currentUser,
     // firstname: data.nombre,
@@ -95,7 +93,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
   };
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  console.log(currentUser);
 
   return (
     <ScrollView>

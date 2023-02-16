@@ -6,8 +6,13 @@ const OffersCard = ({ item }: Props) => {
       <View style={[styles.item, styles.shadow]}>
         <Text style={[styles.title, styles.highlight]}>{item.company}</Text>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.text}>{item.type}</Text>
+        <Text style={styles.description} numberOfLines={2}>
+          {item.description}
+        </Text>
+        <Text style={styles.text}>{item.work_place}</Text>
+        <Text style={styles.text}>{item.working_day}</Text>
         <Text style={styles.text}>{item.nivel}</Text>
+        <Text style={styles.text}>{item.country}</Text>
       </View>
     </Pressable>
   );
@@ -28,6 +33,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  description: {
     fontSize: 14,
     textAlign: 'center',
   },

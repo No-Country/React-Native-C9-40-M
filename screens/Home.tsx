@@ -1,25 +1,24 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, View, StyleSheet, Text, FlatList } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { UserContext } from '../GlobalStates/userContext';
-import { JobsOfert } from '../assets/data/fakeData';
 import OffersCard from '../components/OffersCard';
+import { useGetJobs } from '../hooks/useGetJobs';
 
 export function HomeScreen() {
   const navigation = useNavigation();
   const { currentUser } = useContext(UserContext);
+  const [isLoad, setIsLoad] = useState(false);
   const userName =
     currentUser.firstname === null ? currentUser.email : currentUser.firstname;
+
+  const jobs = useGetJobs();
+
   return (
     <>
       <View style={styles.container}>
-        {/* <Image
-          source={miImagen}
-          style={styles.image}
-          PlaceholderContent={<ActivityIndicator />}
-        /> */}
         <View>
           <Text style={styles.title}>
             <Text style={styles.bold}>¡Hola</Text>, {userName} bienvenido!
@@ -32,12 +31,14 @@ export function HomeScreen() {
             <Text style={styles.bold}>Crea tu perfil</Text>
           </Text>
         </View>
-        <FlatList
-          style={styles.itemContainer}
-          data={JobsOfert}
-          renderItem={({ item }) => <OffersCard item={item} />}
-          keyExtractor={(item) => item.id}
-        />
+        {jobs.length > 0 && (
+          <FlatList
+            style={styles.itemContainer}
+            data={jobs}
+            renderItem={({ item }) => <OffersCard item={item} />}
+            keyExtractor={(item) => item.id}
+          />
+        )}
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {

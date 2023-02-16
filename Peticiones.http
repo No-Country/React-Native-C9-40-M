@@ -9,27 +9,28 @@ Content-Type: application/json
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "shultz12@gmail.com", "password": "18/569"}
-
+{"email": "prueba1@co.co", "password": "a1b2c3A$"}
 
 ##### get user information con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjU1MTMsImV4cCI6MTY3Njc4NTUxM30.kXVJaLRIe51BgyJsII_X-BL4JLIcI-Gd1FIy9lzZzS0QP5O_x9SglOM496_rXGhBvMYjOEvXtvNZJ4OTSNjCtg
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY1NTc0ODksImV4cCI6MTY3NjkxNzQ4OX0.fFoS35TcwwvjmKkid0TG-_OYQvJFOZOoBDiNaeCbT8r0tGhpcHxipqOrQeYNLLH7ONk2pb4pZn8TFBgSGEqhwg
 Content-Type: application/json
 
 
 ##### get user information complementary con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/user_tecnology
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjU1MTMsImV4cCI6MTY3Njc4NTUxM30.kXVJaLRIe51BgyJsII_X-BL4JLIcI-Gd1FIy9lzZzS0QP5O_x9SglOM496_rXGhBvMYjOEvXtvNZJ4OTSNjCtg
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY1NTc0ODksImV4cCI6MTY3NjkxNzQ4OX0.fFoS35TcwwvjmKkid0TG-_OYQvJFOZOoBDiNaeCbT8r0tGhpcHxipqOrQeYNLLH7ONk2pb4pZn8TFBgSGEqhwg
 Content-Type: application/json
 
 ##### update basic user information complementary con base ene le token
 PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0MjY3NjIsImV4cCI6MTY3Njc4Njc2Mn0.EDMm5Gc1uF1X6O12CyxCXqwfymziuKkogrL4481Eo_GXlR2DYhQGDZ3TXrg34c0KT6YPz4R94Qs3VLCEn6dlRQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJwcnVlYmExQGNvLmNvIiwiaWF0IjoxNjc2NTc3NzczLCJleHAiOjE2NzY5Mzc3NzN9.s2FVEUtrnEm_aZ29UvzAMdQVUl_wxwWoMxPehRueRq1-nDEP4iBrI_TflyfHExX9NDTfO7SM8KbGgsc7nBJsdw
 Content-Type: application/json
 
 {   
-    "about_me": "Informacion que hay que definir donde se captura por ahora no se muestra en el diseño",
+    "firstname": null,
+    "lastname": null,
+    "about_me": "Informacion que en el diseño",
     "article_1": "Definir que es este campo y donde se captura",
     "age": 45,
     "country": "Venezuela",
@@ -43,7 +44,7 @@ Content-Type: application/json
 
 
 ### get un usuario particular con base en su id
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/2
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/7
 Content-Type: application/json
 
 ### delete un usuario con base en el token

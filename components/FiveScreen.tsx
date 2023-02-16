@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { CustomButton } from './CustomButton';
 import { COLORS } from '../constants';
+
+import panaImage from '../assets/images/pana1.png';
 
 export const FiveScreen = () => {
   const navigation = useNavigation();
@@ -13,6 +15,8 @@ export const FiveScreen = () => {
 
   return (
     <View style={styles.header}>
+      <Image source={panaImage} style={styles.image} />
+
       <Text style={styles.title}>¡Excelente!</Text>
 
       <Text style={styles.subtitle}>
@@ -22,7 +26,7 @@ export const FiveScreen = () => {
 
       <CustomButton
         onPress={handleSubmit}
-        text="Volver a vacantes"
+        text="Ver a vacantes"
         bgColor={COLORS.logoBlue}
       />
     </View>
@@ -35,6 +39,12 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  image: {
+    width: '90%',
+    height: 250,
+    resizeMode: 'contain',
+    marginVertical: 40,
   },
   title: {
     fontSize: 36,

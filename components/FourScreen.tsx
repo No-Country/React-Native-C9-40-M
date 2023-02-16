@@ -16,6 +16,7 @@ import { CustomButton } from './CustomButton';
 import { CustomInput } from './CustomInput';
 import { COLORS } from '../constants';
 import { UserContext } from '../GlobalStates/userContext';
+import { useUpdateUser } from '../hooks/useUpdateUser';
 
 import logo from '../assets/images/logo.png';
 
@@ -97,13 +98,20 @@ export const FourScreen = ({ handleGoTo }: Props) => {
   };
 
   const handleCV = async (data: FormValues) => {
-    console.log('Debe de subir su CV');
     if (!file) {
       setFileLoadMsg('Debe de subir su CV');
       return;
     }
     setFileLoadMsg('');
-    console.log('carga exitosa se pasan los datos al backend');
+    const userData = {
+      firstname: 'probando',
+      lastname: 'seguir probando',
+      token: currentUser.token,
+    };
+
+    const resp = await useUpdateUser(userData);
+
+    console.log('carga exitosa se pasan los datos al backend', resp);
     handleNext();
   };
 
