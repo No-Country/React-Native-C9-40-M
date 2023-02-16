@@ -1,25 +1,19 @@
 export const useRegister = (user: RegisterProps) => {
-  const newUser = {
-    ...user,
-    firstname: null,
-    lastname: null,
-    phone: null,
-  };
   const fetchUsers = async (data: RegisterProps) => {
     const response = await globalThis.fetch(
-      'https://node-server-navy-rho.vercel.app/auth/register',
+      'https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify(data),
       }
     );
     const a = await response.json();
     return a;
   };
 
-  const respuesta = fetchUsers(newUser);
+  const respuesta = fetchUsers(user);
   return respuesta;
 };

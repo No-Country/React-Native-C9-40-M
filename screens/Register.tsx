@@ -38,12 +38,12 @@ export const RegisterScreen = () => {
   const handleRegister = async (data: FormValues) => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
-    if (registerResult.success) {
+    if (registerResult.message === 'user created') {
       navigation.navigate('Login');
+      console.warn('Usuario Creando satisfactoriamente');
     } else {
-      setRegisterRes(registerResult.msg);
+      setRegisterRes('hay errores');
     }
-    console.warn('Usuario Creando satisfactoriamente');
   };
 
   const goToLogin = () => {
