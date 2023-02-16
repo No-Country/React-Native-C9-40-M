@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { COLORS } from '../constants';
-import { MultipleSelectList } from 'react-native-dropdown-select-list';
-import { CustomButton } from './CustomButton';
-import { useContext, useState } from 'react';
-import { UserContext } from '../GlobalStates/userContext';
-import logo from '../assets/images/logo.png';
+
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Keyboard,
+  ScrollView,
+} from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
+import { MultipleSelectList } from "react-native-dropdown-select-list";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../GlobalStates/userContext";
+import logo from "../assets/images/logo.png";
+import { useTechRol } from "../hooks/useTechRol";
+import { Entypo } from "@expo/vector-icons";
+
 
 type Direction = {
   direction: 'next' | 'prev';
@@ -16,131 +27,142 @@ type Props = {
 };
 
 export const ThirdScreen = ({ step, handleGoTo }: Props) => {
-  const [selectStack, setSelectStack] = useState([]);
+  /* Teclado activo o no */
+  const [keyboardShown, setKeyboardShown] = useState(false);
 
-  const value = useContext(UserContext);
-  const selectedRol = value.selectedRol;
-  const setselectedRol = value.setselectedRol;
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardShown(true);
+    });
 
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardShown(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
+  /* Aqui almacenaremos las tecnologias dependiendo el rol que se seleccionara*/
+  const [stackTecno, setstackTecno] = useState([]);
+
+  //Convertimos a un objeto para la busqueda
+  const tech = stackTecno.map((item) => ({ value: item }));
+
+  const { selectedRol, selectedStack, setSelectedStack } =
+    useContext(UserContext);
+
+  //Funciones de navegacion con sus condicionales
   const handleBack = () => {
     handleGoTo('prev');
   };
 
   const handleNext = () => {
-    console.log('Validar datos antes de pasar  la siguiente pantalla');
-    handleGoTo('next');
+
+    if (stackTecno.length >= 1) {
+      handleGoTo("next");
+    } 
   };
 
-  const addStack = (val) => {
-    if (selectStack.includes(val)) {
-      return;
-    }
-    setSelectStack([...selectStack, val]);
-  };
 
-  const technology = [
-    { key: 'Javascript', type: 'Frontend', value: 'Javascript' },
-    { type: 'Frontend', value: 'HTML' },
-    { type: 'Frontend', value: 'React' },
-    { type: 'Frontend', value: 'Typescript' },
-    { type: 'Frontend', value: 'React-Native' },
-    { type: 'Frontend', value: 'Angular' },
-    { type: 'Frontend', value: 'Vue' },
-    { type: 'Frontend', value: 'Svelte' },
-    { type: 'Backend', value: 'Node' },
-    { type: 'Backend', value: 'PHP' },
-    { type: 'Backend', value: 'Java' },
-    { type: 'Backend', value: 'C#' },
-    { type: 'Backend', value: 'Kotlin' },
-    { type: 'Backend', value: 'Python' },
-    { type: 'Backend', value: 'MongoDb' },
-    { type: 'Backend', value: 'MySQL' },
-    { type: 'UX/UI', value: 'Adobe Photoshop' },
-    { type: 'UX/UI', value: 'Adobe XD' },
-    { type: 'UX/UI', value: 'Metodologias' },
-    { type: 'UX/UI', value: 'UX Writing' },
-    { type: 'UX/UI', value: 'Sketch' },
-    { type: 'UX/UI', value: 'Balsamiq' },
-  ];
+  /*Obtenemos las tecnologias del rol que seleccionamos en la pantalla anteror */
+  useEffect(() => {
+    const getTecno = async () => {
+      const response = await useTechRol();
+      const rols = response.filter((res) => res.name === selectedRol);
+      const stack = rols.map((rol) => rol.rol_tecnology);
+      const techNames = stack[0].map((tech) => tech.tecnology.name);
+      setstackTecno(techNames);
+    };
+    getTecno();
+    setSelectedStack([]);
+  }, []);
+
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.logoContainer}>
-          <View style={{ width: 50 }}>
-            <CustomButton
-              onPress={handleBack}
-              text=""
-              icon="arrow-circle-left"
-              bgColor={COLORS.logoBlue}
-            />
+      <ScrollView style={styles.menu}>
+        <View style={styles.headerContainer}>
+          <View>
+            <View style={{ width: 50 }}>
+              <Entypo name="menu" size={50} color="black" />
+            </View>
+          </View>
+          <View>
+            <Image source={logo} style={{ width: 150, height: 80 }} />
           </View>
         </View>
-        <View style={styles.notificationContainer}>
-          <Image source={logo} style={{ width: 150, height: 80 }} />
-        </View>
-      </View>
 
-      <View>
-        <Text style={styles.titleText}>
-          ¿Que tecnologias y herramientas utilizas?
-        </Text>
-        <Text style={styles.titleText}>herramientas utilizas?</Text>
-        <Text style={styles.descriptionText}>
-          Cuéntanos cual es el rol que mas te identifica y que herramientas
-          utilizas.
-        </Text>
-        <Text> {selectStack.length}</Text>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputText}>
-            {selectedRol
-              ? `Tecnologias asociadas al ${selectedRol}`
-              : 'Tecnologias asociadas'}
+        <View>
+          <Text style={styles.titleText}>¿Qué tecnologias manejas?</Text>
+          <Text style={styles.descriptionText}>
+            Puedes elegir todas las opciones que quieras.
           </Text>
-          <MultipleSelectList
-            setSelected={(val) => addStack(val)}
-            data={technology.filter((tecno) => tecno.type == selectedRol)}
-            dropdownStyles={{ backgroundColor: '#EBEBEB', borderRadius: 5 }}
-            save="value"
-            badgeStyles={{ backgroundColor: '#27358F' }}
-            label="Tu Stack:"
-            placeholder="Selecciona tu stack de tecnologías"
-            searchPlaceholder="Busca tus tecnologías"
-            maxHeight={310}
-            notFoundText="No se encontro ningun rol"
-          />
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputText}>
+              Tecnologias asociadas al {selectedRol}
+            </Text>
+
+            <MultipleSelectList
+              setSelected={(val) => setSelectedStack(val)}
+              data={tech}
+              save="value"
+              dropdownStyles={styles.dropdown}
+              boxStyles={styles.dropdown}
+              checkBoxStyles={styles.checkbox}
+              dropdownTextStyles={styles.textCheckbox}
+              badgeStyles={{ backgroundColor: "#27358F" }}
+              labelStyles={styles.stackText}
+              label="Tu Stack:"
+              placeholder="Selecciona tu stack de tecnologías"
+              searchPlaceholder="Busca tus tecnologías"
+              maxHeight={205}
+              notFoundText="No se encontro ningun rol"
+            />
+          </View>
+
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          text="Confirmar"
-          bgColor={COLORS.logoBlue}
-          onPress={() => handleNext()}
-        />
-      </View>
+      </ScrollView>
+      {keyboardShown && (
+        <KeyboardAvoidingView
+          style={{ display: "none" }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          keyboardVerticalOffset={1000} // ajusta este valor para hacer que el elemento desaparezca
+        ></KeyboardAvoidingView>
+      )}
+      {!keyboardShown && (
+        <View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => handleBack()}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-left" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleNext()}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-right" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  title: {
-    fontSize: 26,
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginBottom: 20,
-  },
+
+
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+
+  menu: {
+    flex: 1,
   },
 
   headerContainer: {
@@ -158,41 +180,49 @@ const styles = StyleSheet.create({
     width: 80,
     fontWeight: 'bold',
   },
+  logo: {},
   logoText: {
     fontSize: 20,
   },
+  mainContainer: {
+    flex: 1,
+    alignItems: "center",
+    padding: 20,
+  },
 
   titleText: {
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    width: 301,
-    height: 36,
+
+    fontStyle: "normal",
+    fontWeight: "500",
+    color: "#0E1545",
+    width: "70%",
     top: 21,
-    left: 16,
+    left: 18,
     fontSize: 24,
-    marginBottom: 10,
     letterSpacing: -0.011,
+    marginBottom: 5,
   },
   inputContainer: {
-    width: '100%',
+    zIndex: 100,
+    width: "100%",
     marginTop: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
+
   inputText: {
     fontSize: 16,
     marginBottom: 10,
     fontWeight: 'bold',
   },
   descriptionText: {
-    fontStyle: 'normal',
-    width: 320,
-    height: 52,
+    fontStyle: "normal",
     top: 24,
     left: 20,
-    fontSize: 17,
+    fontSize: 16,
     lineHeight: 25,
-    marginBottom: 20,
+    marginBottom: 10,
+    width: "80%",
   },
   square: {
     flexDirection: 'column',
@@ -206,29 +236,69 @@ const styles = StyleSheet.create({
     width: 140,
     height: 60,
   },
-  category: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 30,
-    gap: 20,
-    margin: 15,
+
+  textCheckbox: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "600",
+    fontSize: 18,
   },
 
-  stackItemContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 20,
+  dropdown: {
+    backgroundColor: "#E3E5FA",
+    borderRadius: 16,
+    borderColor: 0,
+    transition: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
+
+  dropdownError: {
+    backgroundColor: "#AA1E1E",
+    borderRadius: 16,
+    borderColor: "none",
+    transition: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  checkbox: {
+    height: 22,
+    width: 22,
+    borderColor: "#363740",
+    borderWidth: 2,
+    color: "#fff",
+
+  },
+
   buttonContainer: {
-    position: 'absolute',
-    bottom: 0,
-    top: 600,
-    alignSelf: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 20,
+  },
+  buttonStyles: {
+    width: 70,
+    height: 56,
+    backgroundColor: "#0E1545",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
