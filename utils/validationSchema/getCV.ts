@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 export const schema = yup
   .object({
+
     // linkedInUrl: yup
     //   .string()
     //   .url('no cumple con el formato')
@@ -15,5 +16,6 @@ export const schema = yup
     // pais: yup.string().required("Requerido"),
     // ciudad: yup.string().required("Requerido"),
     // telefono: yup.string().required("Requerido"),
+
   })
   .required();

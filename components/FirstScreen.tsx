@@ -6,21 +6,20 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-} from 'react-native';
-import image from '../assets/images/logo.png';
-import { useNavigation } from '@react-navigation/native';
-import { CustomButton } from './CustomButton';
-import { CustomInput } from './CustomInput';
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { schema } from '../utils/validationSchema/getCV';
-
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { COLORS } from '../constants';
-import { useContext } from 'react';
-import { UserContext } from '../GlobalStates/userContext';
-import * as ImagePicker from 'expo-image-picker';
+} from "react-native";
+import image from "../assets/images/logo.png";
+import { useNavigation } from "@react-navigation/native";
+import { CustomButton } from "./CustomButton";
+import { CustomInput } from "./CustomInput";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { schema } from "../utils/validationSchema/getCV";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { COLORS } from "../constants";
+import { useContext } from "react";
+import { UserContext } from "../GlobalStates/userContext";
+import * as ImagePicker from "expo-image-picker"
 
 {
   /*---------------TYPES-------------------- */
@@ -43,15 +42,16 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     /*----------------Funcion next-------------- */
   }
   const handleNext = (data) => {
-    console.log('lo que manda el hook-form ', data);
-    console.log('lo que manda el hook-form ', data);
-    //setCurrentUser({
-    //...currentUser,
-    // firstname: data.nombre,
-    //lastname: data.apellido,
-    // });
 
-    handleGoTo('next');
+    console.log(data);
+    setCurrentUser({
+      ...currentUser,
+      firstname: data.nombre,
+      lastname: data.apellido,
+    });
+
+    handleGoTo("next");
+
   };
 
   {
@@ -70,7 +70,9 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
       ciudad: '',
       telefono: '',
     },
-    // resolver: yupResolver(schema),
+
+    //resolver: yupResolver(schema),
+
   });
 
   {
@@ -188,11 +190,15 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           </TouchableOpacity>
         </View>
 
-        <CustomButton
-          onPress={handleSubmit(handleNext)}
-          text="Continuar"
-          bgColor={COLORS.logoBlue}
-        />
+
+        <View>
+          <CustomButton
+            onPress={handleSubmit(handleNext)}
+            text="Continuar"
+            bgColor={COLORS.logoBlue}
+          />
+        </View>
+
       </View>
     </ScrollView>
   );
