@@ -1,4 +1,4 @@
-export const useGetRolTech = () => {
+export const useGetRolTech = async () => {
   const fetchRolTech = async () => {
     const response = await globalThis.fetch(
       'https://backapijobs-production-ad45.up.railway.app/api/v1/rol',
@@ -13,6 +13,6 @@ export const useGetRolTech = () => {
     return a;
   };
 
-  const respuesta = fetchRolTech();
+  const respuesta = await fetchRolTech();
   return respuesta;
 };

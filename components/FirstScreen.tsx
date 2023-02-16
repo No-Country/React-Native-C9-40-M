@@ -41,6 +41,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     /*----------------Funcion next-------------- */
   }
   const handleNext = (data) => {
+
     console.log(data);
     setCurrentUser({
       ...currentUser,
@@ -60,6 +61,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     } else {
       console.warn("Ups hubo un error!");
     }
+
   };
 
   {
@@ -105,7 +107,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
   };
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  console.log(currentUser);
 
   return (
     <ScrollView>
