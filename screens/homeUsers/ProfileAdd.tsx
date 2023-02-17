@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FirstScreen } from '../components/FirstScreen';
-import { SecondScreen } from '../components/SecondScreen';
-import { ThirdScreen } from '../components/ThirdScreen';
-import { FourScreen } from '../components/FourScreen';
-import { FiveScreen } from '../components/FiveScreen';
+import { FirstScreen } from '../../components/FirstScreen';
+import { SecondScreen } from '../../components/SecondScreen';
+import { ThirdScreen } from '../../components/ThirdScreen';
+import { FourScreen } from '../../components/FourScreen';
+import { FiveScreen } from '../../components/FiveScreen';
 type Props = {};
 
 type Direction = {
   direction: 'next' | 'prev';
 };
 
-const ProfileAdd = (props: Props) => {
+export const ProfileAdd = (props: Props) => {
   const [step, setStep] = useState(1);
 
   const handleGoTo = (direction: Direction) => {
@@ -33,7 +33,7 @@ const ProfileAdd = (props: Props) => {
     </SafeAreaView>
   );
 };
-export default ProfileAdd;
+
 const styles = StyleSheet.create({
   container: {
     width: '100%',

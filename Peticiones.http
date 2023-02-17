@@ -2,14 +2,14 @@
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register
 Content-Type: application/json
 
-{"email": "gh2dd@gmail.com", "password": "a1b2c3A$"}
+{"email": "crisilvalla@gmail.com", "password": "a1b2c3A$"}
 
 
 ##### hacer Login
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "yulyana77@hotmail.com", "password": "a1b2c3A$"}
+{"email": "crisilvalla@gmail.com", "password": "a1b2c3A$"}
 
 ##### get user information con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ##### update basic user information complementary con base ene le token
 PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoieXVseWFuYTc3QGhvdG1haWwuY29tIiwiaWF0IjoxNjc2NjAxMDk4LCJleHAiOjE2NzY5NjEwOTh9.Z54oryKsOP9IBe4pM103TsvfSG0VBkcN0JKBgwZAq76r0Qyi8cgZYO70_-Mr2xU4IbCS6y41QcPUaCIx_Fa5Xg
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoiY3Jpc2lsdmFsbGFAZ21haWwuY29tIiwiaWF0IjoxNjc2NjYyODMyLCJleHAiOjE2NzcwMjI4MzJ9.ko16AWXQOn2tGqsFFbc8JuG100AkQ9GkHcrih41S45AzwODuUsFYSDisvkCCeAfZdU3ePNYPcZgztY_NvIs34w
 Content-Type: application/json
 
 {   

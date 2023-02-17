@@ -6,8 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { LoginScreen } from '../screens/Login';
-import { RegisterScreen } from '../screens/Register';
+import { LoginScreen } from '../screens/auth/Login';
+import { RegisterScreen } from '../screens/auth/Register';
 
 export type TabStackParamList = {
   Customer: undefined;

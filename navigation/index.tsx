@@ -2,15 +2,17 @@ import { StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen } from '../screens/Home';
-import { LoginScreen } from '../screens/Login';
-import { RegisterScreen } from '../screens/Register';
-import { ResetPasswordScreen } from '../screens/ResetPassword';
-import { ForgotPasswordScreen } from '../screens/ForgotPassword';
-import { ConfirmEmailScreen } from '../screens/ConfirmEmail';
-import { LandingScreen } from '../screens/Landing';
-import { JobsScreen } from '../screens/Jobs';
-import ProfileAdd from '../screens/ProfileAdd';
+import {
+  ConfirmEmailScreen,
+  ForgotPasswordScreen,
+  HomeScreen,
+  JobsScreen,
+  LandingScreen,
+  LoginScreen,
+  ProfileAdd,
+  RegisterScreen,
+  ResetPasswordScreen,
+} from '../screens';
 
 const Stack = createNativeStackNavigator();
 

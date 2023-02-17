@@ -4,14 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from '../utils/validationSchema/register';
+import { schema } from '../../utils/validationSchema/register';
 
-import logo from '../assets/images/logo.png';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
+import logo from '../../assets/images/logo.png';
+import { CustomInput } from '../../components/CustomInput';
+import { CustomButton } from '../../components/CustomButton';
 
-import { useRegister } from '../hooks/useRegister';
-import { COLORS } from '../constants';
+import { useRegister } from '../../hooks/useRegister';
+import { COLORS } from '../../constants';
 
 type FormValues = {
   email: string;

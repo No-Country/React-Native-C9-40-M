@@ -11,8 +11,8 @@ const OffersCard = ({
   return (
     <Pressable>
       <View style={[styles.item, styles.shadow]}>
-        <Text style={[styles.title, styles.highlight]}>{company}</Text>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{company}</Text>
+        <Text style={[styles.title, styles.highlight]}>{title}</Text>
         <Text style={styles.description} numberOfLines={2}>
           {description}
         </Text>

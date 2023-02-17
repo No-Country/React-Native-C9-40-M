@@ -5,38 +5,36 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import logo from '../assets/images/logo.png';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
+import logo from '../../assets/images/logo.png';
+import { CustomInput } from '../../components/CustomInput';
+import { CustomButton } from '../../components/CustomButton';
 
 const schema = yup
   .object({
-    code: yup.string().required('Requerido'),
-    password: yup.string().required('Debe de indicar la clave'),
-    pwdConfirm: yup
+    email: yup
       .string()
-      .oneOf([yup.ref('password')], 'Las claves no coinciden')
-      .required('Obligatorio'),
+      .email('Email invalido')
+      .required('Debe de indicar su e-mail'),
   })
   .required();
+
 type Props = {};
-export const ResetPasswordScreen = () => {
+export const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
+
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      code: '',
-      password: '',
-      pwdConfirm: '',
+      email: '',
     },
     resolver: yupResolver(schema),
   });
-
-  const handleReset = () => {
-    navigation.navigate('Login');
+  console.log(errors);
+  const handleSendEmail = (data) => {
+    navigation.navigate('ResetPassword');
   };
   const goToLogin = () => {
     navigation.navigate('Login');
@@ -46,37 +44,24 @@ export const ResetPasswordScreen = () => {
     <ScrollView>
       <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.title}>Reset Password</Text>
+        <Text style={styles.title}>¿Olvidó su Password?</Text>
       </View>
+
       <View style={styles.formContainer}>
         <CustomInput
-          name="code"
-          label="Código enviado a su E-mail"
+          name="email"
+          label="E-Mail"
           control={control}
-          placeholder="ingresa el código enviado a tu E-mail"
-        />
-        <CustomInput
-          name="password"
-          label="Contraseña"
-          control={control}
-          placeholder="Ingrese su contraseña"
-          secureTextEntry
+          placeholder="email"
         />
 
-        <CustomInput
-          name="pwdConfirm"
-          label="Confirma tu contraseña"
-          control={control}
-          placeholder="Ingrese su contraseña"
-          secureTextEntry
-        />
         <CustomButton
-          onPress={handleSubmit(handleReset)}
-          text="Registrarme"
+          onPress={handleSubmit(handleSendEmail)}
+          text="Confirmar"
           type="Primary"
           bgColor=""
           txColor="#f3f3f3"
-          icon="sign-in"
+          icon="check"
         />
 
         <CustomButton
@@ -110,16 +95,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  bold: {
-    fontWeight: '700',
-  },
   logo: {
     width: '100%',
     maxWidth: 100,
     height: 100,
     resizeMode: 'contain',
-  },
-  buttonContainer: {
-    marginBottom: 50,
   },
 });

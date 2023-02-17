@@ -5,15 +5,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from '../utils/validationSchema/login';
+import { schema } from '../../utils/validationSchema/login';
 
-import logo from '../assets/images/logo.png';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
+import logo from '../../assets/images/logo.png';
+import { CustomInput } from '../../components/CustomInput';
+import { CustomButton } from '../../components/CustomButton';
 
-import { useLogin } from '../hooks/useLogin';
-import { UserContext } from '../GlobalStates/userContext';
-import { COLORS } from '../constants';
+import { useLogin } from '../../hooks/useLogin';
+import { UserContext } from '../../GlobalStates/userContext';
+import { COLORS } from '../../constants';
 
 type FormValues = {
   password: string;

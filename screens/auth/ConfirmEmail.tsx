@@ -6,9 +6,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import logo from '../assets/images/logo.png';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
+import logo from '../../assets/images/logo.png';
+import { CustomInput } from '../../components/CustomInput';
+import { CustomButton } from '../../components/CustomButton';
 
 const schema = yup
   .object({
@@ -17,6 +17,7 @@ const schema = yup
   .required();
 
 type Props = {};
+
 export const ConfirmEmailScreen = () => {
   const navigation = useNavigation();
   const {
