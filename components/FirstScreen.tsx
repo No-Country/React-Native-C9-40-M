@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,29 +6,35 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-} from "react-native";
-import image from "../assets/images/logo.png";
-import { useNavigation } from "@react-navigation/native";
-import { CustomButton } from "./CustomButton";
-import { CustomInput } from "./CustomInput";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { schema } from "../utils/validationSchema/getCV";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { COLORS } from "../constants";
-import { useContext } from "react";
-import { UserContext } from "../GlobalStates/userContext";
-import * as ImagePicker from "expo-image-picker";
+} from 'react-native';
+import logo from '../assets/images/logo.png';
+import { useNavigation } from '@react-navigation/native';
+import { CustomButton } from './CustomButton';
+import { CustomInput } from './CustomInput';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { schema } from '../utils/validationSchema/basicUserData';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { COLORS } from '../constants';
+import { useContext } from 'react';
+import { UserContext } from '../GlobalStates/userContext';
+import * as ImagePicker from 'expo-image-picker';
+import { useUpdateUser } from '../hooks/useUpdateUser';
+import { Entypo } from '@expo/vector-icons';
 
 {
   /*---------------TYPES-------------------- */
 }
 type FormValues = {
   nombre: string;
+  apellido: string;
+  telefono: string;
+  pais: string;
+  ciudad: string;
 };
 
 type Direction = {
-  direction: "next" | "prev";
+  direction: 'next' | 'prev';
 };
 
 type Props = {
@@ -37,31 +43,40 @@ type Props = {
 };
 
 export const FirstScreen = ({ step, handleGoTo }: Props) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
   {
     /*----------------Funcion next-------------- */
   }
-  const handleNext = (data) => {
-
-    console.log(data);
+  const handleNext = async (data) => {
+    // Actualiza el usuario actual en el estado global
     setCurrentUser({
       ...currentUser,
       firstname: data.nombre,
       lastname: data.apellido,
+      phone: data.telefono,
+      country: data.pais,
+      region: data.ciudad,
     });
+
+    // Actualiza el usuario en la base de datos
     const dataBasic = {
       firstname: data.nombre,
       lastname: data.apellido,
       phone: data.telefono,
       country: data.pais,
+      region: data.ciudad,
       avatar: selectedImage,
+      token: currentUser.token,
     };
-    const respuestaUpdate = useUpdateUser(dataBasic);
-    if (respuestaUpdate.status === "ok") {
-      handleGoTo("next");
-    } else {
-      console.warn("Ups hubo un error!");
-    }
 
+    const respuestaUpdate = await useUpdateUser(dataBasic);
+
+    if (respuestaUpdate === 'ok') {
+      handleGoTo('next');
+    } else {
+      console.warn('Ups hubo un error!');
+    }
   };
 
   {
@@ -74,14 +89,14 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      nombre: "",
-      apellido: "",
-      pais: "",
-      ciudad: "",
-      telefono: "",
+      nombre: currentUser.firstname,
+      apellido: currentUser.lastname,
+      pais: currentUser.country,
+      ciudad: currentUser.region,
+      telefono: currentUser.phone,
     },
 
-    //resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   {
@@ -93,7 +108,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionRe.granted === false) {
-      alert("Los permisos para acceder a la camara son requeridos");
+      alert('Los permisos para acceder a la camara son requeridos');
       return;
     }
 
@@ -106,26 +121,34 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     console.log(selectedImage);
   };
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
   return (
     <ScrollView>
+      <View style={styles.headerContainer}>
+        <View>
+          <View style={{ width: 50 }}>
+            <Entypo name="menu" size={50} color="black" />
+          </View>
+        </View>
+        <View>
+          <Image source={logo} style={{ width: 150, height: 80 }} />
+        </View>
+      </View>
       <View style={styles.header}>
-        <Image source={image} style={styles.logo} />
-        <Text style={styles.title}>Cuentanos de tí</Text>
+        <Text style={styles.titleText}>Cuentanos de tí</Text>
         <Image
           source={{
             uri:
               selectedImage !== null
                 ? selectedImage.localUri
-                : "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
+                : 'https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png',
           }}
           style={styles.image}
         />
+
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
             marginBottom: 20,
           }}
         >
@@ -135,18 +158,21 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             size={27}
             color="#ff000"
           />
+
           <TouchableOpacity onPress={openImage}>
             <Text
               style={{
                 fontSize: 21,
-                textDecorationLine: "underline",
-                fontWeight: "500",
+                textDecorationLine: 'underline',
+                fontWeight: '500',
               }}
             >
               Cargar foto de perfil
             </Text>
           </TouchableOpacity>
         </View>
+      </View>
+      <View style={styles.formContainer}>
         <CustomInput
           name="nombre"
           label="Nombre *"
@@ -212,52 +238,76 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 };
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    background: '#D9D9D9',
+  },
+
   header: {
     flex: 1,
-    alignSelf: "center",
-    padding: 20,
+  },
+
+  titleText: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    color: '#0E1545',
+    width: 301,
+    height: 50,
+    top: 21,
+    left: 18,
+    fontSize: 24,
+    letterSpacing: -0.011,
   },
   logo: {
-    resizeMode: "contain",
+    resizeMode: 'contain',
     height: 100,
     width: 150,
   },
   image: {
-    height: 150,
-    width: 150,
+    height: 100,
+    width: 100,
     borderRadius: 75,
-    resizeMode: "contain",
+    resizeMode: 'contain',
+    marginleft: 20,
     marginBottom: 20,
+  },
+  formContainer: {
+    flex: 1,
   },
   title: {
     fontSize: 30,
-    fontWeight: "500",
-    color: "black",
+    fontWeight: '500',
+    color: 'black',
     paddingBottom: 10,
   },
   subtitle: {
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 20,
   },
   bold: {
-    fontWeight: "700",
+    fontWeight: '700',
   },
   text: {
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 10,
   },
   row: {
     padding: 20,
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   btnLine: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   icon: {
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
