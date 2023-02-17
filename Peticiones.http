@@ -9,7 +9,7 @@ Content-Type: application/json
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "prueba1@co.co", "password": "a1b2c3A$"}
+{"email": "yulyana77@hotmail.com", "password": "a1b2c3A$"}
 
 ##### get user information con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
@@ -24,18 +24,18 @@ Content-Type: application/json
 
 ##### update basic user information complementary con base ene le token
 PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJwcnVlYmExQGNvLmNvIiwiaWF0IjoxNjc2NTc3NzczLCJleHAiOjE2NzY5Mzc3NzN9.s2FVEUtrnEm_aZ29UvzAMdQVUl_wxwWoMxPehRueRq1-nDEP4iBrI_TflyfHExX9NDTfO7SM8KbGgsc7nBJsdw
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoieXVseWFuYTc3QGhvdG1haWwuY29tIiwiaWF0IjoxNjc2NjAxMDk4LCJleHAiOjE2NzY5NjEwOTh9.Z54oryKsOP9IBe4pM103TsvfSG0VBkcN0JKBgwZAq76r0Qyi8cgZYO70_-Mr2xU4IbCS6y41QcPUaCIx_Fa5Xg
 Content-Type: application/json
 
 {   
     "firstname": null,
     "lastname": null,
-    "about_me": "Informacion que en el diseño",
-    "article_1": "Definir que es este campo y donde se captura",
-    "age": 45,
-    "country": "Venezuela",
-    "region": "Miranda",
-    "phone": "1234567"
+    "about_me": "",
+    "article_1": "",
+    "age": null,
+    "country": "",
+    "region": "",
+    "phone": ""
 }
 
 ### get all users
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 
 ### get un usuario particular con base en su id
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/7
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/19
 Content-Type: application/json
 
 ### delete un usuario con base en el token

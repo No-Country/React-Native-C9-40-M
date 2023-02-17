@@ -11,10 +11,13 @@ export function HomeScreen() {
   const navigation = useNavigation();
   const { currentUser } = useContext(UserContext);
   const [isLoad, setIsLoad] = useState(false);
+  const [jobsBD, setJobsBD] = useState([]);
   const userName =
     currentUser.firstname === null ? currentUser.email : currentUser.firstname;
 
   const jobs = useGetJobs();
+
+  console.log(jobs);
 
   return (
     <>
@@ -31,14 +34,18 @@ export function HomeScreen() {
             <Text style={styles.bold}>Crea tu perfil</Text>
           </Text>
         </View>
-        {jobs.length > 0 && (
+        {/* <Text>{jobsBD[0].id}</Text>
+        <Text>{jobsBD[0].title}</Text>
+        <Text>{jobsBD[0].description}</Text>
+        <Text>{jobsBD[0].country}</Text> */}
+        {/* {jobs.length > 0 && (
           <FlatList
             style={styles.itemContainer}
             data={jobs}
             renderItem={({ item }) => <OffersCard item={item} />}
             keyExtractor={(item) => item.id}
           />
-        )}
+        )} */}
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {

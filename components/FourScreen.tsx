@@ -6,8 +6,11 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
+import { Entypo } from '@expo/vector-icons';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { schema } from '../utils/validationSchema/getCV';
@@ -21,7 +24,7 @@ import { useUpdateUser } from '../hooks/useUpdateUser';
 import logo from '../assets/images/logo.png';
 
 type FormValues = {
-  linkedInUrl: string;
+  url_portfolio: string;
   gitUrl: string;
 };
 
@@ -41,16 +44,8 @@ type Props = {
 };
 
 export const FourScreen = ({ handleGoTo }: Props) => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   //para probar cuando viene un valor en el currentUser
-
-  const newCurrentUser = {
-    ...currentUser,
-    linkedInUrl: 'prueba de linkInUrl',
-    gitUrl: 'prueba del gitUrl',
-  };
-
-  // setCurrentUser(newCurrentUser);
 
   const [file, setFile] = useState<DocumentPicker.DocumentResult | null>(null);
   const [fileLoadMsg, setFileLoadMsg] = useState('');
@@ -60,8 +55,8 @@ export const FourScreen = ({ handleGoTo }: Props) => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      linkedInUrl: newCurrentUser.linkedInUrl,
-      gitUrl: newCurrentUser.gitUrl,
+      url_portfolio: currentUser.url_portfolio,
+      gitUrl: currentUser.portfolio, // hay que cambiar luego
     },
     resolver: yupResolver(schema),
   });
@@ -104,8 +99,7 @@ export const FourScreen = ({ handleGoTo }: Props) => {
     }
     setFileLoadMsg('');
     const userData = {
-      firstname: 'probando',
-      lastname: 'seguir probando',
+      url_portfolio: data.url_portfolio,
       token: currentUser.token,
     };
 
@@ -126,16 +120,17 @@ export const FourScreen = ({ handleGoTo }: Props) => {
   return (
     <ScrollView>
       <View style={styles.header}>
-        <View style={{ width: 50, position: 'absolute', top: 10, left: 10 }}>
-          <CustomButton
-            onPress={handleBack}
-            text=""
-            icon="arrow-circle-left"
-            bgColor={COLORS.logoBlue}
-          />
+        <View style={styles.headerContainer}>
+          <View>
+            <View style={{ width: 50 }}>
+              <Entypo name="menu" size={50} color="black" />
+            </View>
+          </View>
+          <View>
+            <Image source={logo} style={{ width: 150, height: 80 }} />
+          </View>
         </View>
 
-        <Image source={logo} style={styles.logo} />
         <Text style={styles.title}>Completa tu perfil</Text>
         <Text style={styles.subtitle}>
           El último paso para que puedas encontrar tu trabajo ideal.
@@ -154,7 +149,7 @@ export const FourScreen = ({ handleGoTo }: Props) => {
         </View>
 
         <CustomInput
-          name="linkedInUrl"
+          name="url_portfolio"
           label="LinkedIn"
           control={control}
           placeholder="Pega aqui el URL de tu perfil"
@@ -166,11 +161,21 @@ export const FourScreen = ({ handleGoTo }: Props) => {
           placeholder="Pega aqui el URL de tu perfil"
         />
 
-        <CustomButton
-          onPress={handleSubmit(handleCV)}
-          text="Actualizar"
-          bgColor={COLORS.logoBlue}
-        />
+        <View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={handleBack}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-left" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleSubmit(handleCV)}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-right" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -182,6 +187,15 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
+  headerContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    background: '#D9D9D9',
+  },
   formContainer: {
     flex: 1,
   },
@@ -192,7 +206,8 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 20,
-    textAlign: 'center',
+    paddingHorizontal: 10,
+    textAlign: 'left',
     marginBottom: 20,
   },
   bold: {
@@ -235,4 +250,22 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   error: { color: 'red', alignSelf: 'stretch' },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 20,
+  },
+  buttonStyles: {
+    width: 70,
+    height: 56,
+    backgroundColor: '#0E1545',
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
 });
