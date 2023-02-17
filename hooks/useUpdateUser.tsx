@@ -33,7 +33,6 @@ export const useUpdateUser = async (userData) => {
       }
     );
     const a = await response.json();
-    console.log(a);
     return 'ok';
   } catch (error) {
     console.log('hay un error');

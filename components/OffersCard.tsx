@@ -1,18 +1,25 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 type Props = {};
-const OffersCard = ({ item }: Props) => {
+const OffersCard = ({
+  title,
+  company = 'Anonimo',
+  description,
+  work_place,
+  working_day,
+  country,
+}: Props) => {
   return (
     <Pressable>
       <View style={[styles.item, styles.shadow]}>
-        <Text style={[styles.title, styles.highlight]}>{item.company}</Text>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={[styles.title, styles.highlight]}>{company}</Text>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.description} numberOfLines={2}>
-          {item.description}
+          {description}
         </Text>
-        <Text style={styles.text}>{item.work_place}</Text>
-        <Text style={styles.text}>{item.working_day}</Text>
-        <Text style={styles.text}>{item.nivel}</Text>
-        <Text style={styles.text}>{item.country}</Text>
+        <Text style={styles.text}>{work_place}</Text>
+        <Text style={styles.text}>{working_day}</Text>
+
+        <Text style={styles.text}>{country}</Text>
       </View>
     </Pressable>
   );

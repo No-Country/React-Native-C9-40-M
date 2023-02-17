@@ -42,7 +42,7 @@ export const RegisterScreen = () => {
       navigation.navigate('Login');
       console.warn('Usuario Creando satisfactoriamente');
     } else {
-      setRegisterRes('hay errores');
+      setRegisterRes('Correo ya tomado');
     }
   };
 

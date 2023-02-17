@@ -60,7 +60,7 @@ export const LoginScreen = () => {
         ? navigation.navigate('Home')
         : navigation.navigate('Profile');
     } else {
-      setLoginRes('hay errores');
+      setLoginRes('Revisar Credenciales');
     }
   };
 

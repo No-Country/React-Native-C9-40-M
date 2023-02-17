@@ -1,8 +1,5 @@
-
-import React, { createContext, useEffect, useState } from "react";
-import { useTechRol } from "../hooks/useTechRol";
-
-
+import React, { createContext, useEffect, useState } from 'react';
+import { useTechRol } from '../hooks/useTechRol';
 
 const currentUser = {
   email: '',
@@ -45,16 +42,13 @@ export const UserContextProvider = ({ children }) => {
     getInfo();
   }, []);
 
-
   useEffect(() => {
     const getRol = async () => {
       const response = await useTechRol();
       setData(response.map((res) => res.name));
-      console.log(data);
     };
     getRol();
   }, []);
-
 
   const value = {
     currentUser,
@@ -67,7 +61,6 @@ export const UserContextProvider = ({ children }) => {
     setSelectedStack,
     data,
     setData,
-
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

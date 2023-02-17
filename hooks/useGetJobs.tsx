@@ -1,4 +1,4 @@
-export const useGetJobs = () => {
+export const useGetJobs = async () => {
   const fetchJobs = async () => {
     try {
       const response = await globalThis.fetch(
@@ -10,5 +10,6 @@ export const useGetJobs = () => {
       console.log('hay un error');
     }
   };
-  fetchJobs();
+  const a = await fetchJobs();
+  return a;
 };
