@@ -4,7 +4,7 @@ import { Animated, PanResponder, StyleSheet, View } from 'react-native';
 import { OfferCard } from '../../components/swipe/OfferCard';
 import { Footer } from '../../components/swipe/Footer';
 import { ACTION_OFFSET, CARD } from '../../constants/constants';
-import { JobsOfferts as jobsArray } from '../../assets/data/data';
+import { JobsOfferts as jobsArray } from '../../../assets/data/data';
 
 export const JobsScreen = () => {
   const [jobs, setJobs] = useState(jobsArray);

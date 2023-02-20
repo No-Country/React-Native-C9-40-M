@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import {} from 'react';
 import {
   View,
   Text,
@@ -7,20 +8,21 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import logo from '../assets/images/logo.png';
-import { useNavigation } from '@react-navigation/native';
+
+import * as ImagePicker from 'expo-image-picker';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Entypo } from '@expo/vector-icons';
+
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schema } from '../utils/validationSchema/basicUserData';
+
+import logo from '../../assets/images/logo.png';
 import { CustomButton } from './CustomButton';
 import { CustomInput } from './CustomInput';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { schema } from '../utils/validationSchema/basicUserData';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { COLORS } from '../constants';
-import { useContext } from 'react';
 import { UserContext } from '../GlobalStates/userContext';
-import * as ImagePicker from 'expo-image-picker';
 import { useUpdateUser } from '../hooks/useUpdateUser';
-import { Entypo } from '@expo/vector-icons';
 
 {
   /*---------------TYPES-------------------- */
@@ -123,16 +125,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 
   return (
     <ScrollView>
-      <View style={styles.headerContainer}>
-        <View>
-          <View style={{ width: 50 }}>
-            <Entypo name="menu" size={50} color="black" />
-          </View>
-        </View>
-        <View>
-          <Image source={logo} style={{ width: 150, height: 80 }} />
-        </View>
-      </View>
       <View style={styles.header}>
         <Text style={styles.titleText}>Cuentanos de tí</Text>
         <Image

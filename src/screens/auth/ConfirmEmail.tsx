@@ -6,9 +6,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import logo from '../../assets/images/logo.png';
+import logo from '../../../assets/images/logo.png';
 import { CustomInput } from '../../components/CustomInput';
 import { CustomButton } from '../../components/CustomButton';
+import { ROUTES } from '../../constants';
 
 const schema = yup
   .object({
@@ -32,10 +33,10 @@ export const ConfirmEmailScreen = () => {
   });
   const handleConfirm = () => {
     console.warn('Se confirmo el Correo');
-    navigation.navigate('Home');
+    navigation.navigate(ROUTES.HOME);
   };
   const goToLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate(ROUTES.LOGIN);
   };
   const onResendCode = () => {
     console.warn('Se reenvio el codigo de confirmación');

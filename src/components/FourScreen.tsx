@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+
 import {
   View,
   Text,
@@ -8,6 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+
 import * as DocumentPicker from 'expo-document-picker';
 import { Entypo } from '@expo/vector-icons';
 
@@ -15,13 +17,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { schema } from '../utils/validationSchema/getCV';
 
-import { CustomButton } from './CustomButton';
 import { CustomInput } from './CustomInput';
-import { COLORS } from '../constants';
 import { UserContext } from '../GlobalStates/userContext';
 import { useUpdateUser } from '../hooks/useUpdateUser';
 
-import logo from '../assets/images/logo.png';
+import logo from '../../assets/images/logo.png';
 
 type FormValues = {
   url_portfolio: string;
@@ -120,16 +120,6 @@ export const FourScreen = ({ handleGoTo }: Props) => {
   return (
     <ScrollView>
       <View style={styles.header}>
-        <View style={styles.headerContainer}>
-          <View>
-            <View style={{ width: 50 }}>
-              <Entypo name="menu" size={50} color="black" />
-            </View>
-          </View>
-          <View>
-            <Image source={logo} style={{ width: 150, height: 80 }} />
-          </View>
-        </View>
 
         <Text style={styles.title}>Completa tu perfil</Text>
         <Text style={styles.subtitle}>

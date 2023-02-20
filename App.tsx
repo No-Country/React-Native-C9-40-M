@@ -1,8 +1,11 @@
-// import { StatusBar } from 'expo-status-bar';
-import 'react-native-gesture-handler'; //this should be the first import in your
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { UserContextProvider } from './GlobalStates/userContext';
-import { Navigation } from './navigation';
+import 'react-native-gesture-handler';
+import React from 'react';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { UserContextProvider } from './src/GlobalStates/userContext';
+import { Navigation } from './src/navigation';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (

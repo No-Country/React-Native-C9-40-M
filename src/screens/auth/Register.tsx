@@ -2,16 +2,17 @@ import { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../utils/validationSchema/register';
 
-import logo from '../../assets/images/logo.png';
+import logo from '../../../assets/images/logo.png';
 import { CustomInput } from '../../components/CustomInput';
 import { CustomButton } from '../../components/CustomButton';
 
 import { useRegister } from '../../hooks/useRegister';
-import { COLORS } from '../../constants';
+import { COLORS, ROUTES } from '../../constants';
 
 type FormValues = {
   email: string;
@@ -39,16 +40,16 @@ export const RegisterScreen = () => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
     if (registerResult.message === 'user created') {
-      navigation.navigate('Login');
+      navigation.navigate(ROUTES.LOGIN_DRAWER);
       console.warn('Usuario Creando satisfactoriamente');
     } else {
       setRegisterRes('Correo ya tomado');
     }
   };
 
-  const goToLogin = () => {
-    navigation.navigate('Login');
-  };
+  // const goToLogin = () => {
+  //   navigation.navigate(ROUTES.LOGIN);
+  // };
 
   // const goToPolicy = () => {
   //   console.warn('navegar a la pagina de terminos y politicas');

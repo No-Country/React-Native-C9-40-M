@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 import { CustomButton } from './CustomButton';
 import { COLORS } from '../constants';
 
-import panaImage from '../assets/images/pana1.png';
+import panaImage from '../../assets/images/pana1.png';
 
 export const FiveScreen = () => {
   const navigation = useNavigation();

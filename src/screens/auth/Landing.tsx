@@ -3,20 +3,20 @@ import { ScrollView, StyleSheet, Image, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
-import logo from '../../assets/images/logo.png';
-import landingImage from '../../assets/images/bro.png';
-import { COLORS } from '../../constants';
+import logo from '../../../assets/images/logo.png';
+import landingImage from '../../../assets/images/bro.png';
+import { COLORS, ROUTES } from '../../constants';
 import { CustomButton } from '../../components/CustomButton';
 
 export function LandingScreen() {
   const navigation = useNavigation();
 
   const onPressLogin = (): void => {
-    navigation.navigate('Login');
+    navigation.navigate(ROUTES.LOGIN_DRAWER);
   };
 
   const onPressRegister = (): void => {
-    navigation.navigate('Register');
+    navigation.navigate(ROUTES.REGISTER_DRAWER);
   };
 
   return (

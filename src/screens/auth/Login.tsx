@@ -7,13 +7,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../utils/validationSchema/login';
 
-import logo from '../../assets/images/logo.png';
+import logo from '../../../assets/images/logo.png';
 import { CustomInput } from '../../components/CustomInput';
 import { CustomButton } from '../../components/CustomButton';
 
 import { useLogin } from '../../hooks/useLogin';
 import { UserContext } from '../../GlobalStates/userContext';
-import { COLORS } from '../../constants';
+import { COLORS, ROUTES } from '../../constants';
 
 type FormValues = {
   password: string;
@@ -57,19 +57,15 @@ export const LoginScreen = () => {
         url_portfolio: loginResult.url_portfolio,
       });
       loginResult.user.firstname
-        ? navigation.navigate('Home')
-        : navigation.navigate('Profile');
+        ? navigation.navigate(ROUTES.HOME_DRAWER)
+        : navigation.navigate(ROUTES.PROFILE_DRAWER);
     } else {
       setLoginRes('Revisar Credenciales');
     }
   };
 
-  const goToRegister = () => {
-    navigation.navigate('Register');
-  };
-
   const goToForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
+    navigation.navigate(ROUTES.FORGOT_PASSWORD_DRAWER);
   };
 
   return (

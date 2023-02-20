@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { UserContext } from '../../GlobalStates/userContext';
 import OffersCard from '../../components/OffersCard';
 import { useGetJobs } from '../../hooks/useGetJobs';
+import { ROUTES } from '../../constants';
 
 export function HomeScreen() {
   const navigation = useNavigation();
@@ -66,7 +67,7 @@ export function HomeScreen() {
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {
-              navigation.navigate('Landing');
+              navigation.navigate(ROUTES.LANDING);
             }}
             title="Cerrar Sesión"
             color="purple"
