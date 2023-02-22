@@ -7,6 +7,8 @@ import {
   ForgotPasswordScreen,
   HomeRecuiter,
   HomeScreen,
+  JobPost,
+  JobSeekerList,
   JobsScreen,
   LandingScreen,
   LoginScreen,
@@ -22,8 +24,8 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={(props) => <LandingSidebar {...props} />}
       screenOptions={{ activeTintColor: COLORS.logoBlue }}
-      initialRouteName={ROUTES.LANDING_DRAWER}
-      // initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
+      // initialRouteName={ROUTES.LANDING_DRAWER}
+      initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
     >
       <Drawer.Screen
         name={ROUTES.LANDING_DRAWER}
@@ -100,6 +102,26 @@ export const DrawerNavigator = () => {
         component={ProfileAdd}
         options={{
           title: ROUTES.PROFILE,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.JOBSPOST_DRAWER}
+        component={JobPost}
+        options={{
+          title: ROUTES.JOBSPOST,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.JOBSEEKERLIST_DRAWER}
+        component={JobSeekerList}
+        options={{
+          title: ROUTES.JOBSEEKERLIST,
           drawerIcon: ({ focused, color, size }) => (
             <Icon name="" size={18} color={color} />
           ),

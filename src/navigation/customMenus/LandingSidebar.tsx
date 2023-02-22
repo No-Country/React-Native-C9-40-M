@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from "react-native";
 // import { useRoute } from '@react-navigation/native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView } from "@react-navigation/drawer";
 
-import { COLORS, ROUTES } from '../../constants';
-import { MenuButtonItem } from './MenuButtonItem';
-import logo from '../../../assets/images/logo.png';
+import { COLORS, ROUTES } from "../../constants";
+import { MenuButtonItem } from "./MenuButtonItem";
+import logo from "../../../assets/images/logo.png";
 
 export const LandingSidebar = ({ navigation, state }) => {
   const routeName = state.routeNames[state.index];
@@ -16,13 +16,20 @@ export const LandingSidebar = ({ navigation, state }) => {
     case ROUTES.LOGIN_DRAWER:
     case ROUTES.REGISTER_DRAWER:
     case ROUTES.FORGOT_PASSWORD_DRAWER:
-      activeScreen = 'Menu inicial';
+      activeScreen = "Menu inicial";
       break;
     case ROUTES.JOBS:
     case ROUTES.JOBS_DRAWER:
     case ROUTES.PROFILE_DRAWER:
     case ROUTES.HOME_DRAWER:
-      activeScreen = 'Menu User';
+      activeScreen = "Menu User";
+      break;
+    case ROUTES.JOBSPOST:
+    case ROUTES.JOBSPOST_DRAWER:
+    case ROUTES.JOBSEEKERLIST:
+    case ROUTES.JOBSEEKERLIST_DRAWER:
+    case ROUTES.HOME_RECRUITER_DRAWER:
+      activeScreen = "Menu Recruiter";
       break;
   }
 
@@ -33,7 +40,7 @@ export const LandingSidebar = ({ navigation, state }) => {
           <Image source={logo} style={styles.image} />
         </View>
         <Text style={styles.menuTitle}>{activeScreen}</Text>
-        {activeScreen === 'Menu inicial' && (
+        {activeScreen === "Menu inicial" && (
           <>
             <MenuButtonItem
               text={ROUTES.LANDING}
@@ -55,7 +62,7 @@ export const LandingSidebar = ({ navigation, state }) => {
             />
           </>
         )}
-        {activeScreen === 'Menu User' && (
+        {activeScreen === "Menu User" && (
           <>
             <MenuButtonItem
               text={ROUTES.HOME}
@@ -76,7 +83,35 @@ export const LandingSidebar = ({ navigation, state }) => {
               color={COLORS.logoGold}
             />
             <MenuButtonItem
-              text={'Cerrar Sesión'}
+              text={"Cerrar Sesión"}
+              onPress={() => navigation.navigate(ROUTES.LANDING_DRAWER)}
+              icon="sign-out"
+              color={COLORS.logoGold}
+            />
+          </>
+        )}
+        {activeScreen === "Menu Recruiter" && (
+          <>
+            <MenuButtonItem
+              text={ROUTES.HOME_RECRUITER}
+              onPress={() => navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER)}
+              icon="home"
+              color={COLORS.logoGold}
+            />
+            <MenuButtonItem
+              text={ROUTES.JOBSPOST}
+              onPress={() => navigation.navigate(ROUTES.JOBSPOST_DRAWER)}
+              icon="wpforms"
+              color={COLORS.logoGold}
+            />
+            <MenuButtonItem
+              text={ROUTES.JOBSEEKERLIST}
+              onPress={() => navigation.navigate(ROUTES.JOBSEEKERLIST_DRAWER)}
+              icon="address-book-o"
+              color={COLORS.logoGold}
+            />
+            <MenuButtonItem
+              text={"Cerrar Sesión"}
               onPress={() => navigation.navigate(ROUTES.LANDING_DRAWER)}
               icon="sign-out"
               color={COLORS.logoGold}
@@ -89,12 +124,12 @@ export const LandingSidebar = ({ navigation, state }) => {
 };
 const styles = StyleSheet.create({
   menuContainer: {
-    backgroundColor: '#FFEBD7',
+    backgroundColor: "#FFEBD7",
     padding: 20,
   },
   imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: 100,
