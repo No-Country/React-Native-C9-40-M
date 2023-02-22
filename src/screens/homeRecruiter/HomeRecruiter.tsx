@@ -1,37 +1,32 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  FlatList,
-} from "react-native";
+import { Button, View, StyleSheet, Text, FlatList } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
 import { UserContext } from "../../GlobalStates/userContext";
 import OffersCard from "../../components/OffersCard";
-import { useGetJobs } from "../../hooks/useGetJobs";
+import { useGetJobSeekers } from "../../hooks/useGetJobSeekers";
 import { ROUTES } from "../../constants";
+import { ScrollView } from "react-native-gesture-handler";
+import { JobSeekerCard } from "../../components/JobSeekerCard";
 
-export function HomeScreen() {
+export function HomeRecuiter() {
   const navigation = useNavigation();
   const { currentUser } = useContext(UserContext);
   const [isLoad, setIsLoad] = useState(false);
-  const [jobsBD, setJobsBD] = useState([]);
+  const [jobSeekers, setJobSeekers] = useState([]);
   const userName =
     currentUser.firstname === null ? currentUser.email : currentUser.firstname;
 
-  const fetchJobs = async () => {
-    const jobs = await useGetJobs();
-    setJobsBD(jobs);
+  const fetchJobSeekers = async () => {
+    const jobSeeker = await useGetJobSeekers();
+    setJobSeekers(jobSeeker);
     setIsLoad(true);
-    return jobs;
+    return jobSeeker;
   };
 
   useEffect(() => {
-    fetchJobs();
+    fetchJobSeekers();
   }, []);
 
   return (
@@ -42,27 +37,25 @@ export function HomeScreen() {
             <Text style={styles.bold}>¡Hola</Text>, {userName} bienvenido!
           </Text>
           <Text style={styles.subtitle}>
-            Estas son las vacantes disponibles
-          </Text>
-          <Text style={styles.text}>
-            Para que tengas vacantes más alineadas{" "}
-            <Text style={styles.bold}>Manten tu perfil actualizado</Text>
+            Estas son los postulados a tus trabajos
           </Text>
         </View>
 
         {isLoad && (
           <View>
             <FlatList
-              data={jobsBD}
+              data={jobSeekers}
               horizontal={true}
               renderItem={({ item }) => (
-                <OffersCard
-                  title={item.title}
-                  company={item.company?.name}
-                  description={item.description}
-                  work_place={item.work_place}
-                  working_day={item.working_day}
+                <JobSeekerCard
+                  avatar={item.avatar}
+                  firstname={item.firstname}
+                  lastname={item.lastname}
+                  rol={item.rol}
+                  region={item.region}
                   country={item.country}
+                  url_linkedin={item.url_linkedin}
+                  url_github={item.url_github}
                 />
               )}
               keyExtractor={(item) => item.id}

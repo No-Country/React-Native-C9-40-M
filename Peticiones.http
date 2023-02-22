@@ -1,3 +1,19 @@
+
+##### Agregar los roles y las tecnologias de usuario en particular
+// mi sugerencia es que se elimine lo que tenia y se agregue lo nuevo 
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_user
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJKdWFuUGVkcm9AY29ycmVvLmNvIiwiaWF0IjoxNjc2OTk4MDI1LCJleHAiOjE2NzczNTgwMjV9.bNbkkMaLobEEoPIrC39SKTvqQUY7ou9suiijOXTkJAy040jQloZZnJdlM-FVw15be9HXyx-x-FmifH90gTnIJQ
+Content-Type: application/json
+
+[{
+"id_rol":2,
+"id_tecnology":[
+1,2,3
+]
+}]
+
+
+
 ##### Registrar un usuario
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register
 Content-Type: application/json
@@ -9,22 +25,22 @@ Content-Type: application/json
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "juan@correo.com", "password": "a1a2a3A$"}
+{"email": "mayrabfernandez2@gmail.com", "password": "a1b2c3A$"}
 
 ##### get user information con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY1NTc0ODksImV4cCI6MTY3NjkxNzQ4OX0.fFoS35TcwwvjmKkid0TG-_OYQvJFOZOoBDiNaeCbT8r0tGhpcHxipqOrQeYNLLH7ONk2pb4pZn8TFBgSGEqhwg
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImVtYWlsIjoianVhbkBjb3JyZW8uY29tIiwiaWF0IjoxNjc2OTg2NzIzLCJleHAiOjE2NzczNDY3MjN9.QudFIJhtnHfa_kkK3mjkBTT_Pf_xQaWwdQWe7aniwvXEyA83H_1cVcdYV6HWz6j-Btg3vdYqt099FeepiPSLlw
 Content-Type: application/json
 
 
 ##### get user information complementary con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/user_tecnology
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY1NTc0ODksImV4cCI6MTY3NjkxNzQ4OX0.fFoS35TcwwvjmKkid0TG-_OYQvJFOZOoBDiNaeCbT8r0tGhpcHxipqOrQeYNLLH7ONk2pb4pZn8TFBgSGEqhwg
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImVtYWlsIjoianVhbkBjb3JyZW8uY29tIiwiaWF0IjoxNjc2OTgzMjM0LCJleHAiOjE2NzczNDMyMzR9.LM1ITqHZBIz5reGe6Ep92aoyN5lGREtj4NNqxAGqktfAwUm7taU_7R1kjm-1VnVm1moKdR5h29AkbA-ZjIiMGA
 Content-Type: application/json
 
 ##### update basic user information complementary con base ene le token
 PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImVtYWlsIjoianVhbkBjb3JyZW8uY29tIiwiaWF0IjoxNjc2OTIyNTQ0LCJleHAiOjE2NzcyODI1NDR9._rb7omSlpDgjJ6wpU5lf8ITxQzNM4zyFSeZs08HxBnIrrlEQQUNH8cN54KCdb2jSM3D1WNkEyqwDUbxsI5xOSA
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoiY3Jpc2lsdmFsbGFAZ21haWwuY29tIiwiaWF0IjoxNjc2OTk5ODMwLCJleHAiOjE2NzczNTk4MzB9.6QplFNuRi3fk8hM96DRFCRMcRKl1IrIWqM0WoMEOganVUM5cBn2C8yr761KFJo5yB2DXLel_bP6Py2FOzuLH2g
 Content-Type: application/json
 
 {   
@@ -44,7 +60,7 @@ Content-Type: application/json
 
 
 ### get un usuario particular con base en su id
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/19
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/9
 Content-Type: application/json
 
 ### delete un usuario con base en el token
