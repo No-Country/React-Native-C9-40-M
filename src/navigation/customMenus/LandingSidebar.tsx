@@ -26,8 +26,6 @@ export const LandingSidebar = ({ navigation, state }) => {
       break;
   }
 
-  console.log('estas en ', routeName, ' y Debe de mostrar ', activeScreen);
-
   return (
     <DrawerContentScrollView style={styles.menuContainer}>
       <>

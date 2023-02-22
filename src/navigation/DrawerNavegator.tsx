@@ -1,18 +1,19 @@
-import React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Icon from "react-native-vector-icons/Ionicons";
 
-import { COLORS, ROUTES } from '../constants';
+import { COLORS, ROUTES } from "../constants";
 import {
   ForgotPasswordScreen,
+  HomeRecuiter,
   HomeScreen,
   JobsScreen,
   LandingScreen,
   LoginScreen,
   ProfileAdd,
   RegisterScreen,
-} from '../screens';
-import { LandingSidebar } from './customMenus/LandingSidebar';
+} from "../screens";
+import { LandingSidebar } from "./customMenus/LandingSidebar";
 
 const Drawer = createDrawerNavigator();
 
@@ -22,12 +23,23 @@ export const DrawerNavigator = () => {
       drawerContent={(props) => <LandingSidebar {...props} />}
       screenOptions={{ activeTintColor: COLORS.logoBlue }}
       initialRouteName={ROUTES.LANDING_DRAWER}
+      // initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
     >
       <Drawer.Screen
         name={ROUTES.LANDING_DRAWER}
         component={LandingScreen}
         options={{
           title: ROUTES.LANDING,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="home-sharp" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.HOME_RECRUITER_DRAWER}
+        component={HomeRecuiter}
+        options={{
+          title: ROUTES.HOME_RECRUITER,
           drawerIcon: ({ focused, color, size }) => (
             <Icon name="home-sharp" size={18} color={color} />
           ),

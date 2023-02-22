@@ -25,6 +25,8 @@ export const UserContextProvider = ({ children }) => {
     region: '',
     phone: '',
     url_portfolio: '',
+    isRecruiter: false,
+    isFreelancer: false,
   });
 
   const [jobs, setJobs] = useState([]);
