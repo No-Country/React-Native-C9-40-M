@@ -1,30 +1,41 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { useTechRol } from '../hooks/useTechRol';
+import React, { createContext, useEffect, useState } from "react";
+import { useTechRol } from "../hooks/useTechRol";
 
 const currentUser = {
-  email: '',
-  firstname: '',
-  lastname: '',
-  token: '',
+  token: "",
+  email: "",
+  firstname: "",
+  lastname: "",
+  about_me: "",
+  age: "",
+  article_1: "",
+  avatar: "",
+  id: "",
+  country: "",
+  region: "",
+  phone: "",
+  url_portfolio: "",
+  isRecruiter: false,
+  isFreelancer: false,
 };
 
 export const UserContext = createContext(currentUser);
 
 export const UserContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({
-    token: '',
-    email: '',
-    firstname: '',
-    lastname: '',
-    about_me: '',
-    age: '',
-    article_1: '',
-    avatar: '',
-    id: '',
-    country: '',
-    region: '',
-    phone: '',
-    url_portfolio: '',
+    token: "",
+    email: "",
+    firstname: "",
+    lastname: "",
+    about_me: "",
+    age: "",
+    article_1: "",
+    avatar: "",
+    id: "",
+    country: "",
+    region: "",
+    phone: "",
+    url_portfolio: "",
     isRecruiter: false,
     isFreelancer: false,
   });
@@ -35,7 +46,7 @@ export const UserContextProvider = ({ children }) => {
   const [data, setData] = useState();
 
   function getInfo() {
-    fetch('https://node-server-navy-rho.vercel.app/jobs/')
+    fetch("https://node-server-navy-rho.vercel.app/jobs/")
       .then((res) => res.json())
       .then((data) => setJobs(data.jobs));
   }

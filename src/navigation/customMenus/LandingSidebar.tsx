@@ -10,6 +10,7 @@ export const LandingSidebar = ({ navigation, state }) => {
   const routeName = state.routeNames[state.index];
 
   let activeScreen: string;
+  let bgColor: string = "ffebd7";
 
   switch (routeName) {
     case ROUTES.LANDING_DRAWER:
@@ -17,12 +18,15 @@ export const LandingSidebar = ({ navigation, state }) => {
     case ROUTES.REGISTER_DRAWER:
     case ROUTES.FORGOT_PASSWORD_DRAWER:
       activeScreen = "Menu inicial";
+      bgColor = "#FFEBD7";
       break;
     case ROUTES.JOBS:
     case ROUTES.JOBS_DRAWER:
     case ROUTES.PROFILE_DRAWER:
     case ROUTES.HOME_DRAWER:
       activeScreen = "Menu User";
+      bgColor = "#B5BCE5";
+
       break;
     case ROUTES.JOBSPOST:
     case ROUTES.JOBSPOST_DRAWER:
@@ -30,11 +34,14 @@ export const LandingSidebar = ({ navigation, state }) => {
     case ROUTES.JOBSEEKERLIST_DRAWER:
     case ROUTES.HOME_RECRUITER_DRAWER:
       activeScreen = "Menu Recruiter";
+      bgColor = "#F7F6F5";
       break;
   }
 
   return (
-    <DrawerContentScrollView style={styles.menuContainer}>
+    <DrawerContentScrollView
+      style={[styles.menuContainer, { backgroundColor: bgColor }]}
+    >
       <>
         <View style={styles.imageContainer}>
           <Image source={logo} style={styles.image} />
@@ -124,7 +131,6 @@ export const LandingSidebar = ({ navigation, state }) => {
 };
 const styles = StyleSheet.create({
   menuContainer: {
-    backgroundColor: "#FFEBD7",
     padding: 20,
   },
   imageContainer: {
