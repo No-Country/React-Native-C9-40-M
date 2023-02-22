@@ -1,5 +1,7 @@
 // HomeRecruiter Screens can navegate after user sing in
 export { HomeRecuiter } from "./homeRecruiter/HomeRecruiter";
+export { JobSeekerList } from "./homeRecruiter/JobSeekerList";
+export { JobPost } from "./homeRecruiter/JobPosts";
 
 // HomeUser Screens can navegate after user sing in
 export { HomeScreen } from "./homeUsers/Home";

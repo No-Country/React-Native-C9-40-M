@@ -19,6 +19,12 @@ export default {
   JOBS: "Jobs",
   JOBS_DRAWER: "Jobs Drawer",
 
+  JOBSPOST: "Jobs Post",
+  JOBSPOST_DRAWER: "Jobs Post Drawer",
+
+  JOBSEEKERLIST: "Listado de Aspirantes",
+  JOBSEEKERLIST_DRAWER: "Listado de Aspirantes Drawer",
+
   PROFILE: "Profile",
   PROFILE_DRAWER: "Profile Drawer",
 };
