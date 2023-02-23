@@ -1,17 +1,17 @@
-import { StyleSheet } from 'react-native';
-import { CustomButton } from '../components/CustomButton';
+import { StyleSheet } from "react-native";
+import { CustomButton } from "./common/CustomButton";
 
 type Props = {};
 export const SocialLoging = (props: Props) => {
   const onRegisterWithGoogle = () => {
-    console.warn('Haciendo Register con Google');
+    console.warn("Haciendo Register con Google");
   };
   const onRegisterWithFaceBook = () => {
-    console.warn('Haciendo Register con FaceBook');
+    console.warn("Haciendo Register con FaceBook");
   };
 
   const onRegisterWithApple = () => {
-    console.warn('Haciendo Register con Apple');
+    console.warn("Haciendo Register con Apple");
   };
 
   return (

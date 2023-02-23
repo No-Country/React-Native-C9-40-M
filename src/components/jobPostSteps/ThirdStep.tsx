@@ -15,7 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { schema } from "../../utils/validationSchema/getCV";
 
-import { CustomInput } from "../CustomInput";
+import { CustomInput } from "../common/CustomInput";
 import { UserContext } from "../../GlobalStates/userContext";
 import { useUpdateUser } from "../../hooks/useUpdateUser";
 

@@ -2,7 +2,7 @@ import { View, StyleSheet, Text } from "react-native";
 import React, { useState } from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 
-import { CustomButton } from "../components/CustomButton";
+import { CustomButton } from "../components/common/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 
 const dataBase = [

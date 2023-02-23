@@ -17,16 +17,16 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { SelectList } from "react-native-dropdown-select-list";
-import { UserContext } from "../../GlobalStates/userContext";
+import { UserContext } from "../../../../../GlobalStates/userContext";
 import logo from "../../../assets/images/logo.png";
-import { CustomInput } from "../CustomInput";
+import { CustomInput } from "../../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../utils/validationSchema/basicUserData";
-import CustomTextArea from "../CustomTextArea";
-import CustomTextInput from "../CustomTextInput";
-import { useUpdateUser } from "../../hooks/useUpdateUser";
-import { ROUTES } from "../../constants";
+import { schema } from "../../../../../utils/validationSchema/basicUserData";
+import CustomTextArea from "../../../../common/CustomTextArea";
+import CustomTextInput from "../../../../common/CustomTextInput";
+import { useUpdateUser } from "../../../../../hooks/useUpdateUser";
+import { ROUTES } from "../../../../../constants";
 
 type Direction = {
   direction: "next" | "prev";
@@ -61,7 +61,8 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
   }, []);
 
   const handleNext = async (data) => {
-    navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
+    // navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
+    handleGoTo("next1");
   };
   const handleBack = () => {
     handleGoTo("prev");

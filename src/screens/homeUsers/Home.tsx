@@ -70,8 +70,7 @@ export function HomeScreen() {
           </View>
         )}
         {isLoad === false && <Text>Cargando</Text>}
-        {/* {isLoad && jobsBD.length > 0 && (
-        )} */}
+
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {

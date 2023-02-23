@@ -8,8 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../utils/validationSchema/login";
 
 import logo from "../../../assets/images/logo.png";
-import { CustomInput } from "../../components/CustomInput";
-import { CustomButton } from "../../components/CustomButton";
+import { CustomInput } from "../../components/common/CustomInput";
+import { CustomButton } from "../../components/common/CustomButton";
 
 import { useLogin } from "../../hooks/useLogin";
 import { UserContext } from "../../GlobalStates/userContext";
@@ -60,7 +60,7 @@ export const LoginScreen = () => {
 
       !loginResult.user.firstname
         ? navigation.navigate(ROUTES.PROFILE_DRAWER)
-        : loginResult.user.status === "user"
+        : loginResult.user.status !== "recruiter"
         ? navigation.navigate(ROUTES.HOME_DRAWER)
         : navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
     } else {

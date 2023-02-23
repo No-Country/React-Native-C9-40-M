@@ -44,7 +44,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsI
 Content-Type: application/json
 
 {   
-    "status": "recruiter"
+    "firstname": null
 }
 
 ### get all users

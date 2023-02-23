@@ -14,14 +14,14 @@ import { Entypo } from "@expo/vector-icons";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../utils/validationSchema/basicUserData";
+import { schema } from "../../../../utils/validationSchema/basicUserData";
 
 import logo from "../../assets/images/logo.png";
-import { CustomButton } from "./CustomButton";
-import { CustomInput } from "./CustomInput";
-import { COLORS } from "../constants";
-import { UserContext } from "../GlobalStates/userContext";
-import { useUpdateUser } from "../hooks/useUpdateUser";
+import { CustomButton } from "../../../common/CustomButton";
+import { CustomInput } from "../../../common/CustomInput";
+import { COLORS } from "../../../../constants";
+import { UserContext } from "../../../../GlobalStates/userContext";
+import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 
 {
   /*---------------TYPES-------------------- */

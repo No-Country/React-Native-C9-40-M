@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { CustomButton } from "../common/CustomButton";
-import { COLORS, ROUTES } from "../../constants";
+import { CustomButton } from "../../common/CustomButton";
+import { COLORS, ROUTES } from "../../../constants";
 
-import panaImage from "../../../assets/images/jobpost.png";
+import panaImage from "../../../../assets/images/pana1.png";
+import { UserContext } from "../../../GlobalStates/userContext";
 
-export const FourStep = () => {
+export const FiveScreen = () => {
   const navigation = useNavigation();
+  const { path } = useContext(UserContext);
 
   const handleSubmit = () => {
-    navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
+    path === 2
+      ? navigation.navigate(ROUTES.JOBS)
+      : navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
   };
 
   return (
@@ -20,13 +24,16 @@ export const FourStep = () => {
 
       <Text style={styles.title}>¡Excelente!</Text>
 
-      <Text style={styles.subtitle}>
-        Haz creado una nueva vacante con éxito.
-      </Text>
+      <Text style={styles.subtitle}>Haz actualizado tu perfil.</Text>
+      {path === 2 && (
+        <Text style={styles.subtitle}>
+          Estas cada vez mas cerca de tu próximo empleo!
+        </Text>
+      )}
 
       <CustomButton
         onPress={handleSubmit}
-        text="Ver postulantes"
+        text={path === 2 ? "Ver a vacantes" : "Ver aspirantes"}
         bgColor={COLORS.logoBlue}
       />
     </View>

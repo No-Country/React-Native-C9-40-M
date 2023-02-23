@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from '../../utils/validationSchema/register';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../utils/validationSchema/register";
 
-import logo from '../../../assets/images/logo.png';
-import { CustomInput } from '../../components/CustomInput';
-import { CustomButton } from '../../components/CustomButton';
+import logo from "../../../assets/images/logo.png";
+import { CustomInput } from "../../components/common/CustomInput";
+import { CustomButton } from "../../components/common/CustomButton";
 
-import { useRegister } from '../../hooks/useRegister';
-import { COLORS, ROUTES } from '../../constants';
+import { useRegister } from "../../hooks/useRegister";
+import { COLORS, ROUTES } from "../../constants";
 
 type FormValues = {
   email: string;
@@ -21,7 +21,7 @@ type FormValues = {
 };
 
 export const RegisterScreen = () => {
-  const [registerRes, setRegisterRes] = useState('');
+  const [registerRes, setRegisterRes] = useState("");
   const navigation = useNavigation();
   const {
     handleSubmit,
@@ -29,9 +29,9 @@ export const RegisterScreen = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      email: '',
-      password: '',
-      pwdConfirm: '',
+      email: "",
+      password: "",
+      pwdConfirm: "",
     },
     resolver: yupResolver(schema),
   });
@@ -39,11 +39,11 @@ export const RegisterScreen = () => {
   const handleRegister = async (data: FormValues) => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
-    if (registerResult.message === 'user created') {
+    if (registerResult.message === "user created") {
       navigation.navigate(ROUTES.LOGIN_DRAWER);
-      console.warn('Usuario Creando satisfactoriamente');
+      console.warn("Usuario Creando satisfactoriamente");
     } else {
-      setRegisterRes('Correo ya tomado');
+      setRegisterRes("Correo ya tomado");
     }
   };
 
@@ -69,7 +69,7 @@ export const RegisterScreen = () => {
             </View>
           )}
 
-          <View style={{ alignContent: 'center' }}>
+          <View style={{ alignContent: "center" }}>
             <CustomInput
               name="email"
               label="E-Mail"
@@ -108,33 +108,33 @@ export const RegisterScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: "100%",
     flex: 1,
   },
   header: {
     flex: 1,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
   },
 
   formContainer: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     marginBottom: 40,
   },
   title: {
     fontSize: 26,
-    fontWeight: '500',
-    textAlign: 'center',
+    fontWeight: "500",
+    textAlign: "center",
     marginBottom: 20,
   },
   subtitle: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   bold: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
   gold: {
     color: COLORS.logoGold,
@@ -142,20 +142,20 @@ const styles = StyleSheet.create({
   blue: {
     color: COLORS.logoBlue,
   },
-  center: { alignItems: 'center' },
+  center: { alignItems: "center" },
   text: {
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
     marginVertical: 20,
   },
   link: {
-    color: 'blue',
+    color: "blue",
   },
   logo: {
-    width: '100%',
+    width: "100%",
     maxWidth: 200,
     height: 150,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   buttonContainer: {
     marginBottom: 50,
@@ -164,12 +164,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     padding: 10,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'purple',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "purple",
   },
   errorText: {
-    color: 'white',
+    color: "white",
     padding: 5,
   },
 });
