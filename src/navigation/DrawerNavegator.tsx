@@ -24,8 +24,8 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={(props) => <LandingSidebar {...props} />}
       screenOptions={{ activeTintColor: COLORS.logoBlue }}
-      // initialRouteName={ROUTES.LANDING_DRAWER}
-      initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
+      initialRouteName={ROUTES.LANDING_DRAWER}
+      // initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
     >
       <Drawer.Screen
         name={ROUTES.LANDING_DRAWER}

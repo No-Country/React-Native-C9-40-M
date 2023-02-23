@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 
 import {
   StyleSheet,
@@ -10,17 +10,17 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-} from 'react-native';
+} from "react-native";
 
-import { MultipleSelectList } from 'react-native-dropdown-select-list';
-import { Entypo } from '@expo/vector-icons';
+import { MultipleSelectList } from "react-native-dropdown-select-list";
+import { Entypo } from "@expo/vector-icons";
 
-import { UserContext } from '../GlobalStates/userContext';
-import { useTechRol } from '../hooks/useTechRol';
-import logo from '../../assets/images/logo.png';
+import { UserContext } from "../../../../GlobalStates/userContext";
+import { useTechRol } from "../../../../hooks/useTechRol";
+import logo from "../../assets/images/logo.png";
 
 type Direction = {
-  direction: 'next' | 'prev';
+  direction: "next" | "prev";
 };
 
 type Props = {
@@ -33,11 +33,11 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
   const [keyboardShown, setKeyboardShown] = useState(false);
 
   useEffect(() => {
-    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
       setKeyboardShown(true);
     });
 
-    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
       setKeyboardShown(false);
     });
 
@@ -58,12 +58,12 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
-    handleGoTo('prev');
+    handleGoTo("prev");
   };
 
   const handleNext = () => {
     if (stackTecno.length >= 1) {
-      handleGoTo('next');
+      handleGoTo("next");
     }
   };
 
@@ -83,7 +83,6 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.menu}>
-
         <View>
           <Text style={styles.titleText}>¿Qué tecnologias manejas?</Text>
           <Text style={styles.descriptionText}>
@@ -103,7 +102,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
               boxStyles={styles.dropdown}
               checkBoxStyles={styles.checkbox}
               dropdownTextStyles={styles.textCheckbox}
-              badgeStyles={{ backgroundColor: '#27358F' }}
+              badgeStyles={{ backgroundColor: "#27358F" }}
               labelStyles={styles.stackText}
               label="Tu Stack:"
               placeholder="Selecciona tu stack de tecnologías"
@@ -116,8 +115,8 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
       </ScrollView>
       {keyboardShown && (
         <KeyboardAvoidingView
-          style={{ display: 'none' }}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          style={{ display: "none" }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
           keyboardVerticalOffset={1000} // ajusta este valor para hacer que el elemento desaparezca
         ></KeyboardAvoidingView>
       )}
@@ -144,7 +143,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 
   menu: {
@@ -152,19 +151,19 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 16,
-    background: '#D9D9D9',
+    background: "#D9D9D9",
   },
   headerText: {
-    color: 'white',
+    color: "white",
     fontSize: 20,
     width: 80,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   logo: {},
   logoText: {
@@ -172,15 +171,15 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
 
   titleText: {
-    fontStyle: 'normal',
-    fontWeight: '500',
-    color: '#0E1545',
-    width: '70%',
+    fontStyle: "normal",
+    fontWeight: "500",
+    color: "#0E1545",
+    width: "70%",
     top: 21,
     left: 18,
     fontSize: 24,
@@ -189,7 +188,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     zIndex: 100,
-    width: '100%',
+    width: "100%",
     marginTop: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -198,43 +197,43 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 16,
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   descriptionText: {
-    fontStyle: 'normal',
+    fontStyle: "normal",
     top: 24,
     left: 20,
     fontSize: 16,
     lineHeight: 25,
     marginBottom: 10,
-    width: '80%',
+    width: "80%",
   },
   square: {
-    flexDirection: 'column',
-    alignContent: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#EBEBEB',
+    flexDirection: "column",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#EBEBEB",
     borderWidth: 1,
-    borderColor: '#4D4A4A',
+    borderColor: "#4D4A4A",
     borderRadius: 8,
     width: 140,
     height: 60,
   },
 
   textCheckbox: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: '600',
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "600",
     fontSize: 18,
   },
 
   dropdown: {
-    backgroundColor: '#E3E5FA',
+    backgroundColor: "#E3E5FA",
     borderRadius: 16,
     borderColor: 0,
     transition: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 4,
       height: 4,
@@ -245,11 +244,11 @@ const styles = StyleSheet.create({
   },
 
   dropdownError: {
-    backgroundColor: '#AA1E1E',
+    backgroundColor: "#AA1E1E",
     borderRadius: 16,
-    borderColor: 'none',
+    borderColor: "none",
     transition: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 4,
       height: 4,
@@ -262,24 +261,24 @@ const styles = StyleSheet.create({
   checkbox: {
     height: 22,
     width: 22,
-    borderColor: '#363740',
+    borderColor: "#363740",
     borderWidth: 2,
-    color: '#fff',
+    color: "#fff",
   },
 
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     margin: 20,
   },
   buttonStyles: {
     width: 70,
     height: 56,
-    backgroundColor: '#0E1545',
+    backgroundColor: "#0E1545",
     borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: { width: 4, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 4,

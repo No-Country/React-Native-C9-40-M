@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import logo from '../../../assets/images/logo.png';
-import { CustomInput } from '../../components/CustomInput';
-import { CustomButton } from '../../components/CustomButton';
-import { ROUTES } from '../../constants';
+import logo from "../../../assets/images/logo.png";
+import { CustomInput } from "../../components/common/CustomInput";
+import { CustomButton } from "../../components/common/CustomButton";
+import { ROUTES } from "../../constants";
 
 const schema = yup
   .object({
     email: yup
       .string()
-      .email('Email invalido')
-      .required('Debe de indicar su e-mail'),
+      .email("Email invalido")
+      .required("Debe de indicar su e-mail"),
   })
   .required();
 
@@ -29,7 +29,7 @@ export const ForgotPasswordScreen = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: '',
+      email: "",
     },
     resolver: yupResolver(schema),
   });
@@ -68,7 +68,7 @@ export const ForgotPasswordScreen = () => {
         <CustomButton
           onPress={goToLogin}
           text="Regresar a Login"
-          type={'Link'}
+          type={"Link"}
           bgColor=""
           txColor=""
         />
@@ -80,7 +80,7 @@ export const ForgotPasswordScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   formContainer: {
@@ -88,18 +88,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   subtitle: {
     fontSize: 22,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   logo: {
-    width: '100%',
+    width: "100%",
     maxWidth: 100,
     height: 100,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
 });

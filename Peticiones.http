@@ -25,7 +25,7 @@ Content-Type: application/json
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "mayrabfernandez2@gmail.com", "password": "a1b2c3A$"}
+{"email": "yulyana77@hotmail.com", "password": "a1b2c3A$"}
 
 ##### get user information con base ene le token
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
@@ -40,18 +40,11 @@ Content-Type: application/json
 
 ##### update basic user information complementary con base ene le token
 PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoiY3Jpc2lsdmFsbGFAZ21haWwuY29tIiwiaWF0IjoxNjc2OTk5ODMwLCJleHAiOjE2NzczNTk4MzB9.6QplFNuRi3fk8hM96DRFCRMcRKl1IrIWqM0WoMEOganVUM5cBn2C8yr761KFJo5yB2DXLel_bP6Py2FOzuLH2g
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoibWF5cmFiZmVybmFuZGV6MkBnbWFpbC5jb20iLCJpYXQiOjE2NzcxNDA2MTcsImV4cCI6MTY3NzUwMDYxN30.ltflQLVAUryeuMmCpUUBbDl2BTxCAVONHjqnjWfYsHgzIUoR7afFr12aErs5TsY7l0ty_g66yQNI3NCSEwA_Mg
 Content-Type: application/json
 
 {   
-    "firstname": null,
-    "lastname": null,
-    "about_me": "",
-    "article_1": "",
-    "age": null,
-    "country": "",
-    "region": "",
-    "phone": ""
+    "firstname": null
 }
 
 ### get all users
@@ -60,7 +53,7 @@ Content-Type: application/json
 
 
 ### get un usuario particular con base en su id
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/9
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/22
 Content-Type: application/json
 
 ### delete un usuario con base en el token

@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import logo from '../../../assets/images/logo.png';
-import { CustomInput } from '../../components/CustomInput';
-import { CustomButton } from '../../components/CustomButton';
-import { ROUTES } from '../../constants';
+import logo from "../../../assets/images/logo.png";
+import { CustomInput } from "../../components/common/CustomInput";
+import { CustomButton } from "../../components/common/CustomButton";
+import { ROUTES } from "../../constants";
 
 const schema = yup
   .object({
-    code: yup.string().required('Requerido'),
+    code: yup.string().required("Requerido"),
   })
   .required();
 
@@ -27,19 +27,19 @@ export const ConfirmEmailScreen = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      code: '',
+      code: "",
     },
     resolver: yupResolver(schema),
   });
   const handleConfirm = () => {
-    console.warn('Se confirmo el Correo');
+    console.warn("Se confirmo el Correo");
     navigation.navigate(ROUTES.HOME);
   };
   const goToLogin = () => {
     navigation.navigate(ROUTES.LOGIN);
   };
   const onResendCode = () => {
-    console.warn('Se reenvio el codigo de confirmación');
+    console.warn("Se reenvio el codigo de confirmación");
   };
 
   return (
@@ -78,7 +78,7 @@ export const ConfirmEmailScreen = () => {
         <CustomButton
           onPress={goToLogin}
           text="Regresar a Login"
-          type={'Link'}
+          type={"Link"}
           bgColor=""
           txColor=""
         />
@@ -90,7 +90,7 @@ export const ConfirmEmailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   formContainer: {
@@ -98,18 +98,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   subtitle: {
     fontSize: 22,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   logo: {
-    width: '100%',
+    width: "100%",
     maxWidth: 100,
     height: 100,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
 });

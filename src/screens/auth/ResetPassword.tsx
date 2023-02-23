@@ -1,22 +1,22 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import logo from '../../../assets/images/logo.png';
-import { CustomInput } from '../../components/CustomInput';
-import { CustomButton } from '../../components/CustomButton';
-import { ROUTES } from '../../constants';
+import logo from "../../../assets/images/logo.png";
+import { CustomInput } from "../../components/common/CustomInput";
+import { CustomButton } from "../../components/common/CustomButton";
+import { ROUTES } from "../../constants";
 
 const schema = yup
   .object({
-    code: yup.string().required('Requerido'),
-    password: yup.string().required('Debe de indicar la clave'),
+    code: yup.string().required("Requerido"),
+    password: yup.string().required("Debe de indicar la clave"),
     pwdConfirm: yup
       .string()
-      .oneOf([yup.ref('password')], 'Las claves no coinciden')
-      .required('Obligatorio'),
+      .oneOf([yup.ref("password")], "Las claves no coinciden")
+      .required("Obligatorio"),
   })
   .required();
 type Props = {};
@@ -29,9 +29,9 @@ export const ResetPasswordScreen = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      code: '',
-      password: '',
-      pwdConfirm: '',
+      code: "",
+      password: "",
+      pwdConfirm: "",
     },
     resolver: yupResolver(schema),
   });
@@ -83,7 +83,7 @@ export const ResetPasswordScreen = () => {
         <CustomButton
           onPress={goToLogin}
           text="Regresar a Login"
-          type={'Link'}
+          type={"Link"}
           bgColor=""
           txColor=""
         />
@@ -95,7 +95,7 @@ export const ResetPasswordScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
   },
   formContainer: {
@@ -103,22 +103,22 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   subtitle: {
     fontSize: 22,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   bold: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
   logo: {
-    width: '100%',
+    width: "100%",
     maxWidth: 100,
     height: 100,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   buttonContainer: {
     marginBottom: 50,

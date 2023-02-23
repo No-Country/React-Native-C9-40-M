@@ -70,8 +70,7 @@ export function HomeScreen() {
           </View>
         )}
         {isLoad === false && <Text>Cargando</Text>}
-        {/* {isLoad && jobsBD.length > 0 && (
-        )} */}
+
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {
@@ -89,13 +88,11 @@ export function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
   },
   headerContainer: {
-    marginTop: 20,
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",

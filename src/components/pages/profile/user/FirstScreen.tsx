@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import {} from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -7,22 +6,22 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
-import * as ImagePicker from 'expo-image-picker';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { Entypo } from '@expo/vector-icons';
+import * as ImagePicker from "expo-image-picker";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Entypo } from "@expo/vector-icons";
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from '../utils/validationSchema/basicUserData';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../../../utils/validationSchema/basicUserData";
 
-import logo from '../../assets/images/logo.png';
-import { CustomButton } from './CustomButton';
-import { CustomInput } from './CustomInput';
-import { COLORS } from '../constants';
-import { UserContext } from '../GlobalStates/userContext';
-import { useUpdateUser } from '../hooks/useUpdateUser';
+import logo from "../../assets/images/logo.png";
+import { CustomButton } from "../../../common/CustomButton";
+import { CustomInput } from "../../../common/CustomInput";
+import { COLORS } from "../../../../constants";
+import { UserContext } from "../../../../GlobalStates/userContext";
+import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 
 {
   /*---------------TYPES-------------------- */
@@ -36,7 +35,7 @@ type FormValues = {
 };
 
 type Direction = {
-  direction: 'next' | 'prev';
+  direction: "next" | "prev";
 };
 
 type Props = {
@@ -45,7 +44,9 @@ type Props = {
 };
 
 export const FirstScreen = ({ step, handleGoTo }: Props) => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser, path, setPath } =
+    useContext(UserContext);
+  const [error, setError] = useState();
 
   {
     /*----------------Funcion next-------------- */
@@ -74,10 +75,17 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 
     const respuestaUpdate = await useUpdateUser(dataBasic);
 
-    if (respuestaUpdate === 'ok') {
-      handleGoTo('next');
+    if (path == 1 || path == 2) {
+      if (respuestaUpdate === "ok") {
+        handleGoTo("next");
+      } else {
+        console.warn("Ups hubo un error!");
+      }
     } else {
-      console.warn('Ups hubo un error!');
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
     }
   };
 
@@ -110,7 +118,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionRe.granted === false) {
-      alert('Los permisos para acceder a la camara son requeridos');
+      alert("Los permisos para acceder a la camara son requeridos");
       return;
     }
 
@@ -123,6 +131,10 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     console.log(selectedImage);
   };
 
+  useEffect(() => {
+    setPath(0);
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.header}>
@@ -132,15 +144,15 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             uri:
               selectedImage !== null
                 ? selectedImage.localUri
-                : 'https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png',
+                : "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
           }}
           style={styles.image}
         />
 
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
+            flexDirection: "row",
+            justifyContent: "space-evenly",
             marginBottom: 20,
           }}
         >
@@ -155,8 +167,8 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             <Text
               style={{
                 fontSize: 21,
-                textDecorationLine: 'underline',
-                fontWeight: '500',
+                textDecorationLine: "underline",
+                fontWeight: "500",
               }}
             >
               Cargar foto de perfil
@@ -197,7 +209,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           keyboardType="numeric"
         />
         <View style={styles.btnLine}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setPath(1)}>
             <Ionicons
               style={styles.icon}
               name="people-outline"
@@ -206,7 +218,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             />
             <Text>Soy Reclutador</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setPath(2)}>
             <Ionicons
               style={styles.icon}
               name="search-outline"
@@ -216,8 +228,17 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
             <Text>Busco Empleo</Text>
           </TouchableOpacity>
         </View>
+        <View style={{ alignItems: "center" }}>
+          {error ? (
+            <Text style={{ color: "#AA1E1E", position: "absolute", top: 20 }}>
+              Debes elegir una opción para continuar
+            </Text>
+          ) : (
+            ""
+          )}
+        </View>
 
-        <View>
+        <View style={{ marginTop: 50 }}>
           <CustomButton
             onPress={handleSubmit(handleNext)}
             text="Continuar"
@@ -231,23 +252,21 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 16,
-    background: '#D9D9D9',
+    background: "#D9D9D9",
   },
-
   header: {
     flex: 1,
   },
-
   titleText: {
-    fontStyle: 'normal',
-    fontWeight: '500',
-    color: '#0E1545',
+    fontStyle: "normal",
+    fontWeight: "500",
+    color: "#0E1545",
     width: 301,
     height: 50,
     top: 21,
@@ -256,7 +275,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.011,
   },
   logo: {
-    resizeMode: 'contain',
+    resizeMode: "contain",
     height: 100,
     width: 150,
   },
@@ -264,7 +283,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 75,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginleft: 20,
     marginBottom: 20,
   },
@@ -273,33 +292,33 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: '500',
-    color: 'black',
+    fontWeight: "500",
+    color: "black",
     paddingBottom: 10,
   },
   subtitle: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   bold: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
   text: {
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 10,
   },
   row: {
     padding: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   btnLine: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   icon: {
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
