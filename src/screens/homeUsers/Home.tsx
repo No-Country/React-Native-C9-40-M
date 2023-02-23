@@ -89,13 +89,11 @@ export function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
   },
   headerContainer: {
-    marginTop: 20,
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",

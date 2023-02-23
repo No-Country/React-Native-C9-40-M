@@ -1,19 +1,19 @@
-import { useContext, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useContext, useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useNavigation } from '@react-navigation/native';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from '../../utils/validationSchema/login';
+import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../utils/validationSchema/login";
 
-import logo from '../../../assets/images/logo.png';
-import { CustomInput } from '../../components/CustomInput';
-import { CustomButton } from '../../components/CustomButton';
+import logo from "../../../assets/images/logo.png";
+import { CustomInput } from "../../components/CustomInput";
+import { CustomButton } from "../../components/CustomButton";
 
-import { useLogin } from '../../hooks/useLogin';
-import { UserContext } from '../../GlobalStates/userContext';
-import { COLORS, ROUTES } from '../../constants';
+import { useLogin } from "../../hooks/useLogin";
+import { UserContext } from "../../GlobalStates/userContext";
+import { COLORS, ROUTES } from "../../constants";
 
 type FormValues = {
   password: string;
@@ -23,7 +23,7 @@ type FormValues = {
 export const LoginScreen = () => {
   const { setCurrentUser } = useContext(UserContext);
 
-  const [loginRes, setLoginRes] = useState('');
+  const [loginRes, setLoginRes] = useState("");
   const navigation = useNavigation();
   const {
     handleSubmit,
@@ -31,8 +31,8 @@ export const LoginScreen = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     resolver: yupResolver(schema),
   });
@@ -56,11 +56,15 @@ export const LoginScreen = () => {
         phone: loginResult.user.phone,
         url_portfolio: loginResult.url_portfolio,
       });
-      loginResult.user.firstname
+      console.log(loginResult.user.status);
+
+      !loginResult.user.firstname
+        ? navigation.navigate(ROUTES.PROFILE_DRAWER)
+        : loginResult.user.status === "user"
         ? navigation.navigate(ROUTES.HOME_DRAWER)
-        : navigation.navigate(ROUTES.PROFILE_DRAWER);
+        : navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
     } else {
-      setLoginRes('Revisar Credenciales');
+      setLoginRes("Revisar Credenciales");
     }
   };
 
@@ -121,33 +125,33 @@ export const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: "100%",
     flex: 1,
   },
   header: {
     flex: 1,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
   },
   formContainer: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     marginBottom: 20,
   },
   title: {
     fontSize: 26,
-    fontWeight: '500',
-    textAlign: 'center',
+    fontWeight: "500",
+    textAlign: "center",
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 10,
     color: COLORS.black,
   },
   bold: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
   gold: {
     color: COLORS.logoGold,
@@ -156,35 +160,35 @@ const styles = StyleSheet.create({
     color: COLORS.logoBlue,
   },
   text: {
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 10,
   },
   link: {
-    color: 'blue',
+    color: "blue",
   },
   logo: {
-    width: '100%',
+    width: "100%",
     maxWidth: 200,
     height: 150,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   errorMsg: {
     marginHorizontal: 20,
     padding: 10,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'purple',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "purple",
   },
   errorText: {
-    color: 'white',
+    color: "white",
     padding: 5,
   },
   border: {
-    width: '70%',
-    alignSelf: 'center',
+    width: "70%",
+    alignSelf: "center",
     marginTop: -30,
-    borderColor: 'transparent',
+    borderColor: "transparent",
     borderBottomColor: COLORS.logoGold,
     borderWidth: 2,
   },

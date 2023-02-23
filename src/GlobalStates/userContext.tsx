@@ -40,6 +40,9 @@ export const UserContextProvider = ({ children }) => {
     isFreelancer: false,
   });
 
+  //Route
+  const [path, setPath] = useState(0);
+
   const [jobs, setJobs] = useState([]);
   const [selectedRol, setselectedRol] = useState(null);
   const [selectedStack, setSelectedStack] = useState([]);
@@ -58,7 +61,7 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const getRol = async () => {
       const response = await useTechRol();
-      setData(response.map((res) => res.name));
+      setData(response.map((res) => res));
     };
     getRol();
   }, []);
@@ -74,6 +77,8 @@ export const UserContextProvider = ({ children }) => {
     setSelectedStack,
     data,
     setData,
+    path,
+    setPath,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

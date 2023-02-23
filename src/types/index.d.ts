@@ -27,6 +27,7 @@ type CurrentJobPost = {
   job_desc: string;
   job_requirements: JobRequirements[];
   job_country: string;
+  job_region: string;
   job_work_place: string;
   job_working_day: string;
 };
