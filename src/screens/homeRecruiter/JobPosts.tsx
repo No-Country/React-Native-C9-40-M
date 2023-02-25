@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FirstStep } from "../../components/jobPostSteps/FirstStep";
-import { FourStep } from "../../components/jobPostSteps/FourStep";
-import { SecondStep } from "../../components/jobPostSteps/SecondStep";
-import { ThirdStep } from "../../components/jobPostSteps/ThirdStep";
+import { FirstStep } from "../../components/pages/jobPostSteps/FirstStep";
+import { FourStep } from "../../components/pages/jobPostSteps/FourStep";
+import { SecondStep } from "../../components/pages/jobPostSteps/SecondStep";
+import { ThirdStep } from "../../components/pages/jobPostSteps/ThirdStep";
 import { useTechRol } from "../../hooks/useTechRol";
 
 type Props = {};
@@ -43,7 +43,12 @@ export const JobPost = (props: Props) => {
     const getRol = async () => {
       const response = await useTechRol();
       setAllRolTec(response);
-      setAllRol(response.map((rol) => rol.name));
+      setAllRol(
+        response.map((rol) => {
+          return { id: rol.id, name: rol.name };
+        })
+      );
+
       setIsLoad(true);
     };
     getRol();
@@ -56,7 +61,7 @@ export const JobPost = (props: Props) => {
           .filter((rol) => rol.name === jobPost.job_offered)[0]
           .rol_tecnology.map((tec) => ({
             id: tec.tecnology_id,
-            value: tec.tecnology.name,
+            name: tec.tecnology.name,
           }))
       : [];
     setRolTec(newRolTecn);
@@ -69,48 +74,49 @@ export const JobPost = (props: Props) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ flex: 1 }}>
-        {!isLoad ? (
-          <Text>Gargando</Text>
-        ) : (
-          <>
-            {step === 1 && (
-              <FirstStep
-                allRol={allRol}
-                jobPost={jobPost}
-                setJobPost={setJobPost}
-                handleGoTo={handleGoTo}
-              />
-            )}
-            {step === 2 && (
-              <SecondStep
-                rolTec={rolTec}
-                jobPost={jobPost}
-                setJobPost={setJobPost}
-                handleGoTo={handleGoTo}
-              />
-            )}
-            {step === 3 && (
-              <ThirdStep
-                rolTec={rolTec}
-                jobPost={jobPost}
-                setJobPost={setJobPost}
-                handleGoTo={handleGoTo}
-              />
-            )}
-            {step === 4 && <FourStep />}
-          </>
-        )}
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      {!isLoad ? (
+        <Text>Cargando</Text>
+      ) : (
+        <>
+          {step === 1 && (
+            <FirstStep
+              allRol={allRol}
+              jobPost={jobPost}
+              setJobPost={setJobPost}
+              handleGoTo={handleGoTo}
+            />
+          )}
+          {step === 2 && (
+            <SecondStep
+              rolTec={rolTec}
+              jobPost={jobPost}
+              setJobPost={setJobPost}
+              handleGoTo={handleGoTo}
+            />
+          )}
+          {step === 3 && (
+            <ThirdStep
+              jobPost={jobPost}
+              setJobPost={setJobPost}
+              handleGoTo={handleGoTo}
+            />
+          )}
+          {step === 4 && (
+            <FourStep
+              setStep={setStep}
+              initialValues={initialJobPost}
+              setJobPost={setJobPost}
+            />
+          )}
+        </>
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: 200,
     flex: 1,
   },
 });

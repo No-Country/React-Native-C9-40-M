@@ -6,7 +6,7 @@ import { SecondScreen } from "../../components/pages/profile/user/SecondScreen";
 import { ThirdScreen } from "../../components/pages/profile/user/ThirdScreen";
 import { FourScreen } from "../../components/pages/profile/user/FourScreen";
 import { FiveScreen } from "../../components/pages/profile/FiveScreen";
-import { FirstRecruiter } from "../../components/pages/profile/Recruiter/FirstRecruiter";
+import { FirstRecruiter } from "../../components/pages/profile/Recruiter/RecluiterLogin/FirstRecruiter";
 import { SecondRecruiter } from "../../components/pages/profile/Recruiter/RecluiterLogin/SecondRecruiter";
 import { UserContext } from "../../GlobalStates/userContext";
 

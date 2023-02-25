@@ -1,0 +1,20 @@
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_user
+GET  https://backapijobs-production-ad45.up.railway.app/api/v1/users
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/user_tecnology
+PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/all
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/22
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/users
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/jobs?page=0&size=5
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/jobs/2
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/postulation/user
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology/6
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_and_tecnology
+
