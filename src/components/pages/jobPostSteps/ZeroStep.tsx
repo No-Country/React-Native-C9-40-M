@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Image,
   StyleSheet,
   Text,
   View,
@@ -7,7 +8,10 @@ import {
   ScrollView,
 } from "react-native";
 
+import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { SelectDropdown } from "../../common/CustomDropdown";
 import { COLORS } from "../../../constants";
 
@@ -16,36 +20,37 @@ type Direction = {
 };
 
 type Props = {
-  allRol: [];
   jobPost: CurrentJobPost;
   setJobPost: () => void;
   handleGoTo: (direction: Direction) => void;
 };
 
-export const FirstStep = ({
-  allRol,
-  jobPost,
-  setJobPost,
-  handleGoTo,
-}: Props) => {
-  const [selectedRol, setSelectedRol] = useState(jobPost.job_offered);
+export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openImage = async () => {
+    const permissionRe =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionRe.granted === false) {
+      alert("Los permisos para acceder a la camara son requeridos");
+      return;
+    }
+
+    const pickRe = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickRe.canceled) {
+      return;
+    }
+
+    setSelectedImage({ localUri: pickRe.uri });
+    console.log(selectedImage);
+  };
 
   const handleNext = async () => {
     //if everything right go to next screen
-    if (!selectedRol) {
-      setErrorMsg("Debe de seleccionar un rol");
-      return;
-    }
-    let newJobPost;
-    newJobPost =
-      selectedRol === jobPost.job_offered
-        ? (newJobPost = { ...jobPost, job_offered: selectedRol })
-        : (newJobPost = {
-            ...jobPost,
-            job_offered: selectedRol,
-            job_requirements: [],
-          });
+    const newJobPost = { jobPost };
     setJobPost(newJobPost);
     handleGoTo("next");
 
@@ -55,12 +60,38 @@ export const FirstStep = ({
   return (
     <View style={styles.container}>
       <ScrollView style={styles.menu}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Cuentanos sobre tu trabajo</Text>
+          <View>
+            <Image
+              source={{
+                uri: "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
+              }}
+              style={styles.image}
+            />
+
+            <FontAwesome name="pencil" size={24} color="black" />
+
+            <TouchableOpacity onPress={openImage}>
+              <Text
+                style={{
+                  fontSize: 21,
+                  textDecorationLine: "underline",
+                  fontWeight: "500",
+                }}
+              >
+                Cargar foto de perfil
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <Text style={styles.title}>¿Qué rol estas buscando?</Text>
         <Text style={styles.subtitle}>
           Cuéntanos cual es el rol que más te identifica el pérfil que estas
           búscando
         </Text>
-        <View style={styles.inputContainer}>
+        {/* <View style={styles.inputContainer}>
           <Text style={styles.inputText}>
             {selectedRol
               ? `El perfil buscado es ${selectedRol}`
@@ -80,9 +111,9 @@ export const FirstStep = ({
               <Text style={styles.errorText}> {errorMsg}</Text>
             </View>
           )}
-        </View>
+        </View> */}
       </ScrollView>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         {selectedRol && (
           <TouchableOpacity onPress={() => handleNext()}>
             <View style={styles.buttonStyles}>
@@ -90,7 +121,7 @@ export const FirstStep = ({
             </View>
           </TouchableOpacity>
         )}
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -100,12 +131,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.screenBg,
   },
+  header: {
+    backgroundColor: COLORS.dangerLight,
+    padding: 10,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 75,
+    resizeMode: "contain",
+    marginleft: 20,
+    marginBottom: 20,
+  },
   menu: {
     flex: 1,
   },
   title: {
     fontSize: 24,
-    fontWeight: "300",
+    fontWeight: "400",
     paddingHorizontal: 10,
     marginBottom: 20,
   },

@@ -31,8 +31,6 @@ export const SecondStep = ({
 }: Props) => {
   const [selectedStack, setSelectedStack] = useState(jobPost.job_requirements);
 
-  console.log("entrando ", selectedStack, jobPost.job_requirements);
-
   const handleBack = () => {
     handleGoTo("prev");
   };

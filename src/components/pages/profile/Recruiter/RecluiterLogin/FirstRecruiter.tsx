@@ -61,7 +61,6 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
   }, []);
 
   const handleNext = (data) => {
-    console.log("que viene", data);
     if (!description && !name) {
       setErrors(true);
       setTimeout(() => {

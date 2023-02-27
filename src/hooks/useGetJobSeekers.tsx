@@ -1,4 +1,5 @@
-const URL = "https://backapijobs-production-ad45.up.railway.app/api/v1/";
+import { REACT_APP_URL } from "@env";
+const URL = process.env.REACT_APP_URL;
 // `${URL}/users/${id]`,
 
 export const useGetUserbyId = async (id) => {
@@ -9,21 +10,25 @@ export const useGetUserbyId = async (id) => {
         "Content-Type": "application/json",
       },
     });
+    const a = await response.json();
     return await response.json();
   } catch (error) {
     console.log("hay un error");
   }
 };
 
-export const useGetJobSeekers = async () => {
+export const useGetJobSeekers = async (page = 0, status = "user") => {
   const fetchAllUsers = async () => {
     try {
-      const response = await globalThis.fetch(`${URL}users/all`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await globalThis.fetch(
+        `${URL}users/all?page=${page}&size=6&status=${status}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       return await response.json();
     } catch (error) {
       console.log("hay un error");
@@ -31,11 +36,6 @@ export const useGetJobSeekers = async () => {
   };
 
   const allUsers = await fetchAllUsers();
-  const jobSeekers = allUsers.filter((user) => user.status === "user");
 
-  const fullDataJobSeeker = jobSeekers.map((user) => {
-    // console.log(user.id);
-  });
-
-  return allUsers;
+  return allUsers.users;
 };

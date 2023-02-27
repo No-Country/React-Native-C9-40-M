@@ -1,14 +1,14 @@
+import { REACT_APP_URL } from "@env";
+const URL = process.env.REACT_APP_URL;
+
 export const useGetRolTech = async () => {
   const fetchRolTech = async () => {
-    const response = await globalThis.fetch(
-      'https://backapijobs-production-ad45.up.railway.app/api/v1/rol',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response = await globalThis.fetch(`${URL}rol`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const a = await response.json();
     return a;
   };

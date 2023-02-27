@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { FirstStep } from "../../components/pages/jobPostSteps/FirstStep";
-import { FourStep } from "../../components/pages/jobPostSteps/FourStep";
 import { SecondStep } from "../../components/pages/jobPostSteps/SecondStep";
 import { ThirdStep } from "../../components/pages/jobPostSteps/ThirdStep";
+import { FourStep } from "../../components/pages/jobPostSteps/FourStep";
 import { useTechRol } from "../../hooks/useTechRol";
+import { ZeroStep } from "../../components/pages/jobPostSteps/ZeroStep";
 
 type Props = {};
 
@@ -79,6 +79,13 @@ export const JobPost = (props: Props) => {
         <Text>Cargando</Text>
       ) : (
         <>
+          {step === 0 && (
+            <ZeroStep
+              jobPost={jobPost}
+              setJobPost={setJobPost}
+              handleGoTo={handleGoTo}
+            />
+          )}
           {step === 1 && (
             <FirstStep
               allRol={allRol}
@@ -118,5 +125,6 @@ export const JobPost = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "red",
   },
 });

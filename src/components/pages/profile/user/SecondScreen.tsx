@@ -54,7 +54,6 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
     handleGoTo("prev");
-    console.log("regresar");
   };
   const handleNext = () => {
     if (selectedRol) {

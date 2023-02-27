@@ -1,4 +1,5 @@
 import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -14,8 +15,11 @@ import {
   LoginScreen,
   ProfileAdd,
   RegisterScreen,
+  RegisterSuccess,
 } from "../screens";
 import { LandingSidebar } from "./customMenus/LandingSidebar";
+
+import logo from "../../assets/images/logo.png";
 
 const Drawer = createDrawerNavigator();
 
@@ -23,7 +27,16 @@ export const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <LandingSidebar {...props} />}
-      screenOptions={{ activeTintColor: COLORS.logoBlue }}
+      screenOptions={
+        ({ activeTintColor: COLORS.logoBlue },
+        {
+          headerRight: () => (
+            <View style={styles.imageContainer}>
+              <Image source={logo} style={styles.image} />
+            </View>
+          ),
+        })
+      }
       // initialRouteName={ROUTES.LANDING_DRAWER}
       initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
       // initialRouteName={ROUTES.HOME_DRAWER}
@@ -33,6 +46,16 @@ export const DrawerNavigator = () => {
         component={LandingScreen}
         options={{
           title: ROUTES.LANDING,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="home-sharp" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.REGISTER_SUCCESS_DRAWER}
+        component={RegisterSuccess}
+        options={{
+          title: ROUTES.REGISTER_SUCCESS,
           drawerIcon: ({ focused, color, size }) => (
             <Icon name="home-sharp" size={18} color={color} />
           ),
@@ -131,3 +154,15 @@ export const DrawerNavigator = () => {
     </Drawer.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  imageContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 80,
+    height: 40,
+    resizeMode: "cover",
+  },
+});

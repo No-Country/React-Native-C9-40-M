@@ -25,6 +25,7 @@
     "react-dom": "18.1.0",
     "react-hook-form": "^7.43.1",
     "react-native": "0.70.5",
+    "react-native-dotenv": "^3.4.8",
     "react-native-dropdown-select-list": "^2.0.4",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-multiple-select": "^0.5.12",

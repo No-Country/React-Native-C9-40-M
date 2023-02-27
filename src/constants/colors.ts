@@ -3,8 +3,7 @@ export default {
   cardBg: "#EBEDF0", // Se utiliza para el fondo de las cards, ya sea para formularios, perfil.
   inputBg: "#DFE0E6", // Se utiliza para el fondo los campos de texto de formularios.
   borderInput: "#B3B5C4", // Se utiliza para los bordes de los campos de texto de formularios cuando están desactivados.
-  borderInputAlt: "#2D2E35", // Se utiliza para los bordes de los campos de texto de formularios cuando están desactivados.
-  focusTextInput: "#27358F", // Se utiliza para subrayar títulos y algunas palabras a resaltar dentro de un párrafo, también para la función de hover en los campos del formulario e iconos en los fondos claros cuando el campo esta activado, también para los campos de texto del formulario cuando esta activado.
+  onPress: "#27358F", // Se utiliza para subrayar títulos y algunas palabras a resaltar dentro de un párrafo, también para la función de hover en los campos del formulario e iconos en los fondos claros cuando el campo esta activado, también para los campos de texto del formulario cuando esta activado.
   primary: "#27358F", // Se utiliza para boton primario y para bordes del boton secundario.
   gold: "#C27B34", // Se utiliza para algunos iconos .
 

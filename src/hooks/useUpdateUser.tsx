@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { REACT_APP_URL } from "@env";
+const URL = process.env.REACT_APP_URL;
+
 type UpdateUserProps = {
   firstname?: string;
   lastname?: string;
@@ -19,22 +21,19 @@ type UpdateUserProps = {
   token: string;
 };
 
-export const useUpdateUser = async (userData) => {
+export const useUpdateUser = async (userData: UpdateUserProps) => {
   try {
-    const response = await globalThis.fetch(
-      'https://backapijobs-production-ad45.up.railway.app/api/v1/users',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userData.token}`,
-        },
-        body: JSON.stringify(userData),
-      }
-    );
+    const response = await globalThis.fetch(`${URL}users"`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userData.token}`,
+      },
+      body: JSON.stringify(userData),
+    });
     const a = await response.json();
-    return 'ok';
+    return "ok";
   } catch (error) {
-    console.log('hay un error');
+    console.log("hay un error");
   }
 };

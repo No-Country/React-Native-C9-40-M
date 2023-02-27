@@ -104,8 +104,6 @@ export const ThirdStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
       ...newJobPost,
       token: currentUser.token,
     };
-
-    console.log(userData);
     const resp = await useUpdateUser(userData);
 
     console.log("carga exitosa se pasan los datos al backend", resp);

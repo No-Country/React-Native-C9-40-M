@@ -1,76 +1,83 @@
+https://jobsapi-wtcn.onrender.com/
 
-##### Agregar los roles y las tecnologias de usuario en particular
-// mi sugerencia es que se elimine lo que tenia y se agregue lo nuevo 
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_user
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiZW1haWwiOiJKdWFuUGVkcm9AY29ycmVvLmNvIiwiaWF0IjoxNjc2OTk4MDI1LCJleHAiOjE2NzczNTgwMjV9.bNbkkMaLobEEoPIrC39SKTvqQUY7ou9suiijOXTkJAy040jQloZZnJdlM-FVw15be9HXyx-x-FmifH90gTnIJQ
-Content-Type: application/json
-
-[{
-"id_rol":2,
-"id_tecnology":[
-1,2,3
-]
-}]
-
-
-
-##### Registrar un usuario
+### REGISTER => sign up a new user (Hook = useRegister)
 POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register
 Content-Type: application/json
 
 {"email": "a1@correo.com", "password": "a1a2a3A$"}
 
 
-##### hacer Login
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
+### LOGIN => sign in a user (Hook useLogin)
+POST https://jobsapi-wtcn.onrender.com/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "joseriga12@gmail.co", "password": "18/569"}
+{"email": "martinez45@gmail.com", "password": "18/569"}
 
-##### get user information con base ene le token
+
+### ALL USERS => (Hook = useGetJobSeekers) 
+GET https://jobsapi-wtcn.onrender.com/api/v1/users/all?page=0&size=10&status=user
+
+Content-Type: application/json
+
+
+### GET USER (all information of one user) (Hook = useGetUserbyId)
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/22
+Content-Type: application/json
+
+
+### GET USER (all information of one user)
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImVtYWlsIjoianVhbkBjb3JyZW8uY29tIiwiaWF0IjoxNjc2OTg2NzIzLCJleHAiOjE2NzczNDY3MjN9.QudFIJhtnHfa_kkK3mjkBTT_Pf_xQaWwdQWe7aniwvXEyA83H_1cVcdYV6HWz6j-Btg3vdYqt099FeepiPSLlw
 Content-Type: application/json
 
 
-##### get user information complementary con base ene le token
+### GET USER complementary information
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/user_tecnology
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImVtYWlsIjoianVhbkBjb3JyZW8uY29tIiwiaWF0IjoxNjc2OTgzMjM0LCJleHAiOjE2NzczNDMyMzR9.LM1ITqHZBIz5reGe6Ep92aoyN5lGREtj4NNqxAGqktfAwUm7taU_7R1kjm-1VnVm1moKdR5h29AkbA-ZjIiMGA
 Content-Type: application/json
 
-##### update basic user information complementary con base ene le token
-PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoibWF5cmFiZmVybmFuZGV6MkBnbWFpbC5jb20iLCJpYXQiOjE2NzcxNDA2MTcsImV4cCI6MTY3NzUwMDYxN30.ltflQLVAUryeuMmCpUUBbDl2BTxCAVONHjqnjWfYsHgzIUoR7afFr12aErs5TsY7l0ty_g66yQNI3NCSEwA_Mg
+
+### DELETE USER using token
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImVtYWlsIjoiU2FudGlhZ29AY29ycmVvLmNvbSIsImlhdCI6MTY3NzM5MTMzMCwiZXhwIjoxNjc3NzUxMzMwfQ.bAMhV55jMrNZ09wUrPTAEnumafx7lWovfcgCoBtu-Dh3EDvO34nQ-TqPFvQ6qQ2eyXkXHjXcxnkZdwoDnH-Elg
+Content-Type: application/json
+
+### UPDATE USER  basic information using toke
+PUT https://jobsapi-wtcn.onrender.com/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJtYXJ0aW5lejQ1QGdtYWlsLmNvbSIsImlhdCI6MTY3NzUyNDE3OCwiZXhwIjoxNjc3ODg0MTc4fQ.mL8t35I87E7PXBgVLak0NjZok5PXRRtGG0Z0-uRw6BwOaHH18miutp6mLGz4wO73js2fTVk2DuRIHeuGgfc3qA
 Content-Type: application/json
 
 {   
-    "firstname": null
+   "url_linkedin": "linkedin.com/in/Dario-Mar",
+      "url_github": "https://www.github.com/Dario",
+      "country": "Colombia",
+      "region": "Bogota",
+      "status": "recruiter"
 }
 
-### get all users
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/all
+### UPDATE USER add new rol to user using token and rol_id y de URL 
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_user/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoieXVseWFuYTc3QGhvdG1haWwuY29tIiwiaWF0IjoxNjc3MzkwNzk4LCJleHAiOjE2Nzc3NTA3OTh9.AG9jeLfOXB64osRYcyyVO-hd8aqqEQ420hDAtMyDfH4vOOFlwjEatmKSzcBOYNHicE5KbXL9BKD-Z8ldEM_E4Q
+Content-Type: application/json
+
+### UPDATE USER add new tecnology to user using token and tecnology_id and year in the URL
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/user_tecnology/3/years/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoieXVseWFuYTc3QGhvdG1haWwuY29tIiwiaWF0IjoxNjc3MzkwNzk4LCJleHAiOjE2Nzc3NTA3OTh9.AG9jeLfOXB64osRYcyyVO-hd8aqqEQ420hDAtMyDfH4vOOFlwjEatmKSzcBOYNHicE5KbXL9BKD-Z8ldEM_E4Q
 Content-Type: application/json
 
 
-### get un usuario particular con base en su id
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/22
-Content-Type: application/json
-
-### delete un usuario con base en el token
-DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaHVsdHoxMkBnbWFpbC5jb20iLCJpYXQiOjE2NzY0Njc4NDMsImV4cCI6MTY3NjgyNzg0M30.UCVHS84x1HF5kMbjZbhutOOIo4q9OEbaTohBmNSN-4TTn22wzw8D9dx7_hjpKDvG7VqDVajed80xiY3-zCyIxA
-Content-Type: application/json
-
-### requerimiento para los roles y las tecnologias relacionadas
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
-
-
-### Get all Jobs
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/jobs?page=0&size=5
-
+### GET JOBS Get all Jobs with pagination
+GET https://jobsapi-wtcn.onrender.com/api/v1/jobs?page=0&size=5
 
 ### Get un trabajo en particular
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/jobs/2
+
+
+
+### requerimiento para los roles y las tecnologias relacionadas
+GET https://jobsapi-wtcn.onrender.com/api/v1/rol
+
+
 
 ###
 GET https://backapijobs-production-ad45.up.railway.app/api/v1/rol
@@ -81,11 +88,11 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiO
 Content-Type: application/json
 
 ### todas las tecnologias
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
+GET https://jobsapi-wtcn.onrender.com/api/v1/tecnology
 Content-Type: application/json
 
 ### eliminar una tecnologia
-DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology/6
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology/18
 Content-Type: application/json
 
 
@@ -94,7 +101,15 @@ POST https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
 Content-Type: application/json
 
 {
-"name":"GIMP" 
+"name":"C++" 
+} 
+
+### crear rol
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+Content-Type: application/json
+
+{
+"name":"Data Science" 
 } 
 
 
@@ -104,6 +119,6 @@ Content-Type: application/json
 
 {
 "rol_id":3,
-"tecnology_id":11
+"tecnology_id":17
 } 
 

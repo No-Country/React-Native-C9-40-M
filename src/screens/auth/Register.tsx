@@ -40,8 +40,7 @@ export const RegisterScreen = () => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
     if (registerResult.message === "user created") {
-      navigation.navigate(ROUTES.LOGIN_DRAWER);
-      console.warn("Usuario Creando satisfactoriamente");
+      navigation.navigate(ROUTES.REGISTER_SUCCESS_DRAWER);
     } else {
       setRegisterRes("Correo ya tomado");
     }

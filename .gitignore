@@ -15,3 +15,5 @@ web-build/
 
 .env
 pasos.md
+*.http
+

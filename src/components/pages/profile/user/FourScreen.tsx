@@ -88,8 +88,6 @@ export const FourScreen = ({ handleGoTo }: Props) => {
       method: "POST",
       body: data,
     });
-
-    console.log(await response.json());
   };
 
   const handleCV = async (data: FormValues) => {

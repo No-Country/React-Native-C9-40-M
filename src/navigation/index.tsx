@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { ROUTES } from '../constants';
-import { DrawerNavigator } from './DrawerNavegator';
+import { ROUTES } from "../constants";
+import { DrawerNavigator } from "./DrawerNavegator";
 
 import {
   ConfirmEmailScreen,
@@ -16,7 +16,7 @@ import {
   ProfileAdd,
   RegisterScreen,
   ResetPasswordScreen,
-} from '../screens';
+} from "../screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,12 +42,12 @@ export const Navigation = () => {
         <Stack.Screen
           name={ROUTES.JOBS}
           component={JobsScreen}
-          options={{ title: 'Encuentra tu trabajo ideal' }}
+          options={{ title: "Encuentra tu trabajo ideal" }}
         />
         <Stack.Screen
           name={ROUTES.HOME}
           component={HomeScreen}
-          options={{ title: 'Home' }}
+          options={{ title: "Home" }}
         />
         <Stack.Screen name={ROUTES.PROFILE} component={ProfileAdd} />
       </Stack.Navigator>
