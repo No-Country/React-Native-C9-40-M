@@ -61,7 +61,7 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
 
   /*Volvemos el array de los roles un objeto con clave para usar el buscador */
 
-  const rols = data.map((item) => ({ name: item.name }));
+  const rols = data.map((item) => ({ id: item.id, name: item.name }));
 
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
@@ -79,11 +79,11 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     }
   };
 
-  //Si se vuelve a esta pagina restablecer el rol porque se da a entender que quiere cambiarlo
-  useEffect(() => {
-    setselectedRol(null);
-    console.log(description);
-  }, []);
+  // //Si se vuelve a esta pagina restablecer el rol porque se da a entender que quiere cambiarlo
+  // useEffect(() => {
+  //   setselectedRol(null);
+  //   console.log(description);
+  // }, []);
 
   const handleBlurEdad = (value) => {
     setExperience(value);
