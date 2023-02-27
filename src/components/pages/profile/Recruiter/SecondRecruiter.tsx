@@ -17,16 +17,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { SelectList } from "react-native-dropdown-select-list";
-import { UserContext } from "../../../../../GlobalStates/userContext";
+import { UserContext } from "../../../../GlobalStates/userContext";
 import logo from "../../../assets/images/logo.png";
-import { CustomInput } from "../../../../common/CustomInput";
+import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../../../../utils/validationSchema/basicUserData";
-import CustomTextArea from "../../../../common/CustomTextArea";
-import CustomTextInput from "../../../../common/CustomTextInput";
-import { useUpdateUser } from "../../../../../hooks/useUpdateUser";
-import { ROUTES } from "../../../../../constants";
+import { schema } from "../../../../utils/validationSchema/basicUserData";
+import { useUpdateUser } from "../../../../hooks/useUpdateUser";
+import { ROUTES } from "../../../../constants";
 
 type Direction = {
   direction: "next" | "prev";

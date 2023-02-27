@@ -6,6 +6,8 @@ export default {
   onPress: "#27358F", // Se utiliza para subrayar títulos y algunas palabras a resaltar dentro de un párrafo, también para la función de hover en los campos del formulario e iconos en los fondos claros cuando el campo esta activado, también para los campos de texto del formulario cuando esta activado.
   primary: "#27358F", // Se utiliza para boton primario y para bordes del boton secundario.
   gold: "#C27B34", // Se utiliza para algunos iconos .
+  skyColor: "#E3E5FA",
+  textSky: "#5D6282",
 
   gradientForm: "#A376F1",
   white: "#FFFFFF",

@@ -34,7 +34,7 @@ export const JobPost = (props: Props) => {
   const [allRolTec, setAllRolTec] = useState([]);
   const [allRol, setAllRol] = useState([]);
   const [rolTec, setRolTec] = useState([]);
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [isLoad, setIsLoad] = useState(false);
 
   // Fetch all roles and tecnologies from database

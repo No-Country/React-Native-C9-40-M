@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
   Keyboard,
   ScrollView,
@@ -12,9 +11,13 @@ import {
 } from "react-native";
 
 import { Entypo } from "@expo/vector-icons";
-import { SelectList } from "react-native-dropdown-select-list";
 import { UserContext } from "../../../../GlobalStates/userContext";
-import logo from "../../assets/images/logo.png";
+import { SelectDropdown } from "../../../common/CustomSelectDropdown";
+import { CustomTextArea } from "../../../common";
+import { useForm } from "react-hook-form";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { COLORS } from "../../../../constants";
+import CustomInputNumber from "../../../common/CustomInputNumber";
 
 type Direction = {
   direction: "next" | "prev";
@@ -26,7 +29,15 @@ type Props = {
 };
 
 export const SecondScreen = ({ step, handleGoTo }: Props) => {
-  const { selectedRol, setselectedRol, data } = useContext(UserContext);
+  const {
+    selectedRol,
+    setselectedRol,
+    data,
+    experience,
+    setExperience,
+    description,
+    setDescription,
+  } = useContext(UserContext);
 
   const [error, setError] = useState(false);
 
@@ -49,14 +60,16 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
   }, []);
 
   /*Volvemos el array de los roles un objeto con clave para usar el buscador */
-  const rols = data.map((item) => ({ value: item.name }));
+
+  const rols = data.map((item) => ({ id: item.id, name: item.name }));
 
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
     handleGoTo("prev");
+    console.log("regresar");
   };
   const handleNext = () => {
-    if (selectedRol) {
+    if (selectedRol && experience) {
       handleGoTo("next");
     } else {
       setError(true);
@@ -66,10 +79,28 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     }
   };
 
-  //Si se vuelve a esta pagina restablecer el rol porque se da a entender que quiere cambiarlo
-  useEffect(() => {
-    setselectedRol(null);
-  }, []);
+  // //Si se vuelve a esta pagina restablecer el rol porque se da a entender que quiere cambiarlo
+  // useEffect(() => {
+  //   setselectedRol(null);
+  //   console.log(description);
+  // }, []);
+
+  const handleBlurEdad = (value) => {
+    setExperience(value);
+  };
+
+  type FormValues = {
+    empresa: string;
+    descripcion: string;
+  };
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {},
+  });
 
   return (
     <View style={styles.container}>
@@ -77,36 +108,62 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
         <View>
           <Text style={styles.titleText}>¿A qué te dedicas?</Text>
           <Text style={styles.descriptionText}>
-            Cuentanos cual es el rol que mas te identifica (selecciona solo una)
+            Cuentanos cual es el rol que mas te identifica (selecciona solo uno)
           </Text>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputText}>
-              {selectedRol
-                ? `Tu rol principal es ${selectedRol}`
-                : "Tu rol principal"}
-            </Text>
-            <SelectList
-              setSelected={(val) => setselectedRol(val)}
-              data={rols}
-              boxStyles={styles.dropdown}
-              dropdownStyles={styles.dropdown}
-              checkBoxStyles={styles.checkbox}
-              dropdownTextStyles={styles.textCheckbox}
-              badgeStyles={{ backgroundColor: "#27358F" }}
-              placeholder="Selecciona una opción"
-              searchPlaceholder={
-                error
-                  ? "No seleccionaste una opcion"
-                  : "Busca tu rol en el mundo IT"
-              }
-              maxHeight={200}
-              notFoundText="No se encontro ningun rol"
-            />
-            {error ? (
-              <Text style={styles.textError}>¡Debes seleccionar un Rol!</Text>
+            {selectedRol ? (
+              <View>
+                <View style={styles.info}>
+                  <View style={{ left: 10 }}>
+                    <FontAwesome5
+                      onPress={() => setselectedRol("")}
+                      name="arrow-left"
+                      size={24}
+                      color="white"
+                    />
+                  </View>
+                  <Text style={{ color: "white", left: 20 }}>
+                    {selectedRol ? selectedRol : ""}
+                  </Text>
+                </View>
+                {experience ? (
+                  <View>
+                    <View style={styles.info}>
+                      <View style={{ left: 10 }}>
+                        <FontAwesome5
+                          onPress={() => setExperience(0)}
+                          name="arrow-left"
+                          size={24}
+                          color="white"
+                        />
+                      </View>
+                      <Text style={{ color: "white", left: 20 }}>
+                        {experience + " " + "años de experiencia"}
+                      </Text>
+                    </View>
+                    <CustomTextArea
+                      title=""
+                      placeholder="Cuentanos un poco acerca de ti"
+                      value={description}
+                    />
+                  </View>
+                ) : (
+                  <View>
+                    <View style={{ marginTop: 20 }}>
+                      <CustomInputNumber onBlur={handleBlurEdad} />
+                    </View>
+                  </View>
+                )}
+              </View>
             ) : (
-              ""
+              <View style={{ maxWidth: "95%", marginHorizontal: -10 }}>
+                <SelectDropdown
+                  data={rols}
+                  onSelect={setselectedRol}
+                  value={selectedRol}
+                />
+              </View>
             )}
           </View>
         </View>
@@ -128,7 +185,17 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleNext()}>
-              <View style={styles.buttonStyles}>
+              <View style={styles.buttonNextStyles}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 20,
+                    marginRight: 10,
+                    fontWeight: "bold",
+                  }}
+                >
+                  Guardar
+                </Text>
                 <Entypo name="arrow-right" size={24} color="white" />
               </View>
             </TouchableOpacity>
@@ -142,7 +209,7 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F6F7",
   },
 
   menu: {
@@ -177,20 +244,31 @@ const styles = StyleSheet.create({
   titleText: {
     fontStyle: "normal",
     fontWeight: "500",
-    color: "#0E1545",
+    color: "#27358F",
     width: 301,
     height: 50,
-    top: 21,
-    left: 18,
-    fontSize: 24,
+    marginTop: 20,
+    marginHorizontal: 20,
+    fontSize: 25,
     letterSpacing: -0.011,
   },
   inputContainer: {
     zIndex: 100,
     width: "100%",
-    marginTop: 20,
-    paddingHorizontal: 20,
+    marginTop: 10,
+    paddingHorizontal: 25,
     paddingVertical: 10,
+  },
+
+  info: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginTop: 20,
+    width: 242,
+    height: 45,
+    backgroundColor: "#27358F",
+    borderRadius: 8,
   },
 
   inputText: {
@@ -198,10 +276,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "bold",
   },
+
+  inputRol: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+
   descriptionText: {
     fontStyle: "normal",
-    top: 24,
-    left: 20,
+    maxWidth: "85%",
+    marginHorizontal: 20,
     fontSize: 16,
     lineHeight: 25,
     marginBottom: 10,
@@ -235,8 +320,29 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  dropdown: {
+  boxStyles: {
+    height: 56,
     marginTop: 10,
+    backgroundColor: "#E3E5FA",
+    borderRadius: 16,
+    borderColor: 0,
+    transition: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  inputStyles: {
+    marginTop: "2%",
+  },
+
+  dropdown: {
+    marginTop: 15,
     backgroundColor: "#E3E5FA",
     borderRadius: 16,
     borderColor: 0,
@@ -286,7 +392,24 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   buttonStyles: {
-    width: 70,
+    flexDirection: "row",
+    alignContent: "center",
+    width: 80,
+    height: 56,
+    backgroundColor: "#0E1545",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  buttonNextStyles: {
+    flexDirection: "row",
+    alignContent: "center",
+    width: 150,
     height: 56,
     backgroundColor: "#0E1545",
     borderRadius: 16,
