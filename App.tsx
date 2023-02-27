@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { UserContextProvider } from "./src/GlobalStates/userContext";
 import { Navigation } from "./src/navigation";
+import { COLORS } from "./src/constants";
 
 const Drawer = createDrawerNavigator();
 
@@ -19,6 +20,6 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: COLORS.screenBg,
   },
 });

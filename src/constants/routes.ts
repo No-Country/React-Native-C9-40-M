@@ -8,6 +8,8 @@ export default {
   LOGIN_DRAWER: "Login Drawer",
   REGISTER: "Registrarse",
   REGISTER_DRAWER: "Register Drawer",
+  REGISTER_SUCCESS: "Registrado con Exito",
+  REGISTER_SUCCESS_DRAWER: "Registrado Drawer",
   RESET_PASSWORD: "Reset Password",
 
   HOME: "Home",

@@ -4,11 +4,11 @@ import { Button, View, StyleSheet, Text, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { UserContext } from "../../GlobalStates/userContext";
-import OffersCard from "../../components/OffersCard";
+import OffersCard from "../../components/pages/homeUsers/OffersCard";
 import { useGetJobSeekers } from "../../hooks/useGetJobSeekers";
-import { ROUTES } from "../../constants";
+import { COLORS, ROUTES } from "../../constants";
 import { ScrollView } from "react-native-gesture-handler";
-import { JobSeekerCard } from "../../components/JobSeekerCard";
+import { JobSeekerCard } from "../../components/pages/jobSeekers/JobSeekerCard";
 
 export function HomeRecuiter() {
   const navigation = useNavigation();
@@ -46,18 +46,7 @@ export function HomeRecuiter() {
             <FlatList
               data={jobSeekers}
               horizontal={true}
-              renderItem={({ item }) => (
-                <JobSeekerCard
-                  avatar={item.avatar}
-                  firstname={item.firstname}
-                  lastname={item.lastname}
-                  rol={item.rol}
-                  region={item.region}
-                  country={item.country}
-                  url_linkedin={item.url_linkedin}
-                  url_github={item.url_github}
-                />
-              )}
+              renderItem={({ item }) => <JobSeekerCard user={item} />}
               keyExtractor={(item) => item.id}
             />
           </View>
@@ -86,6 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
+    backgroundColor: COLORS.screenBg,
   },
   headerContainer: {
     marginTop: 20,
