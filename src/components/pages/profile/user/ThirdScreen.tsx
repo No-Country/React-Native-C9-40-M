@@ -4,20 +4,15 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
   Keyboard,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-
-import { MultipleSelectList } from "react-native-dropdown-select-list";
 import { Entypo } from "@expo/vector-icons";
-
 import { UserContext } from "../../../../GlobalStates/userContext";
-import { useTechRol } from "../../../../hooks/useTechRol";
-import logo from "../../assets/images/logo.png";
+import { MultipleSelectDropdown } from "../../../common/CustomSelectDropdown";
 
 type Direction = {
   direction: "next" | "prev";
@@ -29,7 +24,6 @@ type Props = {
 };
 
 export const ThirdScreen = ({ step, handleGoTo }: Props) => {
-  /* Teclado activo o no */
   const [keyboardShown, setKeyboardShown] = useState(false);
 
   useEffect(() => {
@@ -48,12 +42,9 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
   }, []);
 
   /* Aqui almacenaremos las tecnologias dependiendo el rol que se seleccionara*/
-  const [stackTecno, setstackTecno] = useState([]);
+  const [stackTecno, setStackTecno] = useState([]);
 
-  //Convertimos a un objeto para la busqueda
-  const tech = stackTecno.map((item) => ({ value: item }));
-
-  const { selectedRol, selectedStack, setSelectedStack } =
+  const { selectedRol, selectedStack, setSelectedStack, data } =
     useContext(UserContext);
 
   //Funciones de navegacion con sus condicionales
@@ -67,18 +58,16 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
     }
   };
 
-  /*Obtenemos las tecnologias del rol que seleccionamos en la pantalla anteror */
   useEffect(() => {
-    const getTecno = async () => {
-      const response = await useTechRol();
-      const rols = response.filter((res) => res.name === selectedRol);
-      const stack = rols.map((rol) => rol.rol_tecnology);
-      const techNames = stack[0].map((tech) => tech.tecnology.name);
-      setstackTecno(techNames);
-    };
-    getTecno();
-    setSelectedStack([]);
-  }, []);
+    setStackTecno(
+      data
+        .filter((rol) => rol.name === selectedRol)[0]
+        .rol_tecnology.map((tec) => ({
+          id: tec.tecnology_id,
+          name: tec.tecnology.name,
+        }))
+    );
+  }, [selectedRol]);
 
   return (
     <View style={styles.container}>
@@ -86,30 +75,17 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
         <View>
           <Text style={styles.titleText}>¿Qué tecnologias manejas?</Text>
           <Text style={styles.descriptionText}>
-            Puedes elegir todas las opciones que quieras.
+            Cuéntanos cuales son tus habilidades técnicas.
           </Text>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputText}>
-              Tecnologias asociadas al {selectedRol}
-            </Text>
-
-            <MultipleSelectList
-              setSelected={(val) => setSelectedStack(val)}
-              data={tech}
-              save="value"
-              dropdownStyles={styles.dropdown}
-              boxStyles={styles.dropdown}
-              checkBoxStyles={styles.checkbox}
-              dropdownTextStyles={styles.textCheckbox}
-              badgeStyles={{ backgroundColor: "#27358F" }}
-              labelStyles={styles.stackText}
-              label="Tu Stack:"
-              placeholder="Selecciona tu stack de tecnologías"
-              searchPlaceholder="Busca tus tecnologías"
-              maxHeight={205}
-              notFoundText="No se encontro ningun rol"
-            />
+            {stackTecno.length > 0 && (
+              <MultipleSelectDropdown
+                values={selectedStack}
+                data={stackTecno}
+                onSelect={setSelectedStack}
+              />
+            )}
           </View>
         </View>
       </ScrollView>
@@ -129,7 +105,17 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleNext()}>
-              <View style={styles.buttonStyles}>
+              <View style={styles.buttonNextStyles}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 20,
+                    marginRight: 10,
+                    fontWeight: "bold",
+                  }}
+                >
+                  Guardar
+                </Text>
                 <Entypo name="arrow-right" size={24} color="white" />
               </View>
             </TouchableOpacity>
@@ -178,10 +164,10 @@ const styles = StyleSheet.create({
   titleText: {
     fontStyle: "normal",
     fontWeight: "500",
-    color: "#0E1545",
+    color: "#27358F",
     width: "70%",
-    top: 21,
-    left: 18,
+    marginTop: 20,
+    marginHorizontal: 20,
     fontSize: 24,
     letterSpacing: -0.011,
     marginBottom: 5,
@@ -189,7 +175,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     zIndex: 100,
     width: "100%",
-    marginTop: 20,
+    marginTop: 2,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
@@ -201,8 +187,8 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontStyle: "normal",
-    top: 24,
-    left: 20,
+    marginHorizontal: 20,
+    marginTop: 5,
     fontSize: 16,
     lineHeight: 25,
     marginBottom: 10,
@@ -273,6 +259,20 @@ const styles = StyleSheet.create({
   },
   buttonStyles: {
     width: 70,
+    height: 56,
+    backgroundColor: "#0E1545",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  buttonNextStyles: {
+    flexDirection: "row",
+    width: 150,
     height: 56,
     backgroundColor: "#0E1545",
     borderRadius: 16,

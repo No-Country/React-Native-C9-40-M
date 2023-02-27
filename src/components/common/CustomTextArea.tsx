@@ -1,46 +1,44 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { COLORS } from "../../constants";
 
 export const CustomTextArea = (props) => {
   return (
-    <View style={styles.field}>
-      <Text style={styles.title}>{props.title}</Text>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.textInput}
-          multiline={true}
-          numberOfLines={4}
-          placeholder={props.placeholder}
-          onChangeText={props.onChangeText}
-        />
+    <View style={styles.container}>
+      <View style={styles.delete}>
+        <MaterialIcons name="cancel" size={28} color="#27358F" />
       </View>
+      <TextInput
+        style={styles.textInput}
+        placeholder={props.placeholder}
+        onChangeText={props.onChangeText}
+        multiline={true}
+        numberOfLines={5}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  field: {
-    marginVertical: 5,
-    marginHorizontal: "8%",
-    marginTop: "8%",
-  },
   container: {
-    width: "100%",
-    height: 128,
-    backgroundColor: "#F7F6F5",
-    borderWidth: 1,
-    borderColor: "#363740",
+    width: "95%",
+    backgroundColor: COLORS.inputBg,
     borderRadius: 4,
     padding: 10,
+    marginTop: 30,
+    position: "relative",
   },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
+  delete: {
+    position: "absolute",
+    right: "3%",
+    top: "5%",
+    zIndex: 10,
   },
   textInput: {
-    flex: 1,
-    fontSize: 13,
+    width: "90%",
+    height: 150,
+    borderRadius: 4,
     textAlignVertical: "top",
   },
 });
