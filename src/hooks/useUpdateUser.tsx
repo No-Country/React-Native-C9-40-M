@@ -23,7 +23,7 @@ type UpdateUserProps = {
 
 export const useUpdateUser = async (userData: UpdateUserProps) => {
   try {
-    const response = await globalThis.fetch(`${URL}users"`, {
+    const response = await globalThis.fetch(`${URL}users`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

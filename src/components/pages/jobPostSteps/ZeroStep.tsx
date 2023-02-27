@@ -27,11 +27,12 @@ type Props = {
 
 export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [image, setImage] = useState(null);
+
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const openImage = async () => {
-    const permissionRe =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+  let openImage = async () => {
+    let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionRe.granted === false) {
       alert("Los permisos para acceder a la camara son requeridos");
@@ -40,10 +41,9 @@ export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
 
     const pickRe = await ImagePicker.launchImageLibraryAsync();
 
-    if (pickRe.canceled) {
+    if (pickRe.canceled === true) {
       return;
     }
-
     setSelectedImage({ localUri: pickRe.uri });
     console.log(selectedImage);
   };
@@ -61,28 +61,53 @@ export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
     <View style={styles.container}>
       <ScrollView style={styles.menu}>
         <View style={styles.header}>
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
+            <Button
+              title="Pick an image from camera roll"
+              onPress={pickImage}
+            />
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{ width: 200, height: 200 }}
+              />
+            )}
+          </View>
           <Text style={styles.title}>Cuentanos sobre tu trabajo</Text>
-          <View>
+          <View style={styles.row}>
             <Image
               source={{
-                uri: "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
+                uri:
+                  selectedImage !== null
+                    ? selectedImage.localUri
+                    : "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
               }}
               style={styles.image}
             />
 
-            <FontAwesome name="pencil" size={24} color="black" />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                marginBottom: 20,
+              }}
+            >
+              <Ionicons name="folder-outline" size={27} color="#ff000" />
 
-            <TouchableOpacity onPress={openImage}>
-              <Text
-                style={{
-                  fontSize: 21,
-                  textDecorationLine: "underline",
-                  fontWeight: "500",
-                }}
-              >
-                Cargar foto de perfil
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={openImage}>
+                <Text
+                  style={{
+                    fontSize: 21,
+                    textDecorationLine: "underline",
+                    fontWeight: "500",
+                  }}
+                >
+                  Cargar foto de perfil
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 
@@ -134,6 +159,11 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: COLORS.dangerLight,
     padding: 10,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   image: {
     height: 100,

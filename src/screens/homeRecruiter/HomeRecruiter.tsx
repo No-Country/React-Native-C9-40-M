@@ -29,8 +29,6 @@ export function HomeRecuiter() {
     fetchJobSeekers();
   }, []);
 
-  console.log("estos son los usuario");
-
   return (
     <ScrollView>
       <View style={styles.container}>

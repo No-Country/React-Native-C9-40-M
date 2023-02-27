@@ -34,7 +34,7 @@ export const JobPost = (props: Props) => {
   const [allRolTec, setAllRolTec] = useState([]);
   const [allRol, setAllRol] = useState([]);
   const [rolTec, setRolTec] = useState([]);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [isLoad, setIsLoad] = useState(false);
 
   // Fetch all roles and tecnologies from database
@@ -42,13 +42,13 @@ export const JobPost = (props: Props) => {
     setIsLoad(false);
     const getRol = async () => {
       const response = await useTechRol();
+      console.log("get Rol", response);
       setAllRolTec(response);
       setAllRol(
         response.map((rol) => {
           return { id: rol.id, name: rol.name };
         })
       );
-
       setIsLoad(true);
     };
     getRol();
@@ -125,6 +125,5 @@ export const JobPost = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
   },
 });
