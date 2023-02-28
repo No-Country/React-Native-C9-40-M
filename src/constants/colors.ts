@@ -22,15 +22,14 @@ export default {
   logoBlueLight: "#E3E5FA",
   logoBlue: "#0E1545",
   logoGold: "#C27B34",
+  input: "#27358F",
 
   // para los inputs
   placeholder: "#5d5d5d",
   label: "#3d3d3d",
-  borders: "#181818",
+  borders: "#B3B5C4",
   inputContainer: "#ffffff",
 
-  titleRegular: {
-    fontSize: 24,
-    fontWh: 24,
-  },
+  inputBg: "#DFE0E6",
+
 };
