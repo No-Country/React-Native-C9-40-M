@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
   },
   label: {
-    color: COLORS.label,
+    color: COLORS.input,
     marginBottom: 5,
     marginTop: 15,
     fontSize: 18,
@@ -127,9 +127,9 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
     backgroundColor: COLORS.inputContainer,
-    borderBottomColor: COLORS.borders,
-    borderWidth: 0,
-    borderBottomWidth: 2,
+    borderColor: COLORS.borders,
+    borderWidth: 1,
+    borderRadius: 4,
     marginBottom: 10,
   },
   inputContainerDanger: {

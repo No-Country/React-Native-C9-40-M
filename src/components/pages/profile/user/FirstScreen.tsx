@@ -16,12 +16,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
 
-import logo from "../../assets/images/logo.png";
+import logo from "../../../../../assets/images/logofinal.png";
 import { CustomButton } from "../../../common/CustomButton";
 import { CustomInput } from "../../../common/CustomInput";
 import { COLORS } from "../../../../constants";
 import { UserContext } from "../../../../GlobalStates/userContext";
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
+import RadioForm from "react-native-simple-radio-button";
 
 {
   /*---------------TYPES-------------------- */
@@ -48,10 +49,21 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     useContext(UserContext);
   const [error, setError] = useState();
 
+  const [chosenOption, setChosenOption] = useState("empleado");
+  const options = [
+    { label: "Ofrezco Empleo", value: "reclutador" },
+    { label: "Busco Empleo", value: "empleado" },
+  ];
+  console.log(chosenOption, path);
   {
     /*----------------Funcion next-------------- */
   }
   const handleNext = async (data) => {
+    if (chosenOption === "reclutador") {
+      setPath(1);
+    } else {
+      setPath(2);
+    }
     // Actualiza el usuario actual en el estado global
     setCurrentUser({
       ...currentUser,
@@ -61,7 +73,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
       country: data.pais,
       region: data.ciudad,
     });
-
     // Actualiza el usuario en la base de datos
     const dataBasic = {
       firstname: data.nombre,
@@ -81,11 +92,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
       } else {
         console.warn("Ups hubo un error!");
       }
-    } else {
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
     }
   };
 
@@ -137,8 +143,12 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 
   return (
     <ScrollView>
-      <View style={styles.header}>
-        <Text style={styles.titleText}>Cuentanos de tí</Text>
+      <View style={styles.imagenLogo}>
+        <Image source={logo} style={styles.logo} />
+      </View>
+
+      <Text style={styles.titleText}>Cuentanos de tí</Text>
+      <View style={styles.ImagePicker}>
         <Image
           source={{
             uri:
@@ -148,97 +158,71 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           }}
           style={styles.image}
         />
-
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            marginBottom: 20,
-          }}
-        >
-          <Ionicons
-            style={styles.icon}
-            name="folder-outline"
-            size={27}
-            color="#ff000"
-          />
-
+        <View style={styles.textImage}>
           <TouchableOpacity onPress={openImage}>
             <Text
               style={{
                 fontSize: 21,
-                textDecorationLine: "underline",
                 fontWeight: "500",
+                color: "#27358F",
               }}
             >
-              Cargar foto de perfil
+              Sube una foto
             </Text>
           </TouchableOpacity>
         </View>
+      </View>
+
+      <View style={styles.headerContainer}>
+        <RadioForm
+          style={styles.btnLine}
+          buttonColor={"#C27B34"}
+          labelStyle={{
+            fontWeight: "bold",
+            color: "#0E1545",
+          }}
+          selectedButtonColor={"#C27B34"}
+          radio_props={options}
+          initial={0} //initial value of this group
+          onPress={(value) => {
+            setChosenOption(value);
+          }} //if the user changes options, set the new value
+        />
       </View>
       <View style={styles.formContainer}>
         <CustomInput
           name="nombre"
           label="Nombre *"
           control={control}
-          placeholder="Ingresa tu nombre"
+          placeholder="¿Cuál es tu nombre?"
         />
         <CustomInput
           name="apellido"
           label="Apellido *"
           control={control}
-          placeholder="Ingresa tu apellido"
+          placeholder="¿Cuál es tu apellido?"
         />
         <CustomInput
           name="pais"
           label="País *"
           control={control}
-          placeholder="Ingresa tu país de residencia"
+          placeholder="¿En qué país vives?"
         />
         <CustomInput
           name="ciudad"
           label="Ciudad/Región *"
           control={control}
-          placeholder="Ingresa tu ciudad o región de residencia"
+          placeholder="¿En qué ciudad o región vives?"
         />
         <CustomInput
           name="telefono"
           label="Teléfono *"
           control={control}
-          placeholder="Ingresa tu número de teléfono"
+          placeholder="¿Cuál es tu número de contacto?"
           keyboardType="numeric"
         />
-        <View style={styles.btnLine}>
-          <TouchableOpacity onPress={() => setPath(1)}>
-            <Ionicons
-              style={styles.icon}
-              name="people-outline"
-              size={32}
-              color="#ff000"
-            />
-            <Text>Soy Reclutador</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setPath(2)}>
-            <Ionicons
-              style={styles.icon}
-              name="search-outline"
-              size={32}
-              color="#ff000"
-            />
-            <Text>Busco Empleo</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          {error ? (
-            <Text style={{ color: "#AA1E1E", position: "absolute", top: 20 }}>
-              Debes elegir una opción para continuar
-            </Text>
-          ) : (
-            ""
-          )}
-        </View>
 
-        <View style={{ marginTop: 50 }}>
+        <View style={{ marginBottom: 50 }}>
           <CustomButton
             onPress={handleSubmit(handleNext)}
             text="Continuar"
@@ -260,24 +244,26 @@ const styles = StyleSheet.create({
     padding: 16,
     background: "#D9D9D9",
   },
-  header: {
-    flex: 1,
+  imagenLogo: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   titleText: {
     fontStyle: "normal",
     fontWeight: "500",
-    color: "#0E1545",
+    color: "#27358F",
     width: 301,
     height: 50,
     top: 21,
     left: 18,
     fontSize: 24,
     letterSpacing: -0.011,
+    marginBottom: 50,
+    marginTop: 20,
   },
   logo: {
-    resizeMode: "contain",
-    height: 100,
-    width: 150,
+    height: 64,
+    width: 128,
   },
   image: {
     height: 100,
@@ -317,8 +303,21 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 25,
   },
   icon: {
     textAlign: "center",
+  },
+  ImagePicker: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  textImage: {
+    marginTop: 50,
+    marginRight: 100,
   },
 });

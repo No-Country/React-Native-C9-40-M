@@ -11,11 +11,12 @@ export default {
   black: "#080909",
   logoBlue: "#0E1545",
   logoGold: "#C27B34",
+  input: "#27358F",
 
   // para los inputs
   placeholder: "#5d5d5d",
   label: "#3d3d3d",
-  borders: "#181818",
+  borders: "#B3B5C4",
   inputContainer: "#ffffff",
-  inputBg: "#E0E0E0",
+  inputBg: "#DFE0E6",
 };
