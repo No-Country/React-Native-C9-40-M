@@ -31,6 +31,10 @@ export const FirstStep = ({
   const [selectedRol, setSelectedRol] = useState(jobPost.job_offered);
   const [errorMsg, setErrorMsg] = useState("");
 
+  const handleBack = () => {
+    handleGoTo("prev");
+  };
+
   const handleNext = async () => {
     //if everything right go to next screen
     if (!selectedRol) {
@@ -82,14 +86,20 @@ export const FirstStep = ({
           )}
         </View>
       </ScrollView>
-      <View style={styles.buttonContainer}>
-        {selectedRol && (
+
+      <View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={() => handleBack()}>
+            <View style={styles.buttonStyles}>
+              <Entypo name="arrow-left" size={24} color="white" />
+            </View>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => handleNext()}>
             <View style={styles.buttonStyles}>
               <Entypo name="arrow-right" size={24} color="white" />
             </View>
           </TouchableOpacity>
-        )}
+        </View>
       </View>
     </View>
   );
@@ -150,7 +160,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     margin: 20,
     zIndex: 10,
   },

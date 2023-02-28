@@ -34,7 +34,7 @@ export const JobPost = (props: Props) => {
   const [allRolTec, setAllRolTec] = useState([]);
   const [allRol, setAllRol] = useState([]);
   const [rolTec, setRolTec] = useState([]);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [isLoad, setIsLoad] = useState(false);
 
   // Fetch all roles and tecnologies from database
@@ -42,7 +42,6 @@ export const JobPost = (props: Props) => {
     setIsLoad(false);
     const getRol = async () => {
       const response = await useTechRol();
-      console.log("get Rol", response);
       setAllRolTec(response);
       setAllRol(
         response.map((rol) => {
@@ -68,7 +67,7 @@ export const JobPost = (props: Props) => {
   }, [jobPost.job_offered]);
 
   const handleGoTo = (direction: Direction) => {
-    const prevScreen = Math.max(step - 1, 1);
+    const prevScreen = Math.max(step - 1, 0);
     const nextScreen = Math.min(step + 1, 5);
     direction === "next" ? setStep(nextScreen) : setStep(prevScreen);
   };
@@ -86,7 +85,7 @@ export const JobPost = (props: Props) => {
               handleGoTo={handleGoTo}
             />
           )}
-          {step === 1 && (
+          {step === 2 && (
             <FirstStep
               allRol={allRol}
               jobPost={jobPost}
@@ -94,7 +93,7 @@ export const JobPost = (props: Props) => {
               handleGoTo={handleGoTo}
             />
           )}
-          {step === 2 && (
+          {step === 3 && (
             <SecondStep
               rolTec={rolTec}
               jobPost={jobPost}
@@ -102,7 +101,7 @@ export const JobPost = (props: Props) => {
               handleGoTo={handleGoTo}
             />
           )}
-          {step === 3 && (
+          {step === 1 && (
             <ThirdStep
               jobPost={jobPost}
               setJobPost={setJobPost}

@@ -70,7 +70,7 @@ export const ThirdStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
       job_region: jobPost.job_region,
       job_desc: jobPost.job_desc,
     },
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
   const onSelectWorkPlace = (item) => {
@@ -177,13 +177,13 @@ export const ThirdStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
       </View>
       <View style={styles.inputContainer}>
         <View style={styles.formContainer}>
-          <CustomInput
+          {/* <CustomInput
             name="job_desc"
             label="Descripción"
             control={control}
             placeholder="Descripción"
             multiline
-          />
+          /> */}
 
           <View>
             <View style={styles.buttonContainer}>
@@ -216,10 +216,21 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 10,
   },
+  title: {
+    fontSize: 24,
+    fontWeight: "300",
+    paddingHorizontal: 10,
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: "300",
+    paddingHorizontal: 10,
+  },
   inputContainer: {
     zIndex: 100,
     width: "100%",
-    marginTop: 20,
+    marginTop: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
@@ -232,18 +243,6 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     marginBottom: 10,
-  },
-  errorMsg: {
-    marginHorizontal: 20,
-    padding: 10,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "purple",
-  },
-  errorText: {
-    color: "white",
-    padding: 5,
   },
   field: {
     marginVertical: 5,

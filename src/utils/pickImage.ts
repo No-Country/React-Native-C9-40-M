@@ -1,6 +1,12 @@
 import * as ImagePicker from "expo-image-picker";
 export const pickImage = async (setImage) => {
-  // No permissions request is necessary for launching the image library
+  let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+  if (permissionRe.granted === false) {
+    alert("Los permisos para acceder a la camara son requeridos");
+    return;
+  }
+
   let result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.All,
     allowsEditing: true,
