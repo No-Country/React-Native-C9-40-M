@@ -40,27 +40,21 @@ export const RegisterScreen = () => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
     if (registerResult.message === "user created") {
-      navigation.navigate(ROUTES.LOGIN_DRAWER);
-      console.warn("Usuario Creando satisfactoriamente");
+      navigation.navigate(ROUTES.REGISTER_SUCCESS_DRAWER);
     } else {
       setRegisterRes("Correo ya tomado");
     }
   };
-
-  // const goToLogin = () => {
-  //   navigation.navigate(ROUTES.LOGIN);
-  // };
-
-  // const goToPolicy = () => {
-  //   console.warn('navegar a la pagina de terminos y politicas');
-  // };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
           <Image source={logo} style={styles.logo} />
-          <Text style={styles.title}>Vamos a crear tu cuenta</Text>
+          <Text style={[styles.subtitle, styles.semibold]}>
+            <Text style={styles.primary}>Crea tu cuenta </Text>y postulate a las
+            mejores ofertas laborales en tecnología
+          </Text>
         </View>
         <View style={styles.formContainer}>
           {registerRes && (
@@ -96,7 +90,6 @@ export const RegisterScreen = () => {
                 onPress={handleSubmit(handleRegister)}
                 text="Registrarme"
                 type="Primary"
-                bgColor={COLORS.logoBlue}
               />
             </View>
           </View>
@@ -108,8 +101,10 @@ export const RegisterScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     flex: 1,
+    width: "100%",
+    backgroundColor: COLORS.screenBg,
+    padding: 10,
   },
   header: {
     flex: 1,
@@ -129,27 +124,30 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   subtitle: {
+    width: "100%",
     fontSize: 20,
-    textAlign: "center",
-    marginBottom: 20,
+    fontWeight: "300",
+    paddingHorizontal: 10,
+    textAlign: "left",
+    marginBottom: 10,
   },
   bold: {
     fontWeight: "700",
   },
+  semibold: {
+    fontWeight: "500",
+  },
   gold: {
     color: COLORS.logoGold,
   },
-  blue: {
-    color: COLORS.logoBlue,
+  primary: {
+    color: COLORS.primary,
   },
   center: { alignItems: "center" },
   text: {
     fontSize: 16,
     textAlign: "center",
     marginVertical: 20,
-  },
-  link: {
-    color: "blue",
   },
   logo: {
     width: "100%",
@@ -166,10 +164,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "purple",
+    backgroundColor: COLORS.dangerLight,
   },
   errorText: {
-    color: "white",
+    color: COLORS.danger,
     padding: 5,
   },
 });

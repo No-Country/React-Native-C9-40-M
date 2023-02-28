@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 type Props = {};
 export const JobSeekerList = (props: Props) => {
   return (
-    <View>
-      <Text>Listado de todos los postulados</Text>
-      <Text>Job Seeker List</Text>
-    </View>
+    <ScrollView>
+      <View>
+        <Text> prueba</Text>
+      </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({});

@@ -1,0 +1,45 @@
+### get all users
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/all
+Content-Type: application/json
+
+##### hacer Login  yulianaboglione@gmail.com ghshultz12@gmail.com pro@co.co
+POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/login
+Content-Type: application/json
+
+{"email": "ccc@co.co", "password": "a1a2a3A$"}
+
+
+##### Update basic user information complementary using token
+PUT https://backapijobs-production-ad45.up.railway.app/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoieXVseWFuYTc3QGhvdG1haWwuY29tIiwiaWF0IjoxNjc3MjgzMjU0LCJleHAiOjE2Nzc2NDMyNTR9.FZadwJE6ssQKEbF1LqQqUNWz8sA1kECW7dIlNz1E_Sav-S-6SQGr47YFBRhmsnaBDT7WBj7rwJ-W7JMc37TDKA
+Content-Type: application/json
+
+{   
+    "firstname": "Yuliana",
+    "lastname": "Romero",
+    "url_linkedin": "linkedin.com/in/Yuly-Romeroa",
+    "url_github": "https://www.github.com/YulyRomero",
+    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80",
+    "url_github": "https://github.com/TaguaraVe",
+    "url_linkedin": "/in/vanessabritomontilla/",
+    "status": "user",
+    "country": "Argentina",
+    "region": "Buenos Aires"
+}
+
+
+###
+ "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+
+  "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80",
+
+"https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+
+### get un usuario particular con base en su id
+GET https://backapijobs-production-ad45.up.railway.app/api/v1/users/1
+Content-Type: application/json
+
+### delete un usuario con base en el token
+DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImVtYWlsIjoiY2NjQGNvLmNvIiwiaWF0IjoxNjc3MzU4MzY3LCJleHAiOjE2Nzc3MTgzNjd9.LGc8C59vFEehyxgEAkNqyGmtdzwaQtY8_ze7XUdYvm0JMmgx9L-muMQjnNAjiEhVXD4F7deXwrVyVnB58y0MTA"
+Content-Type: application/json

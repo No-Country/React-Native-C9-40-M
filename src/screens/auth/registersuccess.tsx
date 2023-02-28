@@ -4,19 +4,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
 import logo from "../../../assets/images/logo.png";
-import landingImage from "../../../assets/images/bro.png";
+import landingImage from "../../../assets/images/bro2.png";
 import { COLORS, ROUTES } from "../../constants";
 import { CustomButton } from "../../components/common/CustomButton";
 
-export function LandingScreen() {
+export function RegisterSuccess() {
   const navigation = useNavigation();
 
   const onPressLogin = (): void => {
     navigation.navigate(ROUTES.LOGIN_DRAWER);
-  };
-
-  const onPressRegister = (): void => {
-    navigation.navigate(ROUTES.REGISTER_DRAWER);
   };
 
   return (
@@ -24,7 +20,8 @@ export function LandingScreen() {
       <ScrollView>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.subtitle}>
-          La manera más fácil para postularte a tu trabajo ideal en tecnología.
+          <Text style={styles.bold}>¡Ya estas Registrado! </Text>Ahora puedes
+          ingresar y completar tu perfil.
         </Text>
         <Image source={landingImage} style={styles.image} />
         <CustomButton
@@ -32,15 +29,6 @@ export function LandingScreen() {
           text="Ingresar"
           bgColor={COLORS.primary}
         />
-        <Text style={styles.text}>¿No tienes cuenta? </Text>
-        <View style={styles.border}>
-          <CustomButton
-            onPress={onPressRegister}
-            text="Registrate aquí"
-            type="Link"
-            txColor={COLORS.primary}
-          />
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -80,7 +68,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   bold: {
-    fontWeight: "700",
+    color: COLORS.primary,
+    fontWeight: "600",
   },
   text: {
     textAlign: "center",

@@ -43,26 +43,31 @@ export const LoginScreen = () => {
     if (loginResult.token) {
       setCurrentUser({
         token: loginResult.token,
-        email: loginResult.user.email,
+        id: loginResult.user.id,
         firstname: loginResult.user.firstname,
         lastname: loginResult.user.lastname,
-        about_me: loginResult.user.about_me,
-        age: loginResult.user.age,
-        article_1: loginResult.user.article_1,
+        email: loginResult.user.email,
         avatar: loginResult.user.avatar,
-        id: loginResult.user.id,
+        about_me: loginResult.user.about_me,
+        article_1: loginResult.user.article_1,
+        status: loginResult.user.status,
+        url_linkedin: loginResult.url_linkedin,
+        age: loginResult.user.age,
         country: loginResult.user.country,
         region: loginResult.user.region,
         phone: loginResult.user.phone,
-        url_portfolio: loginResult.url_portfolio,
+        is_verify: loginResult.user.is_verify,
       });
-      console.log(loginResult.user.status);
 
-      !loginResult.user.firstname
-        ? navigation.navigate(ROUTES.PROFILE_DRAWER)
-        : loginResult.user.status !== "recruiter"
-        ? navigation.navigate(ROUTES.HOME_DRAWER)
-        : navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
+      if (!loginResult.user.status) {
+        navigation.navigate(ROUTES.PROFILE_DRAWER);
+      } else {
+        if (loginResult.user.status === "user") {
+          navigation.navigate(ROUTES.HOME_DRAWER);
+        } else {
+          navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
+        }
+      }
     } else {
       setLoginRes("Revisar Credenciales");
     }
@@ -78,7 +83,8 @@ export const LoginScreen = () => {
         <View style={styles.header}>
           <Image source={logo} style={styles.logo} />
           <Text style={styles.subtitle}>
-            La manera más fácil para postularte a tu trabajo ideal
+            Ingresa con tu usuario y contraseña y postulate a las nuevas
+            vacantes
           </Text>
         </View>
 
@@ -90,7 +96,7 @@ export const LoginScreen = () => {
           )}
           <CustomInput
             name="email"
-            label="E-Mail"
+            label="Usuario ó Email"
             control={control}
             keyboardType="email-address"
             placeholder="Ingrese su Email"
@@ -104,8 +110,8 @@ export const LoginScreen = () => {
           />
           <CustomButton
             onPress={handleSubmit(handleLogin)}
-            text="Inicial Sesión"
-            bgColor={COLORS.logoBlue}
+            text="Ingresar"
+            bgColor={COLORS.primary}
           />
 
           <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
@@ -125,9 +131,18 @@ export const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     flex: 1,
+    width: "100%",
+    backgroundColor: COLORS.screenBg,
+    padding: 10,
   },
+  logo: {
+    width: "100%",
+    height: 80,
+    resizeMode: "contain",
+    marginVertical: 40,
+  },
+
   header: {
     flex: 1,
     width: "100%",
@@ -139,16 +154,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 26,
-    fontWeight: "500",
-    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "300",
+    textAlign: "left",
+    paddingHorizontal: 20,
     marginBottom: 10,
   },
   subtitle: {
-    fontSize: 20,
-    textAlign: "center",
+    fontSize: 22,
+    fontWeight: "300",
+    paddingHorizontal: 20,
+    textAlign: "left",
     marginBottom: 10,
-    color: COLORS.black,
   },
   bold: {
     fontWeight: "700",
@@ -178,10 +195,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "purple",
+    backgroundColor: COLORS.dangerLight,
   },
   errorText: {
-    color: "white",
+    color: COLORS.danger,
     padding: 5,
   },
   border: {

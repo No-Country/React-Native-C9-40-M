@@ -2,15 +2,17 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { CustomButton } from "../common/CustomButton";
-import { COLORS, ROUTES } from "../../constants";
+import { CustomButton } from "../../common/CustomButton";
+import { COLORS, ROUTES } from "../../../constants";
 
-import panaImage from "../../../assets/images/jobpost.png";
+import panaImage from "../../../../assets/images/jobpost.png";
 
-export const FourStep = () => {
+export const FourStep = ({ setStep, initialValues, setJobPost }) => {
   const navigation = useNavigation();
 
   const handleSubmit = () => {
+    setStep(1);
+    setJobPost(initialValues);
     navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
   };
 
@@ -27,7 +29,7 @@ export const FourStep = () => {
       <CustomButton
         onPress={handleSubmit}
         text="Ver postulantes"
-        bgColor={COLORS.logoBlue}
+        bgColor={COLORS.primary}
       />
     </View>
   );

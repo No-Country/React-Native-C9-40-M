@@ -12,6 +12,7 @@ export { ProfileAdd } from "./homeUsers/ProfileAdd";
 export { ConfirmEmailScreen } from "./auth/ConfirmEmail";
 export { ForgotPasswordScreen } from "./auth/ForgotPassword";
 export { LandingScreen } from "./auth/Landing";
+export { RegisterSuccess } from "./auth/registersuccess";
 export { LoginScreen } from "./auth/Login";
 export { RegisterScreen } from "./auth/Register";
 export { ResetPasswordScreen } from "./auth/ResetPassword";

@@ -7,7 +7,7 @@ import { ThirdScreen } from "../../components/pages/profile/user/ThirdScreen";
 import { FourScreen } from "../../components/pages/profile/user/FourScreen";
 import { FiveScreen } from "../../components/pages/profile/FiveScreen";
 import { FirstRecruiter } from "../../components/pages/profile/Recruiter/FirstRecruiter";
-import { SecondRecruiter } from "../../components/pages/profile/Recruiter/RecluiterLogin/SecondRecruiter";
+import { SecondRecruiter } from "../../components/pages/profile/Recruiter/SecondRecruiter";
 import { UserContext } from "../../GlobalStates/userContext";
 
 type Props = {};
@@ -32,7 +32,7 @@ export const ProfileAdd = (props: Props) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <View style={{ flex: 1 }}>
         {step === 1 && (
           <React.Fragment>
@@ -64,7 +64,7 @@ export const ProfileAdd = (props: Props) => {
         {step === 4 && <FourScreen step={step} handleGoTo={handleGoTo} />}
         {step === 5 && <FiveScreen />}
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 

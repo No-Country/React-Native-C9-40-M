@@ -115,10 +115,12 @@ export const CustomInput = ({
 const styles = StyleSheet.create({
   field: {
     marginVertical: 5,
-    marginHorizontal: 30,
+    marginHorizontal: 10,
   },
   label: {
+
     color: COLORS.input,
+
     marginBottom: 5,
     marginTop: 15,
     fontSize: 18,
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
   },
   inputContainerDanger: {
     width: "100%",
-    borderColor: "red",
+    borderColor: COLORS.danger,
     borderWidth: 2,
     marginBottom: 10,
   },
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   inputMultiline: {
-    backgroundColor: "#f3f3f3",
+    backgroundColor: COLORS.inputBg,
     paddingHorizontal: 10,
     paddingVertical: 15,
     borderRadius: 5,
@@ -159,6 +161,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   error: { marginLeft: 5, color: COLORS.danger, alignSelf: "stretch" },
-  focus: { backgroundColor: "#E3E5FA" },
+  focus: { backgroundColor: COLORS.logoBlueLight },
   noFocus: { backgroundColor: COLORS.inputBg },
 });

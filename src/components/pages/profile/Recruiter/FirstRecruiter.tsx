@@ -21,7 +21,7 @@ import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
-import CustomTextArea from "../../../common/CustomTextArea";
+import { CustomTextArea } from "../../../common/CustomTextArea";
 
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 import { CustomTextInput } from "../../../common/CustomTextInput";
@@ -61,7 +61,6 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
   }, []);
 
   const handleNext = (data) => {
-    console.log("que viene", data);
     if (!description && !name) {
       setErrors(true);
       setTimeout(() => {

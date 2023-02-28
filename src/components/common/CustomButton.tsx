@@ -8,14 +8,15 @@
  *        icon: opcional nombre del icon en FontAwesome @expo/vector-icon
  *        onPress: () => void
  */
-import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from "@expo/vector-icons";
+import { COLORS } from "../../constants";
 
 type Props = {
   text: string;
-  type?: 'Primary' | 'Secondary' | 'Link';
+  type?: "Primary" | "Secondary" | "Link";
   bgColor?: string; //color
   txColor?: string;
   icon?: string;
@@ -25,41 +26,41 @@ type Props = {
 export const CustomButton = ({
   onPress,
   text,
-  type = 'Primary',
+  type = "Primary",
   bgColor,
   txColor,
   icon,
 }: Props) => {
   const bg =
-    type === 'Primary'
+    type === "Primary"
       ? bgColor
         ? { backgroundColor: bgColor }
-        : { backgroundColor: 'blue' }
-      : type === 'Secondary'
+        : { backgroundColor: COLORS.primary }
+      : type === "Secondary"
       ? bgColor
         ? {
-            backgroundColor: 'transparent',
+            backgroundColor: "transparent",
             borderColor: bgColor,
           }
-        : { backgroundColor: 'transparent', borderColor: 'blue' }
-      : { backgroundColor: 'transparent' };
+        : { backgroundColor: "transparent", borderColor: COLORS.primary }
+      : { backgroundColor: "transparent" };
 
   const tx =
-    type === 'Primary'
+    type === "Primary"
       ? txColor
         ? { color: txColor }
-        : { color: 'white' }
+        : { color: "white" }
       : txColor
       ? { color: txColor }
-      : { color: 'blue' };
+      : { color: COLORS.primary };
   const iconColor =
-    type === 'Primary'
+    type === "Primary"
       ? txColor
         ? txColor
-        : 'white'
+        : "white"
       : txColor
       ? txColor
-      : 'blue';
+      : COLORS.primary;
 
   return (
     <>
@@ -79,27 +80,27 @@ export const CustomButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: "90%",
     paddingVertical: 10,
     borderRadius: 10,
     margin: 10,
     borderWidth: 2,
-    borderColor: 'transparent',
-    alignSelf: 'center',
+    borderColor: "transparent",
+    alignSelf: "center",
   },
   button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
   text: {
-    textAlign: 'center',
-    color: 'white',
+    textAlign: "center",
+    color: "white",
     marginRight: 5,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 18,
   },
-  textLink: { textAlign: 'center', color: 'blue' },
-  textSecondary: { textAlign: 'center', color: 'blue' },
+  textLink: { textAlign: "center", color: COLORS.primary },
+  textSecondary: { textAlign: "center", color: COLORS.primary },
 });

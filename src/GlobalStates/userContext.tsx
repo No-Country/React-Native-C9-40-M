@@ -43,9 +43,12 @@ export const UserContextProvider = ({ children }) => {
   //Route
   const [path, setPath] = useState(0);
 
+  //Variables de selección
   const [jobs, setJobs] = useState([]);
   const [selectedRol, setselectedRol] = useState(null);
   const [selectedStack, setSelectedStack] = useState([]);
+  const [experience, setExperience] = useState(0);
+  const [description, setDescription] = useState();
   const [data, setData] = useState();
 
   function getInfo() {
@@ -79,6 +82,10 @@ export const UserContextProvider = ({ children }) => {
     setData,
     path,
     setPath,
+    experience,
+    setExperience,
+    description,
+    setDescription,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
