@@ -25,6 +25,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 import { ROUTES } from "../../../../constants";
+import CustomNavigateButton from "../../../common/CustomNavigateButton";
 
 type Direction = {
   direction: "next" | "prev";
@@ -39,24 +40,6 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
   const navigation = useNavigation();
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  /* Teclado activo o no */
-  const [keyboardShown, setKeyboardShown] = useState(false);
-
-  useEffect(() => {
-    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-      setKeyboardShown(true);
-    });
-
-    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-      setKeyboardShown(false);
-    });
-
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
-    };
-  }, []);
 
   const handleNext = async (data) => {
     // navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
@@ -114,6 +97,7 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
   };
 
   return (
+
     <ScrollView style={{ backgroundColor: "white" }}>
       <View style={styles.imagenLogo}>
         <Image source={logo} style={styles.logo} />
@@ -141,9 +125,11 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
             }}
             style={styles.circleImage}
           />
+
           <View
-            style={{ display: "flex", flexDirection: "row", marginLeft: "7%" }}
+            style={{ maxWidth: "100%", marginHorizontal: 10, marginTop: 15 }}
           >
+
             <TouchableOpacity onPress={openImage}>
               <Text
                 style={{
@@ -157,8 +143,9 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
                 Nombre de la empresa
               </Text>
             </TouchableOpacity>
+
           </View>
-        </View>
+
 
         <View style={styles.inputContainer}>
           <CustomInput
@@ -206,27 +193,48 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
               </View>
             </TouchableOpacity>
           </View>
+
         </View>
-      )}
-    </ScrollView>
+      </ScrollView>
+      <CustomNavigateButton handleBack={handleBack} handleNext={handleNext} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    width: "100%",
-    marginTop: 0,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 16,
+  container: {
+    flex: 1,
+    backgroundColor: "#F5F6F7",
   },
 
   menu: {
-    display: "flex",
-    alignItems: "flex-start",
     flex: 1,
+  },
+
+  headerContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+    background: "#D9D9D9",
+  },
+
+  headerText: {
+    color: "white",
+    fontSize: 20,
+    width: 80,
+    fontWeight: "bold",
+  },
+  logo: {},
+  logoText: {
+    fontSize: 20,
+  },
+  mainContainer: {
+    flex: 1,
+    alignItems: "center",
+    padding: 20,
   },
   logo: {
     height: 64,
@@ -240,77 +248,148 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontStyle: "normal",
-    fontWeight: "600",
-    color: "#0E1545",
-    height: 50,
-    fontSize: 24,
-    lineHeight: "150%",
-    letterSpacing: 0.01,
+    fontWeight: "500",
+    color: "#27358F",
+    width: 301,
+    height: 80,
+    marginTop: 20,
+    marginHorizontal: 20,
+    fontSize: 25,
+    letterSpacing: -0.011,
+    lineHeight: 30,
+  },
+  inputContainer: {
+    zIndex: 100,
+    width: "100%",
+    marginTop: 10,
+    paddingHorizontal: 25,
+    paddingVertical: 10,
   },
 
-  empresaContainer: {
+  info: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 20,
-    marginTop: 40,
-    marginVertical: 5,
-    marginHorizontal: 25,
+    width: 255,
+    height: 45,
+    marginTop: 15,
+    backgroundColor: "#27358F",
+    borderRadius: 8,
+    position: "relative",
   },
+
   circleImage: {
     width: 80,
     height: 80,
     borderRadius: 40,
     backgroundColor: "#D9D9D9",
     elevation: 10,
+
+  },
+
+  inputText: {
+    fontSize: 16,
+    marginBottom: 10,
+    fontWeight: "bold",
+  },
+
+  inputRol: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+
+  descriptionText: {
+    fontStyle: "normal",
+    maxWidth: "85%",
+    marginHorizontal: 20,
+    fontSize: 16,
+    lineHeight: 25,
+    marginBottom: 10,
+  },
+  square: {
+    flexDirection: "column",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#EBEBEB",
+    borderWidth: 1,
+    borderColor: "#4D4A4A",
+    borderRadius: 8,
+    width: 140,
+    height: 60,
+  },
+  category: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 30,
+    gap: 20,
+    margin: 15,
+  },
+
+  textError: {
+    top: 10,
+    color: "#AA1E1E",
+    fontWeight: "bold",
+  },
+
+  boxStyles: {
+    height: 56,
+    marginTop: 10,
+    backgroundColor: "#E3E5FA",
+    borderRadius: 16,
+    borderColor: 0,
+    transition: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  inputStyles: {
+    marginTop: "2%",
+  },
+
+  inputError: {
+    backgroundColor: "#AA1E1E",
+    height: 2,
+    top: 10,
+  },
+
+  empresaContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginTop: 20,
+    marginVertical: 5,
+    marginHorizontal: 15,
+  },
+  circleImage: {
+    borderRadius: 45,
+    width: 90,
+    height: 90,
+    backgroundColor: "#E9EBF4",
+    shadowOffset: { width: 49, height: 40 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    elevation: 4,
   },
   icon: {
     textAlign: "center",
   },
 
-  inputContainer: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#F5F6F7;",
-  },
-
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
-    margin: 20,
-    zIndex: 10,
-  },
-  buttonStyles: {
-    width: 70,
-    height: 56,
-    backgroundColor: "#0E1545",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-
-  freelancerText: {
-    height: 24,
+  textCheckbox: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "600",
     fontSize: 16,
-    color: " #0E1545",
-  },
-
-  buttonFreelance: {
-    marginHorizontal: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    padding: 16,
-    width: 220,
-    height: 56,
-    backgroundColor: "#D9D9D9",
-    borderRadius: 8,
   },
 });

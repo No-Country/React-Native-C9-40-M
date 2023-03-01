@@ -5,17 +5,20 @@ import { COLORS } from "../../constants";
 
 export const CustomTextArea = (props) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.delete}>
-        <MaterialIcons name="cancel" size={28} color="#27358F" />
+    <View style={{ marginTop: 20 }}>
+      <Text style={styles.title}>{props.title}</Text>
+      <View style={styles.container}>
+        <View style={styles.delete}>
+          <MaterialIcons name="cancel" size={28} color="#27358F" />
+        </View>
+        <TextInput
+          style={styles.textInput}
+          placeholder={props.placeholder}
+          onChangeText={props.onChangeText}
+          multiline={true}
+          numberOfLines={5}
+        />
       </View>
-      <TextInput
-        style={styles.textInput}
-        placeholder={props.placeholder}
-        onChangeText={props.onChangeText}
-        multiline={true}
-        numberOfLines={5}
-      />
     </View>
   );
 };
@@ -26,8 +29,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.inputBg,
     borderRadius: 4,
     padding: 10,
-    marginTop: 30,
+    marginTop: 10,
     position: "relative",
+  },
+  title: {
+    color: COLORS.input,
+    fontSize: 18,
+    fontWeight: "600",
   },
   delete: {
     position: "absolute",
