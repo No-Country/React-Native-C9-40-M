@@ -11,7 +11,6 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Entypo } from "@expo/vector-icons";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
@@ -183,7 +182,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           }}
           selectedButtonColor={"#C27B34"}
           radio_props={options}
-          initial={0} //initial value of this group
+          initial={1} //initial value of this group
           onPress={(value) => {
             setChosenOption(value);
           }} //if the user changes options, set the new value

@@ -1,0 +1,506 @@
+[33mcommit 9e53a37d1ff6a354e563ff44e7328b8dbd7d1ae8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 3e003bd 6e2605c
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Wed Mar 1 08:28:15 2023 -0400
+
+    Merge pull request #26 from No-Country/youssefBranch
+    
+    Cambio en los menus y en la consulta de postulaciones
+
+[33mcommit 6e2605c071899358d36b883c2f3f2ca684a8b716[m[33m ([m[1;31morigin/youssefBranch[m[33m)[m
+Merge: af27496 3e003bd
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Wed Mar 1 08:27:43 2023 -0400
+
+    Merge branch 'main' into youssefBranch
+
+[33mcommit 3e003bd846c0ddbf2e588072228538b71fcd8dce[m
+Merge: 82d42cb 3f1ab52
+Author: Santiago Gurevich <102995817+Santiagogure@users.noreply.github.com>
+Date:   Wed Mar 1 09:23:01 2023 -0300
+
+    Merge pull request #25 from No-Country/guredev
+    
+    Cambios en la creacion del perfil de usuario que busca trabajo.
+
+[33mcommit 3f1ab52f31f3d6926491fe5a8dbb64071ff5eac6[m[33m ([m[1;31morigin/guredev[m[33m, [m[1;32mguredev[m[33m)[m
+Author: Santiagogure <gurevichyo@gmail.com>
+Date:   Wed Mar 1 09:21:02 2023 -0300
+
+    Se mejoro el diseño y manejo de los estados de la creacion del perfil del usuario. Asi como tambien se refactorizo el codigo en base a los botones de navegación para que sean reutilizables.
+
+[33mcommit af27496b29670c24b61278df67bf87cf14fd0144[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Tue Feb 28 22:56:16 2023 -0400
+
+    Se corrigieron los menis
+    se inluiyo la  consulta de las postulaciones
+
+[33mcommit 876c1bda9a8bb1b83e356cf600bf72aceb612c05[m
+Merge: 2d4776c 82d42cb
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 27 22:12:57 2023 -0400
+
+    Merge branch 'main' of https://github.com/No-Country/React-Native-C9-40-M
+
+[33mcommit 2d4776c11f67bb35962977867be31e863b5bcc76[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 27 22:12:40 2023 -0400
+
+    Post Jobs
+
+[33mcommit 82d42cbefda2bd4096ae7595c139407c024f5b36[m
+Merge: 5a770ad 57a7384
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Mon Feb 27 22:44:19 2023 -0300
+
+    Merge pull request #24 from No-Country/yulidev
+    
+    modificaciones
+
+[33mcommit 57a7384aa203b6663209c185b0960d27bc2e219e[m[33m ([m[1;31morigin/yulidev[m[33m)[m
+Merge: 49ea881 5a770ad
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Mon Feb 27 22:44:09 2023 -0300
+
+    Merge branch 'main' into yulidev
+
+[33mcommit 49ea88185463ea98b082f4b2fb51a1b4dbdbe003[m
+Author: Yuliana Boglione <yulyana77@hotmail.com>
+Date:   Mon Feb 27 22:42:14 2023 -0300
+
+    modificaciones
+
+[33mcommit 5a770ad0e9a16c03bc9b090714263c07916cd3e4[m
+Merge: 25135e3 c5809ae
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Mon Feb 27 18:26:31 2023 -0400
+
+    Merge pull request #23 from No-Country/youssefBranch
+    
+    Youssef branch
+
+[33mcommit c5809ae29b318353f36430d1aec14640144114bf[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 27 18:23:36 2023 -0400
+
+    corregir bug de las direcciones de las carpetas
+
+[33mcommit bd1a34391b18e6afb415809f4c2cf15a3ad7d85c[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 27 17:35:02 2023 -0400
+
+    Merge con Sanatiago
+
+[33mcommit 25135e34fc067cd4fac4ab950f6588767cc3f2f8[m
+Merge: 394e511 cbdb70a
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Mon Feb 27 17:04:14 2023 -0400
+
+    Merge pull request #22 from No-Country/youssefBranch
+    
+    Youssef branch
+
+[33mcommit cbdb70aa632d490548fa86858c82480ffe9d4939[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 27 17:01:12 2023 -0400
+
+    Punto de partida para el merge del lunes 27
+
+[33mcommit 7de646147976bc1eb693270a411267501457fff0[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 27 15:14:27 2023 -0400
+
+    En este commit se hizo lo siguiente:
+    - se incluyo la libreria react-native-dotenv para incluir un archivo .env
+    - se modifico la configuracion babel.config.js para que incluya el archivo .env
+    - se agrego la imagen bro2 / se elimino el logo de tg
+    - se creo la opcion demostrar el resumen de los perfiles
+    - se agrego el resumen de los job posteado y el detalle con una modal
+    - se comenzo con el proceso de mejora de postear un job
+    - se incluyeron los colores en el archivo COLORS
+    - se modificaron los hooks para que trabajen con la direccion de URL que esta en .env
+    - se creo la pantalla registersuccess que le informa al usuario que ya se registro
+    -
+
+[33mcommit 91ac4f7da9128fc8d3eb96a7ce1c1739b22ff7ed[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Sat Feb 25 18:14:08 2023 -0400
+
+    Se actaulizaron los colores con base en la nueva informacion suministrada
+
+[33mcommit 394e511c4fcd18588ad90a76353704955677caaa[m
+Merge: 590e88e aaba34e
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Thu Feb 23 13:52:11 2023 -0400
+
+    Merge pull request #21 from No-Country/youssefBranch
+    
+    Youssef branch
+
+[33mcommit aaba34e7bc15f477aa5b66dc077a51420e2cd7bc[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Thu Feb 23 13:47:28 2023 -0400
+
+    Se realizo un cambio en la estructura de carpetas para dejar mejor organizadas la diferentes funciones
+    Se mejor el componente CustomInput,
+
+[33mcommit 98918505311b77dd5ec03f9f0bac48234e3c55f6[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Thu Feb 23 06:15:49 2023 -0400
+
+    cambios parciales integrando Santiago con Youssef
+
+[33mcommit ee2927e2b976017abc3d200bac82285153255e44[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Wed Feb 22 14:02:11 2023 -0400
+
+    tarjeta del profile jobseeker
+
+[33mcommit 590e88edb3fa4e8824d9a5a6ed162becbf1e750a[m
+Merge: 0cca8e5 71b8f9c
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Wed Feb 22 00:09:23 2023 -0400
+
+    Merge pull request #20 from No-Country/youssefBranch
+    
+    se creo la ruta para poder postear un trabajo (Crear una oferta laboral)
+
+[33mcommit 71b8f9c2eeb3aa10c88b0dc58329fe3c42b9460f[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Wed Feb 22 00:04:43 2023 -0400
+
+    se creo la ruta para poder postear un trabajo (Crear una oferta laboral)
+    se creo la ruta para poder ver el lisado de asporantes a un trabajo
+    para esto se modificaron los archivos de rutas, el menu Drawer y su corespondiente personalizacion
+
+[33mcommit 0cca8e5d7ec246033ea4adf13383caafd41e65a3[m
+Merge: 12dbbda c7fec2e
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Tue Feb 21 21:05:28 2023 -0400
+
+    Merge pull request #19 from No-Country/youssefBranch
+    
+    Se realizaron los siguientes cambios
+
+[33mcommit c7fec2eb2f347ed3863c1eb38eb5f6b6cf75fff2[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Tue Feb 21 21:02:23 2023 -0400
+
+    Se realizaron los siguientes cambios
+     Changes to be committed:
+            modified:   Peticiones.http
+            new file:   assets/images/defaul_logo.png
+            new file:   assets/images/menuHeader.png
+            modified:   src/GlobalStates/userContext.tsx
+            new file:   src/components/JobSeekerCard.tsx
+            modified:   src/components/OffersCard.tsx
+            modified:   src/constants/routes.ts
+            new file:   src/hooks/useGetJobSeekers.tsx
+            modified:   src/navigation/DrawerNavegator.tsx
+            modified:   src/navigation/customMenus/LandingSidebar.tsx
+            new file:   src/screens/homeRecruiter/HomeRecruiter.tsx
+            modified:   src/screens/homeUsers/Home.tsx
+            modified:   src/screens/index.ts
+            new file:   src/utils/validationSchema/recruitBasic.ts
+
+[33mcommit 12dbbda4914cdfe6c0c686b8de6b1419c7f2a885[m
+Merge: 6d7b842 050fb77
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Mon Feb 20 23:38:47 2023 -0400
+
+    Merge pull request #18 from No-Country/youssefBranch
+    
+    Actualizacion del archivo .gitignore
+
+[33mcommit 050fb777dca70cd264c023ce17c1ac862ebf6591[m
+Author: TaguaraVe <tutaguaradigital@gmail.com>
+Date:   Mon Feb 20 23:31:14 2023 -0400
+
+    Actualizacion del archivo .gitignore
+
+[33mcommit 6d7b842b0988e13bca47792a2deb7aa006ac94c9[m
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Mon Feb 20 23:23:05 2023 -0400
+
+    Update README.md
+
+[33mcommit 583c06c2f5d4212bc1b24e835739f561fbb600a0[m
+Merge: ec40434 b14f9f1
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Mon Feb 20 22:43:10 2023 -0400
+
+    Merge pull request #17 from No-Country/youssefBranch
+    
+    Inclusion de los menu
+
+[33mcommit b14f9f13cb6ba995baab30448fa74d6670b48498[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Mon Feb 20 19:02:48 2023 -0400
+
+    Se incorporo el menu y se reestruturó la estrutura de carpetas del projecto
+
+[33mcommit 302a2aeb0a72ab722d04fef6305af1cc5f416e64[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Fri Feb 17 15:52:06 2023 -0400
+
+    Re-estructuracion del sitema de carpetas para incorporar menus
+
+[33mcommit b05afeeda79722a4f1b8a70062774552514fee02[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Fri Feb 17 11:37:28 2023 -0400
+
+    git add
+
+[33mcommit ec404349b152228680ecdf576c31f08947cdb143[m
+Merge: 26f0f75 850d805
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Thu Feb 16 22:48:27 2023 -0400
+
+    Merge pull request #16 from No-Country/youssefBranch
+    
+    update in database of basic Data of Users
+
+[33mcommit 850d8051c4250cde915cfc33b32ca370599c4807[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Thu Feb 16 22:45:28 2023 -0400
+
+    update in database of basic Data of Users
+
+[33mcommit 26f0f75804e73dcce3f83a52897ebe7a4b4a8202[m
+Merge: da3d56d 2d39aa5
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Thu Feb 16 17:54:33 2023 -0400
+
+    Merge pull request #15 from No-Country/youssefBranch
+    
+    se incluyo el useUpdate
+
+[33mcommit 2d39aa551731377891d9c205c931beef75161ff2[m
+Merge: 30117ec da3d56d
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Thu Feb 16 17:53:59 2023 -0400
+
+    Merge branch 'main' into youssefBranch
+
+[33mcommit da3d56d4ea2c9928896e1dce042dd9d66ee41f3f[m
+Merge: 4c05564 8dfdfeb
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Thu Feb 16 18:49:03 2023 -0300
+
+    Merge pull request #14 from No-Country/yulidev
+    
+    agregue uso de useUpdateUser
+
+[33mcommit 30117ecbaae47973188016fb09944124ffc1cdf4[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Thu Feb 16 17:48:04 2023 -0400
+
+    se incluyo el useUpdate
+
+[33mcommit 4c05564ae62418af771e3f87cddfb5aafc343bae[m
+Merge: 11929a1 e453a23
+Author: Santiago Gurevich <102995817+Santiagogure@users.noreply.github.com>
+Date:   Thu Feb 16 18:45:41 2023 -0300
+
+    Merge pull request #13 from No-Country/santidev
+    
+    Actualizacion de la segunda y tercera pantalla
+
+[33mcommit e453a239a18e3923d597ff3dc38d7e8ba974f6a0[m[33m ([m[1;31morigin/santidev[m[33m)[m
+Merge: 026744d 11929a1
+Author: Santiago Gurevich <102995817+Santiagogure@users.noreply.github.com>
+Date:   Thu Feb 16 18:45:25 2023 -0300
+
+    Merge branch 'main' into santidev
+
+[33mcommit 8dfdfeb219b8eb8f4ed526dca7126f780990cca1[m
+Author: Yuliana Boglione <yulyana77@hotmail.com>
+Date:   Thu Feb 16 18:33:47 2023 -0300
+
+    agregue uso de useUpdateUser
+
+[33mcommit 026744dc4382335ad3b27eb5147f645da12488ac[m
+Author: Santiago Gurevich <gurevichyo@gmail.com>
+Date:   Thu Feb 16 18:32:32 2023 -0300
+
+    Actualizacion de la segunda y tercera pantalla
+
+[33mcommit 11929a18ee31d9fffa7f2bf75f816c8fb4dcd49b[m
+Merge: 5424e36 9f0d20e
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Wed Feb 15 21:11:43 2023 -0300
+
+    Merge pull request #12 from No-Country/yulidev
+    
+    Yulidev
+
+[33mcommit 9f0d20ecb405f0025c23c318bb81329af1336730[m
+Merge: cf803d3 5424e36
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Wed Feb 15 21:09:44 2023 -0300
+
+    Merge branch 'main' into yulidev
+
+[33mcommit cf803d3b83b5c103cf3b6053e26dfcb91b63c1d8[m
+Author: Yuliana Boglione <yulyana77@hotmail.com>
+Date:   Wed Feb 15 20:57:34 2023 -0300
+
+    cambios en el userContext
+
+[33mcommit 5424e36ceb7b1019b0cd10c26dec15a088acd04e[m
+Merge: ce99072 411536d
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Wed Feb 15 13:57:16 2023 -0400
+
+    Merge pull request #11 from No-Country/youssefBranch
+    
+    interactuar con el backend
+
+[33mcommit 411536dcb9a620f65e6e738c58d31c07273eb5be[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Wed Feb 15 13:53:20 2023 -0400
+
+    interactuar con el backend
+
+[33mcommit 4fb7b83e7f74e7e4607d72fdc58e2a4e41b986a6[m
+Author: Yuliana Boglione <yulyana77@hotmail.com>
+Date:   Wed Feb 15 13:33:14 2023 -0300
+
+    problemas en el handleNext
+
+[33mcommit ce990721a7a1df658aeedbffebda937506abef94[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Tue Feb 14 22:28:47 2023 -0400
+
+    peticiones https
+
+[33mcommit a83bcd92e4d94a7dd1dfed2b1eb2eba17d4d05a1[m
+Merge: 6b26db7 f582ae6
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Tue Feb 14 21:27:27 2023 -0300
+
+    Merge pull request #10 from No-Country/yulidev
+    
+    creacion de la primera pantalla
+
+[33mcommit f582ae65f6604ab7492993b35566a5bb300413e6[m
+Author: Yuliana Boglione <yulyana77@hotmail.com>
+Date:   Tue Feb 14 21:04:03 2023 -0300
+
+    creacion de la primera pantalla
+
+[33mcommit 6b26db7f2fe40499b91df4364419fe37a1c5c184[m
+Merge: 1c14061 f7d2ee3
+Author: Santiago Gurevich <102995817+Santiagogure@users.noreply.github.com>
+Date:   Tue Feb 14 19:52:21 2023 -0300
+
+    Merge pull request #9 from No-Country/santidev
+    
+    Pantallas de selección del rol y tecnologías
+
+[33mcommit f7d2ee3491ece6a216b4b90146cea074f9430167[m
+Author: Santiago Gurevich <gurevichyo@gmail.com>
+Date:   Tue Feb 14 19:51:34 2023 -0300
+
+    Pantallas de seleccion del rol y tecnologias
+
+[33mcommit 1c140611c252777ac0e653ce3a5905a495af1fcf[m
+Merge: 778a13a 237469d
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Mon Feb 13 18:44:28 2023 -0400
+
+    Merge pull request #8 from No-Country/youssefBranch
+    
+    se incoporto profileadd, se modificaron las pantallas de login, register
+
+[33mcommit 237469df230f40914283ccb555bf3791ebff430f[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Mon Feb 13 18:40:57 2023 -0400
+
+    se incoporto profileadd, se modificaron las pantallas de login, register
+
+[33mcommit 778a13a33b4d8b4b67c92c75a3f6d6e8ff582585[m
+Merge: 2272121 51d02b5
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Fri Feb 10 13:45:07 2023 -0400
+
+    Merge pull request #7 from No-Country/youssefBranch
+    
+    nuevo estado global job creado por Santiago
+
+[33mcommit 51d02b56e265a83c96bbca9b774420d695e76cf3[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Fri Feb 10 13:42:34 2023 -0400
+
+    nuevo estado global job creado por Santiago
+
+[33mcommit 2272121c213c6ae2627969924c7694b9724a4e2c[m
+Merge: abedc76 01a1f9b
+Author: TaguaraVe <123557273+TaguaraVe@users.noreply.github.com>
+Date:   Fri Feb 10 13:29:29 2023 -0400
+
+    Merge pull request #6 from No-Country/youssefbranch
+    
+    se instalo npm i expo-image-picker
+
+[33mcommit 01a1f9bd142f8c49dffb25036b5715c5834e73dd[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Fri Feb 10 13:27:32 2023 -0400
+
+    se instalo npm i expo-image-picker
+
+[33mcommit abedc76a41282990a664d7df8bd9280834cf5173[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Fri Feb 10 12:26:48 2023 -0400
+
+    Se mejoro el CustomButton
+
+[33mcommit 4ef06c34b11aa151c469a908c3a645d62900819c[m
+Merge: 47c08ee 0f95f17
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Thu Feb 9 19:50:57 2023 -0400
+
+    Merge branch 'youdev' of https://github.com/No-Country/React-Native-C9-40-M into youdev
+
+[33mcommit 47c08ee43fd07748248564a5c2f8c372c49e6fc2[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Thu Feb 9 19:50:45 2023 -0400
+
+    inclusion del logo
+
+[33mcommit 0f95f1780674c2ed75ec17546b92ec57b0f5784a[m
+Author: Yuliana Boglione <98270673+yulianaboglione@users.noreply.github.com>
+Date:   Wed Feb 8 23:31:22 2023 -0300
+
+    Update README.md
+
+[33mcommit 97728e384b943ff1cce5db25774d47b09d7d46cf[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Wed Feb 8 14:37:02 2023 -0400
+
+    Se incluyo la nueva pantalla de profile (parcial)
+
+[33mcommit d98aed9b7fabf7b0fc52ff0d420c754d02679b9e[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Tue Feb 7 13:09:53 2023 -0400
+
+    Se eliminaron comapos del registro
+
+[33mcommit b26481200de9ed403a9fdda6b3e16432c8261663[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Mon Feb 6 22:42:19 2023 -0400
+
+    HomePage update but no finish
+
+[33mcommit 72db588855e00db78f5de7f9f04dbdb68124a754[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Mon Feb 6 15:05:38 2023 -0400
+
+    Modificacion del CustomButton y del CustomInput y de las pantallas para que luzcan como la de figma
+
+[33mcommit 696fa24344fadfa14ff897f556088b95e5e5d86e[m
+Author: TaguaraDigital <taguaradigital@hotmail.com>
+Date:   Mon Feb 6 12:04:02 2023 -0400
+
+    first commit
