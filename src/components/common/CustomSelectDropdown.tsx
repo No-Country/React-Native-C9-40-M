@@ -26,7 +26,7 @@ export const SelectDropdown = ({
   const [showOption, setShowOption] = useState(false);
 
   const onSelectItem = (item) => {
-    onSelect(item.name);
+    onSelect(item);
     setShowOption(!showOption);
   };
 
@@ -90,14 +90,18 @@ export const MultipleSelectDropdown = ({
   onSelect = () => {},
   values = [],
 }: Props) => {
+  const { selectedStack, setSelectedStack, currentUser } =
+    useContext(UserContext);
   const [inData, setInData] = useState(data);
   const [showOption, setShowOption] = useState(false);
   const [isChange, setIsChange] = useState(false);
-  const [valuesSelected, setValuesSelected] = useState(values);
+  const [valuesSelected, setValuesSelected] = useState(
+    currentUser.user_tecnologies
+  );
   const [showSelectedItems, setShowSelectedItems] = useState(values.length > 0);
   const [error, setError] = useState(false);
 
-  const { selectedStack, setSelectedStack } = useContext(UserContext);
+  console.log(valuesSelected);
 
   const onSelectItems = (item) => {
     setIsChange(!isChange);
@@ -116,11 +120,8 @@ export const MultipleSelectDropdown = ({
         }, 4000);
       }
     }
-
     setValuesSelected(valuesSelected);
   };
-
-  console.log(valuesSelected.map((value) => value.name));
 
   const removeItem = (name: string) => {
     setValuesSelected(
@@ -207,21 +208,23 @@ export const MultipleSelectDropdown = ({
 
       <View style={styles.selectedGroup}>
         <View style={styles.itemsContainer}>
-          {valuesSelected.map((value: any) => {
-            return (
-              <View style={styles.chip} key={value.id}>
-                <Text style={styles.chipText}>{value.name}</Text>
+          {valuesSelected &&
+            valuesSelected.length > 0 &&
+            valuesSelected.map((value) => {
+              return (
+                <View style={styles.chip} key={value.id}>
+                  <Text style={styles.chipText}>{value.name}</Text>
 
-                <TouchableOpacity
-                  onPress={() => {
-                    removeItem(value.name);
-                  }}
-                >
-                  <MaterialIcons name="cancel" size={22} color="white" />
-                </TouchableOpacity>
-              </View>
-            );
-          })}
+                  <TouchableOpacity
+                    onPress={() => {
+                      removeItem(value.name);
+                    }}
+                  >
+                    <MaterialIcons name="cancel" size={22} color="white" />
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
         </View>
       </View>
     </View>
