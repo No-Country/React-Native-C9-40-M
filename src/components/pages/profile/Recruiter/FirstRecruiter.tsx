@@ -11,12 +11,13 @@ import {
   Platform,
   Button,
 } from "react-native";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { SelectList } from "react-native-dropdown-select-list";
 import { UserContext } from "../../../../GlobalStates/userContext";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../../../assets/images/logo.png";
 import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,6 +26,7 @@ import { CustomTextArea } from "../../../common/CustomTextArea";
 
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 import { CustomTextInput } from "../../../common/CustomTextInput";
+import { COLORS } from "../../../../constants";
 
 type Direction = {
   direction: "next" | "prev";
@@ -115,6 +117,9 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
 
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
+      <View style={styles.imagenLogo}>
+        <Image source={logo} style={styles.logo} />
+      </View>
       <View style={styles.menu}>
         <Text
           style={{
@@ -123,11 +128,10 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
             lineHeight: 36,
             letterSpacing: 1,
             color: "#0E1545",
-            marginHorizontal: 30,
-            marginVertical: 5,
+            padding: 15,
           }}
         >
-          Cuentanos sobre tu trabajo.
+          Cuentanos sobre tu trabajo
         </Text>
         <View style={styles.empresaContainer}>
           <Image
@@ -152,10 +156,11 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
             <TouchableOpacity onPress={openImage}>
               <Text
                 style={{
-                  fontSize: 15,
+                  fontSize: 17,
                   textDecorationLine: "underline",
                   fontWeight: "500",
                   marginLeft: 15,
+                  color: "#080909",
                 }}
               >
                 Cargar foto de perfil
@@ -171,8 +176,13 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
             control={control}
             placeholder="Escriba el nombre de la empresa"
           />
-
-          <CustomTextArea title="Texto" placeholder="Ingrese un texto" />
+          <Text style={styles.labelTextArea}>A que se dedica la empresa</Text>
+          <View style={{ marginLeft: 13, marginTop: -15, marginBottom: 20 }}>
+            <CustomTextArea
+              title="Texto"
+              placeholder="Escribe una breve descripción de la empresa"
+            />
+          </View>
         </View>
       </View>
 
@@ -227,7 +237,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-
+  labelTextArea: {
+    color: COLORS.input,
+    marginLeft: 14,
+    fontSize: 18,
+    fontWeight: "600",
+    marginTop: 25,
+  },
   menu: {
     display: "flex",
     alignItems: "flex-start",
@@ -243,7 +259,16 @@ const styles = StyleSheet.create({
     lineHeight: "150%",
     letterSpacing: 0.01,
   },
-
+  logo: {
+    height: 64,
+    width: 128,
+  },
+  imagenLogo: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 40,
+  },
   empresaContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -255,14 +280,9 @@ const styles = StyleSheet.create({
   circleImage: {
     width: 80,
     height: 80,
-    borderRadius: 35,
-    backgroundColor: "#E9EBF4",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    marginRight: 5,
+    borderRadius: 40,
+    backgroundColor: "#D9D9D9",
+    elevation: 10,
   },
   icon: {
     textAlign: "center",

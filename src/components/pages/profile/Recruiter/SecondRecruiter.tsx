@@ -12,13 +12,13 @@ import {
   Button,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
+import logo from "../../../../../assets/images/logo.png";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { SelectList } from "react-native-dropdown-select-list";
 import { UserContext } from "../../../../GlobalStates/userContext";
-import logo from "../../../assets/images/logo.png";
+
 import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -115,6 +115,9 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
 
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
+      <View style={styles.imagenLogo}>
+        <Image source={logo} style={styles.logo} />
+      </View>
       <View style={styles.menu}>
         <Text
           style={{
@@ -123,11 +126,10 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
             lineHeight: 36,
             letterSpacing: 1,
             color: "#0E1545",
-            marginHorizontal: 30,
-            marginVertical: 5,
+            padding: 15,
           }}
         >
-          Cuentanos sobre tu trabajo.
+          Cuentanos sobre tu trabajo
         </Text>
         <View style={styles.empresaContainer}>
           <Image
@@ -145,10 +147,11 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
             <TouchableOpacity onPress={openImage}>
               <Text
                 style={{
-                  fontSize: 15,
+                  fontSize: 17,
                   textDecorationLine: "underline",
                   fontWeight: "500",
-                  marginLeft: 5,
+                  marginLeft: 15,
+                  color: "#080909",
                 }}
               >
                 Nombre de la empresa
@@ -160,23 +163,23 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
         <View style={styles.inputContainer}>
           <CustomInput
             name="company_url_linkedin"
-            label="Linkedin de la empresa"
+            label="LinkedIn de la empresa"
             control={control}
-            placeholder="Link del Linkedin"
+            placeholder="URL de Linkedin"
           />
 
           <CustomInput
             name="company_url_web"
             label="Web de la empresa"
             control={control}
-            placeholder="Sitio web de la empresa"
+            placeholder="URL de la empresa"
           />
 
           <CustomInput
             name="company_phone"
             control={control}
-            label="Telefono de la empresa"
-            placeholder="Numero de contacto"
+            label="Teléfono de la empresa"
+            placeholder="Teléfono de contacto"
           />
         </View>
       </View>
@@ -225,7 +228,16 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     flex: 1,
   },
-
+  logo: {
+    height: 64,
+    width: 128,
+  },
+  imagenLogo: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 40,
+  },
   titleText: {
     fontStyle: "normal",
     fontWeight: "600",
@@ -248,14 +260,9 @@ const styles = StyleSheet.create({
   circleImage: {
     width: 80,
     height: 80,
-    borderRadius: 35,
-    backgroundColor: "#E9EBF4",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    marginRight: 5,
+    borderRadius: 40,
+    backgroundColor: "#D9D9D9",
+    elevation: 10,
   },
   icon: {
     textAlign: "center",
