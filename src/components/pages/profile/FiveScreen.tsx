@@ -14,7 +14,7 @@ export const FiveScreen = () => {
 
   const handleSubmit = () => {
     path === 2
-      ? navigation.navigate(ROUTES.JOBS)
+      ? navigation.navigate(ROUTES.HOME_DRAWER)
       : navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
   };
 

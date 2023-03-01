@@ -14,6 +14,7 @@ import { CustomButton } from "../../components/common/CustomButton";
 import { useLogin } from "../../hooks/useLogin";
 import { UserContext } from "../../GlobalStates/userContext";
 import { COLORS, ROUTES } from "../../constants";
+import { useGetUserbyId } from "../../hooks/useGetJobSeekers";
 
 type FormValues = {
   password: string;
@@ -38,31 +39,15 @@ export const LoginScreen = () => {
   });
 
   const handleLogin = async (data: FormValues) => {
-    const loginResult = await useLogin(data);
+    const currentUser = await useLogin(data);
 
-    if (loginResult.token) {
-      setCurrentUser({
-        token: loginResult.token,
-        id: loginResult.user.id,
-        firstname: loginResult.user.firstname,
-        lastname: loginResult.user.lastname,
-        email: loginResult.user.email,
-        avatar: loginResult.user.avatar,
-        about_me: loginResult.user.about_me,
-        article_1: loginResult.user.article_1,
-        status: loginResult.user.status,
-        url_linkedin: loginResult.url_linkedin,
-        age: loginResult.user.age,
-        country: loginResult.user.country,
-        region: loginResult.user.region,
-        phone: loginResult.user.phone,
-        is_verify: loginResult.user.is_verify,
-      });
+    if (currentUser.token) {
+      setCurrentUser({ ...currentUser.user, token: currentUser.token });
 
-      if (!loginResult.user.status) {
+      if (!currentUser.user.status) {
         navigation.navigate(ROUTES.PROFILE_DRAWER);
       } else {
-        if (loginResult.user.status === "user") {
+        if (currentUser.user.status === "user") {
           navigation.navigate(ROUTES.HOME_DRAWER);
         } else {
           navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);

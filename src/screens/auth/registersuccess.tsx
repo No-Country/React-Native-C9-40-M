@@ -12,7 +12,7 @@ export function RegisterSuccess() {
   const navigation = useNavigation();
 
   const onPressLogin = (): void => {
-    navigation.navigate(ROUTES.LOGIN_DRAWER);
+    navigation.navigate(ROUTES.LOGIN);
   };
 
   return (

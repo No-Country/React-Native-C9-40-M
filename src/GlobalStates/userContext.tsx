@@ -1,44 +1,34 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useTechRol } from "../hooks/useTechRol";
 
-const currentUser = {
-  token: "",
-  email: "",
-  firstname: "",
-  lastname: "",
-  about_me: "",
-  age: "",
-  article_1: "",
-  avatar: "",
-  id: "",
-  country: "",
-  region: "",
-  phone: "",
-  url_portfolio: "",
-  isRecruiter: false,
+const initialUser = {
+  token: null,
+  about_me: null,
+  age: null,
+  article_1: null,
+  avatar: null,
+  country: null,
+  email: null,
+  firstname: null,
+  id: null,
+  is_verify: false,
+  lastname: null,
+  phone: null,
+  projects: [],
+  region: null,
+  repositories: [],
+  status: null,
+  url_github: null,
+  url_linkedin: null,
+  user_rols: [],
+  user_tecnologies: [],
   isFreelancer: false,
 };
 
-export const UserContext = createContext(currentUser);
+export const UserContext = createContext(initialUser);
 
 export const UserContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({
-    token: "",
-    email: "",
-    firstname: "",
-    lastname: "",
-    about_me: "",
-    age: "",
-    article_1: "",
-    avatar: "",
-    id: "",
-    country: "",
-    region: "",
-    phone: "",
-    url_portfolio: "",
-    isRecruiter: false,
-    isFreelancer: false,
-  });
+  const [currentUser, setCurrentUser] = useState(initialUser);
 
   //Route
   const [path, setPath] = useState(0);

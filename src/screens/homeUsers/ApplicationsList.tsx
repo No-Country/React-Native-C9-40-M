@@ -1,29 +1,19 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  FlatList,
-} from "react-native";
-
-import { useNavigation } from "@react-navigation/native";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 
 import { UserContext } from "../../GlobalStates/userContext";
-import { COLORS, ROUTES } from "../../constants";
-import { OffersCard } from "../../components/pages/homeUsers/OffersCard";
-import { useGetJobs } from "../../hooks/useGetJobs";
+import { COLORS } from "../../constants";
+import { useGetApplicationJobs } from "../../hooks/useGetApplicationJobs";
+import { ApplicationCard } from "../../components/pages/application/ApplicationCard";
 
-export function HomeScreen() {
-  const navigation = useNavigation();
+export function ApplicationsList() {
   const { currentUser } = useContext(UserContext);
   const [isLoad, setIsLoad] = useState(false);
-  const [jobsBD, setJobsBD] = useState([]);
+  const [applications, setApplications] = useState([]);
 
   const fetchJobs = async () => {
-    const jobs = await useGetJobs();
-    setJobsBD(jobs);
+    const jobs = await useGetApplicationJobs(currentUser.token);
+    setApplications(jobs);
     setIsLoad(true);
     return jobs;
   };
@@ -35,19 +25,18 @@ export function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.subtitle}>
-          <Text style={styles.bold}>¡Hola </Text>Estas son las vacantes
-          disponibles según tu perfil.{" "}
-          <Text style={styles.bold}>¡Muchos Éxitos!</Text>
+        <Text style={styles.title}>Tus posulaciones</Text>
+        <Text style={styles.text}>
+          Aquí puedes ver el estado de tus postulaciones.
         </Text>
       </View>
 
       {isLoad && (
         <View style={{ flex: 1 }}>
           <FlatList
-            data={jobsBD}
+            data={applications}
             keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <OffersCard job={item} />}
+            renderItem={({ item }) => <ApplicationCard job={item.job} />}
           />
         </View>
       )}

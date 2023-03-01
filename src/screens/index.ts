@@ -7,6 +7,8 @@ export { JobPost } from "./homeRecruiter/JobPosts";
 export { HomeScreen } from "./homeUsers/Home";
 export { JobsScreen } from "./homeUsers/Jobs";
 export { ProfileAdd } from "./homeUsers/ProfileAdd";
+export { ProfileShow } from "./homeUsers/ProfileShow";
+export { ApplicationsList } from "./homeUsers/ApplicationsList";
 
 // Auth Screens Can Navigate without sign in
 export { ConfirmEmailScreen } from "./auth/ConfirmEmail";

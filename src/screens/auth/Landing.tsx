@@ -12,11 +12,11 @@ export function LandingScreen() {
   const navigation = useNavigation();
 
   const onPressLogin = (): void => {
-    navigation.navigate(ROUTES.LOGIN_DRAWER);
+    navigation.navigate(ROUTES.LOGIN);
   };
 
   const onPressRegister = (): void => {
-    navigation.navigate(ROUTES.REGISTER_DRAWER);
+    navigation.navigate(ROUTES.REGISTER);
   };
 
   return (

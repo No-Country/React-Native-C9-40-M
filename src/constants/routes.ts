@@ -1,4 +1,5 @@
 export default {
+  // Rutas mostradas o accesible desde el "Menu inicial"
   CONFIRM_EMAIL: "Confirm Email",
   FORGOT_PASSWORD: "Recuperar Clave",
   FORGOT_PASSWORD_DRAWER: "Forgot Pass Drawer",
@@ -12,21 +13,27 @@ export default {
   REGISTER_SUCCESS_DRAWER: "Registrado Drawer",
   RESET_PASSWORD: "Reset Password",
 
-  HOME: "Home",
+  // Rutas mostradas o accesible desde el "Menu User"
+  HOME: "Vacantes Disponibles",
   HOME_DRAWER: "Home Drawer",
-
-  HOME_RECRUITER: "Home - Recruiter",
-  HOME_RECRUITER_DRAWER: "Home - Recruiter - Drawer",
-
+  PROFILE_SHOW: "Perfil",
+  PROFILE_SHOW_DRAWER: "Profile Show Drawer",
+  PROFILE: "Profile",
+  PROFILE_DRAWER: "Profile Drawer",
+  APPLICATIONS: "Postulaciones",
+  APPLICATIONS_DRAWER: "Postulaciones Drawer",
+  NOTIFICATION: "Notificaciones",
+  NOTIFICATION_DRAWER: "Notificaciones Drawer",
+  SETTING: "Configuracion",
+  SETTING_DRAWER: "Configuracion Drawer",
   JOBS: "Jobs",
   JOBS_DRAWER: "Jobs Drawer",
 
+  // Rutas mostradas o accesible desde el "Menu User"
+  HOME_RECRUITER: "Home - Recruiter",
+  HOME_RECRUITER_DRAWER: "Home - Recruiter - Drawer",
   JOBSPOST: "Jobs Post",
   JOBSPOST_DRAWER: "Jobs Post Drawer",
-
   JOBSEEKERLIST: "Listado de Aspirantes",
   JOBSEEKERLIST_DRAWER: "Listado de Aspirantes Drawer",
-
-  PROFILE: "Profile",
-  PROFILE_DRAWER: "Profile Drawer",
 };

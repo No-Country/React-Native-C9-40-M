@@ -55,7 +55,6 @@ export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
   });
 
   const handleNext = (data) => {
-    console.log(data);
     const newJobPost = {
       ...jobPost,
       company_avatar: image,

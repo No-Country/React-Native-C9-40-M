@@ -13,6 +13,8 @@ import { COLORS } from "../../../constants";
 import { useEffect, useState } from "react";
 import { Footer } from "./Footer";
 import { CARD } from "../../../constants/constants";
+import { Skills } from "./Skills";
+import { formatDate } from "../../../utils/formatDate";
 
 type CompanyName = {
   name: string;
@@ -29,7 +31,7 @@ type JobProps = {
     work_place: string;
     working_day: string;
     country: string;
-    date_posted: string;
+    post_date: string;
   };
 };
 
@@ -45,7 +47,8 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
     working_day,
     country,
     salaries,
-    date_posted,
+    post_date,
+    jobs_tecnologies,
   } = job;
 
   const [textSkills, setTextSkils] = useState("");
@@ -112,15 +115,18 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
                 <View style={styles.mr8}>
                   <Ionicons name="calendar-outline" size={24} color="black" />
                 </View>
-                <Text>{"date"}</Text>
+                <Text>{formatDate(post_date)}</Text>
               </View>
               <View style={[styles.row]}>
                 <View style={styles.mr8}>
                   <Ionicons name="checkbox-outline" size={24} color="black" />
                 </View>
-                <Text style={styles.sb}>Aptitudes: </Text>
               </View>
             </View>
+          </View>
+
+          <View style={styles.container}>
+            <Skills jobTecnologies={jobs_tecnologies} />
           </View>
 
           <View style={styles.container}>
