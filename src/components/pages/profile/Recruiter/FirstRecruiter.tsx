@@ -11,12 +11,13 @@ import {
   Platform,
   Button,
 } from "react-native";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { SelectList } from "react-native-dropdown-select-list";
 import { UserContext } from "../../../../GlobalStates/userContext";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../../../assets/images/logo.png";
 import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,7 +26,8 @@ import { CustomTextArea } from "../../../common/CustomTextArea";
 
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 import { CustomTextInput } from "../../../common/CustomTextInput";
-import CustomNavigateButton from "../../../common/CustomNavigateButton";
+import { COLORS } from "../../../../constants";
+
 
 type Direction = {
   direction: "next" | "prev";
@@ -95,69 +97,112 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
   const [text, setText] = useState("");
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.menu}>
-        <View>
-          <Text style={styles.titleText}>Nombre de la empresa</Text>
-          <View style={styles.empresaContainer}>
-            <Image
-              source={{
-                uri:
-                  selectedImage !== null
-                    ? selectedImage.localUri
-                    : "https://www.pngiteme.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
-              }}
-              style={styles.circleImage}
-            />
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                marginLeft: "7%",
-              }}
-            >
-              <Ionicons
-                style={styles.icon}
-                name="folder-outline"
-                size={24}
-                color="#ff000"
-              />
 
-              <TouchableOpacity onPress={openImage}>
-                <Text
-                  style={{
-                    fontSize: 15,
-                    textDecorationLine: "underline",
-                    fontWeight: "500",
-                    marginLeft: 15,
-                  }}
-                >
-                  Cargar foto de perfil
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
+    <ScrollView style={{ backgroundColor: "white" }}>
+      <View style={styles.imagenLogo}>
+        <Image source={logo} style={styles.logo} />
+      </View>
+      <View style={styles.menu}>
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: "600",
+            lineHeight: 36,
+            letterSpacing: 1,
+            color: "#0E1545",
+            padding: 15,
+          }}
+        >
+          Cuentanos sobre tu trabajo
+        </Text>
+        <View style={styles.empresaContainer}>
+          <Image
+            source={{
+              uri:
+                selectedImage !== null
+                  ? selectedImage.localUri
+                  : "https://www.pngiteme.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
+            }}
+            style={styles.circleImage}
+          />
           <View
-            style={{ maxWidth: "100%", marginHorizontal: 10, marginTop: 15 }}
+            style={{ display: "flex", flexDirection: "row", marginLeft: "7%" }}
           >
-            <View style={{ maxWidth: "98%" }}>
-              <CustomInput
-                name="nombre"
-                label="Nombre de la empresa"
-                control={control}
-                placeholder="Escriba el nombre de la empresa"
-              />
-            </View>
+            <Ionicons
+              style={styles.icon}
+              name="folder-outline"
+              size={24}
+              color="#ff000"
+            />
 
-            <View style={{ marginLeft: 10 }}>
-              <CustomTextArea
-                title="Descripción"
-                placeholder="Escribe una breve descripción de la empresa..."
-                value={description}
-                placeholder="Ingrese una descripción"
-              />
-            </View>
+            <TouchableOpacity onPress={openImage}>
+              <Text
+                style={{
+                  fontSize: 17,
+                  textDecorationLine: "underline",
+                  fontWeight: "500",
+                  marginLeft: 15,
+                  color: "#080909",
+                }}
+              >
+                Cargar foto de perfil
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <CustomInput
+            name="nombre"
+            label="Nombre de la empresa"
+            control={control}
+            placeholder="Escriba el nombre de la empresa"
+          />
+          <Text style={styles.labelTextArea}>A que se dedica la empresa</Text>
+          <View style={{ marginLeft: 13, marginTop: -15, marginBottom: 20 }}>
+            <CustomTextArea
+              title="Texto"
+              placeholder="Escribe una breve descripción de la empresa"
+            />
+          </View>
+        </View>
+      </View>
+
+      {keyboardShown && (
+        <KeyboardAvoidingView
+          style={{ display: "none" }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          keyboardVerticalOffset={1000} // ajusta este valor para hacer que el elemento desaparezca
+        ></KeyboardAvoidingView>
+      )}
+      {!keyboardShown && (
+        <View style={{ display: "flex", justifyContent: "flex-end" }}>
+          {/* Contenido visible cuando el teclado no está activo */}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => setFreelancer(!freelancer)}>
+              <View style={styles.buttonFreelance}>
+                <View style={{ position: "relative" }}>
+                  <Ionicons name="radio-button-off" size={24} color="#C27B34" />
+                  {freelancer ? (
+                    <Ionicons
+                      name="radio-button-on"
+                      size={24}
+                      color="#C27B34"
+                      style={{ position: "absolute", top: 0, left: 0 }}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </View>
+                <Text style={styles.freelancerText}>Soy Freelancer</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleSubmit(handleNext)}>
+              <View style={styles.buttonStyles}>
+                <Entypo name="arrow-right" size={24} color="white" />
+              </View>
+            </TouchableOpacity>
+
           </View>
 
           <View style={styles.inputContainer}></View>
@@ -188,17 +233,17 @@ const styles = StyleSheet.create({
     background: "#D9D9D9",
   },
 
-  headerText: {
-    color: "white",
-    fontSize: 20,
-    width: 80,
-    fontWeight: "bold",
+  labelTextArea: {
+    color: COLORS.input,
+    marginLeft: 14,
+    fontSize: 18,
+    fontWeight: "600",
+    marginTop: 25,
   },
-  logo: {},
-  logoText: {
-    fontSize: 20,
-  },
-  mainContainer: {
+  menu: {
+    display: "flex",
+    alignItems: "flex-start",
+
     flex: 1,
     alignItems: "center",
     padding: 20,
@@ -224,7 +269,18 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
 
-  info: {
+  logo: {
+    height: 64,
+    width: 128,
+  },
+  imagenLogo: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 40,
+  },
+  empresaContainer: {
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -236,9 +292,13 @@ const styles = StyleSheet.create({
     position: "relative",
   },
 
-  materialIconStyle: {
-    position: "absolute",
-    right: 7,
+  circleImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: "#D9D9D9",
+    elevation: 10,
+
   },
 
   inputText: {
