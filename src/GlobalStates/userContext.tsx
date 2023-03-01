@@ -25,6 +25,66 @@ const initialUser = {
   isFreelancer: false,
 };
 
+const initialJob = [
+  {
+    id: 0,
+    title: "Developer Front-End",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    image:
+      "https://www.simplilearn.com/ice9/free_resources_article_thumb/tester-or-developer-what-suits-you-the-most.jpg",
+    user_id: 1,
+    user: {
+      firstname: "José",
+      lastname: "Riga",
+      email: "joseriga12@gmail.com",
+    },
+    country: "Uruguay",
+    work_place: "Remote",
+    working_day: "Part-time",
+    company_id: null,
+    company: [
+      {
+        id: 2,
+        user_id: 2,
+        name: "Consultors IT",
+        country: "Argentina",
+        city: "CABA",
+        phone: "1564888466",
+        email: "crismarcompany@gmail.com",
+        adress: "Saavedra 451",
+        description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        website: "https://www.adecoagro.com/",
+        verified: false,
+      },
+    ],
+    post_date: "2023-02-26T22:37:54.103Z",
+    jobs_rols: [
+      {
+        rol_id: 1,
+        rol: {
+          name: "Developer Back.End",
+        },
+      },
+    ],
+    jobs_tecnologies: [
+      {
+        tecnology_id: 1,
+        years_tecnology: 1,
+        tecnology: {
+          name: "java",
+        },
+      },
+    ],
+    salaries: [
+      {
+        price: 400,
+      },
+    ],
+  },
+];
+
 export const UserContext = createContext(initialUser);
 
 export const UserContextProvider = ({ children }) => {
