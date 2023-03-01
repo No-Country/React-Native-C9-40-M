@@ -57,7 +57,6 @@ export const LoginScreen = () => {
       setLoginRes("Revisar Credenciales");
     }
   };
-
   const goToForgotPassword = () => {
     navigation.navigate(ROUTES.FORGOT_PASSWORD_DRAWER);
   };

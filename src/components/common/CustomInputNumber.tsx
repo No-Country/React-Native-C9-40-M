@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 8,
     gap: 8,
-    width: 242,
+    width: 255,
     height: 45,
     backgroundColor: "#DFE0E6",
     borderRadius: 8,
