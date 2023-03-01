@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Image,
   Modal,
@@ -10,11 +11,12 @@ import {
 
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../constants";
-import { useEffect, useState } from "react";
 import { Footer } from "./Footer";
 import { CARD } from "../../../constants/constants";
 import { Skills } from "./Skills";
 import { formatDate } from "../../../utils/formatDate";
+import { UserContext } from "../../../GlobalStates/userContext";
+import { useJobAplication } from "../../../hooks/useJobApplication";
 
 type CompanyName = {
   name: string;
@@ -51,19 +53,18 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
     jobs_tecnologies,
   } = job;
 
-  const [textSkills, setTextSkils] = useState("");
+  const { currentUser } = useContext(UserContext);
 
-  useEffect(() => {
-    // getJobReq(company_id);
-    // construir el texto
-  }, []);
+  const ApplicationJob = async (id) => {
+    const applicationData = { job_id: id, token: currentUser.token };
+    console.log(applicationData);
+    const result = await useJobAplication(applicationData);
+    console.log(result);
+    console.warn("Postulación exitosa");
+  };
 
   const handleChoice = (direction: number) => {
-    direction === -1
-      ? alert("NOPE")
-      : direction === 0
-      ? alert("Safe")
-      : alert("LIKE");
+    direction === -1 ? alert("NOPE") : ApplicationJob(id);
     setShowModal(false);
   };
 

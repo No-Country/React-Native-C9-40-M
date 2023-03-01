@@ -25,7 +25,7 @@ export const UserMenu = (props: Props) => {
           <Text style={styles.title}>
             {firstname} {lastname}
           </Text>
-          <Text style={styles.rol}>{user_rols[0]?.rol.name}</Text>
+          <Text style={styles.rol}>{user_rols[0]?.name}</Text>
         </View>
       </View>
 

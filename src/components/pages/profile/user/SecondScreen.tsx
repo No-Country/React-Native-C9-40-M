@@ -41,7 +41,6 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
     handleGoTo("prev");
-    console.log("regresar");
   };
   const handleNext = () => {
     if (selectedRol && experience) {
@@ -72,9 +71,6 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     setselectedRol("");
     setExperience(0);
   };
-
-  console.log(selectedRol);
-  console.log(currentUser.user_rols[0]);
 
   const handleBlurEdad = (value) => {
     setExperience(value);

@@ -54,11 +54,12 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     { label: "Ofrezco Empleo", value: "reclutador" },
     { label: "Busco Empleo", value: "empleado" },
   ];
-  console.log(chosenOption, path);
+
   {
     /*----------------Funcion next-------------- */
   }
   const handleNext = async (data) => {
+    console.log("tipo de usuario", chosenOption);
     if (chosenOption === "reclutador") {
       setPath(1);
     } else {
@@ -183,7 +184,7 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           }}
           selectedButtonColor={"#C27B34"}
           radio_props={options}
-          initial={0} //initial value of this group
+          initial={1} //initial value of this group
           onPress={(value) => {
             setChosenOption(value);
           }} //if the user changes options, set the new value

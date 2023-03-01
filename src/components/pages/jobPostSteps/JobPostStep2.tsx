@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
@@ -14,14 +13,11 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Controller } from "react-hook-form";
-import { schema } from "../../../utils/validationSchema/jobPost";
+import { schema } from "../../../utils/validationSchema/jobPostStep2";
 
 import { COLORS } from "../../../constants";
 
 import { CustomInput } from "../../common/CustomInput";
-import { UserContext } from "../../../GlobalStates/userContext";
-import { useUpdateUser } from "../../../hooks/useUpdateUser";
 import { SelectDropdown } from "../../common/CustomDropdown";
 
 const dataModalidad = [
@@ -29,6 +25,7 @@ const dataModalidad = [
   { id: "02", name: "Hibrido" },
   { id: "03", name: "Remoto" },
 ];
+
 const dataJornada = [
   { id: "01", name: "Full Time" },
   { id: "02", name: "Medio Tiempo" },
@@ -38,7 +35,6 @@ const dataJornada = [
 type FormValues = {
   job_country: string;
   job_region: string;
-  job_desc: string;
   job_work_place: string;
   job_working_day: string;
 };
@@ -54,8 +50,7 @@ type Props = {
   handleGoTo: (direction: Direction) => void;
 };
 
-export const ThirdStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
-  const { currentUser } = useContext(UserContext);
+export const JobPostStep2 = ({ jobPost, setJobPost, handleGoTo }: Props) => {
   const [job_work_place, setJobWorkPlace] = useState(jobPost.job_work_place);
   const [job_working_day, setJobWorkingDay] = useState(jobPost.job_working_day);
   const [msgError, setMsgError] = useState(null);
@@ -68,9 +63,8 @@ export const ThirdStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
     defaultValues: {
       job_country: jobPost.job_country,
       job_region: jobPost.job_region,
-      job_desc: jobPost.job_desc,
     },
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const onSelectWorkPlace = (item) => {
@@ -91,22 +85,15 @@ export const ThirdStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
       setMsgError({ error_working_day: "Debe de seleccionar una jornada" });
       return;
     }
-
     const newJobPost = {
       ...jobPost,
       job_country: data.job_country,
       job_region: data.job_region,
-      job_desc: data.job_desc,
       job_working_day,
       job_work_place,
     };
-    const userData = {
-      ...newJobPost,
-      token: currentUser.token,
-    };
-    const resp = await useUpdateUser(userData);
+    setJobPost(newJobPost);
 
-    console.log("carga exitosa se pasan los datos al backend", resp);
     handleNext();
   };
 

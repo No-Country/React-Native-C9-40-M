@@ -12,7 +12,19 @@ export const useLogin = (data: LoginProps) => {
       body: JSON.stringify(data),
     });
     const a = await response.json();
-    return a;
+    // esto se hizo para que los programas no reviente por el cambio de la estructura del user_rols
+    if (a.user.user_rols.length > 0) {
+      const newUserRols = [
+        {
+          rol_id: a.user.user_rols[0].rol_id,
+          name: a.user.user_rols[0].rol.name,
+        },
+      ];
+      const newUser = { ...a.user, user_rols: newUserRols };
+      return { token: a.token, user: newUser };
+    } else {
+      return a;
+    }
   };
 
   const respuesta = fetchUsers(newData);

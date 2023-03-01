@@ -11,10 +11,9 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
-import { Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { schema } from "../../../utils/validationSchema/jobPost";
+import { schema } from "../../../utils/validationSchema/jobPostStep1";
 
 import { COLORS } from "../../../constants";
 import { pickImage } from "../../../utils/pickImage";
@@ -38,9 +37,8 @@ type Props = {
   handleGoTo: (direction: Direction) => void;
 };
 
-export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
+export const JobPostStep1 = ({ jobPost, setJobPost, handleGoTo }: Props) => {
   const [image, setImage] = useState(jobPost.company_avatar || defaultImage);
-  const [errorMsg, setErrorMsg] = useState("");
 
   const {
     handleSubmit,
@@ -51,7 +49,7 @@ export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
       company_name: jobPost.company_name,
       job_desc: jobPost.job_desc,
     },
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const handleNext = (data) => {

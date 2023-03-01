@@ -101,8 +101,6 @@ export const MultipleSelectDropdown = ({
   const [showSelectedItems, setShowSelectedItems] = useState(values.length > 0);
   const [error, setError] = useState(false);
 
-  console.log(valuesSelected);
-
   const onSelectItems = (item) => {
     setIsChange(!isChange);
     const index = valuesSelected.findIndex((value) => value.id === item.id);

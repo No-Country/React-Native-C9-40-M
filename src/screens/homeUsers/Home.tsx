@@ -1,17 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  FlatList,
-} from "react-native";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
 import { UserContext } from "../../GlobalStates/userContext";
-import { COLORS, ROUTES } from "../../constants";
+import { COLORS } from "../../constants";
 import { OffersCard } from "../../components/pages/homeUsers/OffersCard";
 import { useGetJobs } from "../../hooks/useGetJobs";
 
