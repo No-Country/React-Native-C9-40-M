@@ -95,11 +95,11 @@ export const UserContextProvider = ({ children }) => {
 
   //Variables de selección
   const [jobs, setJobs] = useState([]);
+  const [data, setData] = useState();
   const [selectedRol, setselectedRol] = useState(null);
   const [selectedStack, setSelectedStack] = useState([]);
   const [experience, setExperience] = useState(0);
   const [description, setDescription] = useState();
-  const [data, setData] = useState();
 
   function getInfo() {
     fetch("https://node-server-navy-rho.vercel.app/jobs/")

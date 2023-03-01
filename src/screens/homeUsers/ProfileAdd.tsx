@@ -18,6 +18,8 @@ type Direction = {
 
 export const ProfileAdd = (props: Props) => {
   const { path } = useContext(UserContext);
+  const [rol, setRol] = useState("");
+  const [rolTech, setRolTech] = useState([]);
 
   const [step, setStep] = useState(1);
 
