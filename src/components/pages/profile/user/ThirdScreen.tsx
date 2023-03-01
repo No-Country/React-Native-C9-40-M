@@ -1,18 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Keyboard,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { UserContext } from "../../../../GlobalStates/userContext";
 import { MultipleSelectDropdown } from "../../../common/CustomSelectDropdown";
+import CustomNavigateButton from "../../../common/CustomNavigateButton";
 
 type Direction = {
   direction: "next" | "prev";
@@ -24,28 +16,17 @@ type Props = {
 };
 
 export const ThirdScreen = ({ step, handleGoTo }: Props) => {
-  const [keyboardShown, setKeyboardShown] = useState(false);
-
-  useEffect(() => {
-    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-      setKeyboardShown(true);
-    });
-
-    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-      setKeyboardShown(false);
-    });
-
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
-    };
-  }, []);
-
   /* Aqui almacenaremos las tecnologias dependiendo el rol que se seleccionara*/
   const [stackTecno, setStackTecno] = useState([]);
 
-  const { selectedRol, selectedStack, setSelectedStack, data } =
-    useContext(UserContext);
+  const {
+    selectedRol,
+    selectedStack,
+    setSelectedStack,
+    data,
+    currentUser,
+    setCurrentUser,
+  } = useContext(UserContext);
 
   //Funciones de navegacion con sus condicionales
   const handleBack = () => {
@@ -54,6 +35,11 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 
   const handleNext = () => {
     if (stackTecno.length >= 1) {
+      const newCurrentUser = {
+        ...currentUser,
+        user_tecnologies: [selectedStack],
+      };
+      console.log(newCurrentUser);
       handleGoTo("next");
     }
   };
@@ -61,7 +47,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
   useEffect(() => {
     setStackTecno(
       data
-        .filter((rol) => rol.name === selectedRol)[0]
+        .filter((rol) => rol.name === selectedRol.name)[0]
         .rol_tecnology.map((tec) => ({
           id: tec.tecnology_id,
           name: tec.tecnology.name,
@@ -81,7 +67,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
           <View style={styles.inputContainer}>
             {stackTecno.length > 0 && (
               <MultipleSelectDropdown
-                values={selectedStack}
+                values={currentUser.user_tecnologies}
                 data={stackTecno}
                 onSelect={setSelectedStack}
               />
@@ -89,39 +75,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
           </View>
         </View>
       </ScrollView>
-      {keyboardShown && (
-        <KeyboardAvoidingView
-          style={{ display: "none" }}
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-          keyboardVerticalOffset={1000} // ajusta este valor para hacer que el elemento desaparezca
-        ></KeyboardAvoidingView>
-      )}
-      {!keyboardShown && (
-        <View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => handleBack()}>
-              <View style={styles.buttonStyles}>
-                <Entypo name="arrow-left" size={24} color="white" />
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleNext()}>
-              <View style={styles.buttonNextStyles}>
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 20,
-                    marginRight: 10,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Guardar
-                </Text>
-                <Entypo name="arrow-right" size={24} color="white" />
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
+      <CustomNavigateButton handleBack={handleBack} handleNext={handleNext} />
     </View>
   );
 };
@@ -129,7 +83,7 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F6F7",
   },
 
   menu: {
@@ -250,38 +204,5 @@ const styles = StyleSheet.create({
     borderColor: "#363740",
     borderWidth: 2,
     color: "#fff",
-  },
-
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    margin: 20,
-  },
-  buttonStyles: {
-    width: 70,
-    height: 56,
-    backgroundColor: "#0E1545",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  buttonNextStyles: {
-    flexDirection: "row",
-    width: 150,
-    height: 56,
-    backgroundColor: "#0E1545",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 4,
   },
 });

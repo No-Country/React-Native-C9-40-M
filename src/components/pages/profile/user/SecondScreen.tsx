@@ -1,14 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Keyboard,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 import { Entypo } from "@expo/vector-icons";
 import { UserContext } from "../../../../GlobalStates/userContext";
@@ -16,8 +7,10 @@ import { SelectDropdown } from "../../../common/CustomSelectDropdown";
 import { CustomTextArea } from "../../../common";
 import { useForm } from "react-hook-form";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS } from "../../../../constants";
 import CustomInputNumber from "../../../common/CustomInputNumber";
+import CustomNavigateButton from "../../../common/CustomNavigateButton";
 
 type Direction = {
   direction: "next" | "prev";
@@ -37,30 +30,12 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     setExperience,
     description,
     setDescription,
+    currentUser,
+    setCurrentUser,
   } = useContext(UserContext);
-
   const [error, setError] = useState(false);
 
-  /* Teclado activo o no */
-  const [keyboardShown, setKeyboardShown] = useState(false);
-
-  useEffect(() => {
-    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
-      setKeyboardShown(true);
-    });
-
-    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
-      setKeyboardShown(false);
-    });
-
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
-    };
-  }, []);
-
-  /*Volvemos el array de los roles un objeto con clave para usar el buscador */
-
+  // Obtenemos los roles
   const rols = data.map((item) => ({ id: item.id, name: item.name }));
 
   //Funciones de navegacion con sus condicionales
@@ -70,6 +45,19 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
   };
   const handleNext = () => {
     if (selectedRol && experience) {
+      const newUserTecnhology =
+        selectedRol.name !== currentUser.user_rols[0]?.name
+          ? []
+          : currentUser.user_tecnologies;
+      const newCurrentUser = {
+        ...currentUser,
+        selectedRol,
+        experience,
+        description,
+        user_rols: [selectedRol],
+        user_tecnologies: newUserTecnhology,
+      };
+      setCurrentUser(newCurrentUser);
       handleGoTo("next");
     } else {
       setError(true);
@@ -79,28 +67,18 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     }
   };
 
-  // //Si se vuelve a esta pagina restablecer el rol porque se da a entender que quiere cambiarlo
-  // useEffect(() => {
-  //   setselectedRol(null);
-  //   console.log(description);
-  // }, []);
+  /*Eliminar todo */
+  const deleteAll = () => {
+    setselectedRol("");
+    setExperience(0);
+  };
+
+  console.log(selectedRol);
+  console.log(currentUser.user_rols[0]);
 
   const handleBlurEdad = (value) => {
     setExperience(value);
   };
-
-  type FormValues = {
-    empresa: string;
-    descripcion: string;
-  };
-
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {},
-  });
 
   return (
     <View style={styles.container}>
@@ -114,33 +92,33 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
           <View style={styles.inputContainer}>
             {selectedRol ? (
               <View>
-                <View style={styles.info}>
-                  <View style={{ left: 10 }}>
-                    <FontAwesome5
-                      onPress={() => setselectedRol("")}
-                      name="arrow-left"
+                <View style={{ ...styles.info, marginTop: 10 }}>
+                  <Text style={{ color: "white", left: 15 }}>
+                    {selectedRol ? selectedRol.name : ""}
+                  </Text>
+                  <View style={styles.materialIconStyle}>
+                    <MaterialIcons
+                      onPress={() => deleteAll()}
+                      name="cancel"
                       size={24}
                       color="white"
                     />
                   </View>
-                  <Text style={{ color: "white", left: 20 }}>
-                    {selectedRol ? selectedRol : ""}
-                  </Text>
                 </View>
                 {experience ? (
                   <View>
-                    <View style={styles.info}>
-                      <View style={{ left: 10 }}>
-                        <FontAwesome5
+                    <View style={{ ...styles.info, marginTop: 10 }}>
+                      <Text style={{ color: "white", left: 15 }}>
+                        {experience + " " + "años de experiencia"}
+                      </Text>
+                      <View style={styles.materialIconStyle}>
+                        <MaterialIcons
                           onPress={() => setExperience(0)}
-                          name="arrow-left"
+                          name="cancel"
                           size={24}
                           color="white"
                         />
                       </View>
-                      <Text style={{ color: "white", left: 20 }}>
-                        {experience + " " + "años de experiencia"}
-                      </Text>
                     </View>
                     <CustomTextArea
                       title=""
@@ -168,40 +146,7 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
           </View>
         </View>
       </ScrollView>
-      {keyboardShown && (
-        <KeyboardAvoidingView
-          style={{ display: "none" }}
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-          keyboardVerticalOffset={1000} // ajusta este valor para hacer que el elemento desaparezca
-        ></KeyboardAvoidingView>
-      )}
-      {!keyboardShown && (
-        <View>
-          {/* Contenido visible cuando el teclado no está activo */}
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => handleBack()}>
-              <View style={styles.buttonStyles}>
-                <Entypo name="arrow-left" size={24} color="white" />
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleNext()}>
-              <View style={styles.buttonNextStyles}>
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 20,
-                    marginRight: 10,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Guardar
-                </Text>
-                <Entypo name="arrow-right" size={24} color="white" />
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
+      <CustomNavigateButton handleBack={handleBack} handleNext={handleNext} />
     </View>
   );
 };
@@ -263,12 +208,18 @@ const styles = StyleSheet.create({
   info: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginTop: 20,
-    width: 242,
+    justifyContent: "space-between",
+    width: 255,
     height: 45,
+    marginTop: 15,
     backgroundColor: "#27358F",
     borderRadius: 8,
+    position: "relative",
+  },
+
+  materialIconStyle: {
+    position: "absolute",
+    right: 7,
   },
 
   inputText: {
@@ -383,42 +334,5 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: 16,
-  },
-
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    margin: 20,
-    zIndex: 10,
-  },
-  buttonStyles: {
-    flexDirection: "row",
-    alignContent: "center",
-    width: 80,
-    height: 56,
-    backgroundColor: "#0E1545",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  buttonNextStyles: {
-    flexDirection: "row",
-    alignContent: "center",
-    width: 150,
-    height: 56,
-    backgroundColor: "#0E1545",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 4,
   },
 });
