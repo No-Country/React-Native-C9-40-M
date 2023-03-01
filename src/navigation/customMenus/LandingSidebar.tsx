@@ -1,12 +1,13 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-// import { useRoute } from '@react-navigation/native';
 import { DrawerContentScrollView } from "@react-navigation/drawer";
 
 import { COLORS, ROUTES } from "../../constants";
-import { MenuButtonItem } from "./MenuButtonItem";
 import logo from "../../../assets/images/logo.png";
+import { UserMenu } from "./UserMenu";
+import { LandingMenu } from "./LandingMenu";
+import { RecruiterMenu } from "./RecruiterMenu";
 
-export const LandingSidebar = ({ navigation, state }) => {
+export const LandingSidebar = ({ state }) => {
   const routeName = state.routeNames[state.index];
 
   let activeScreen: string;
@@ -20,21 +21,36 @@ export const LandingSidebar = ({ navigation, state }) => {
       activeScreen = "Menu inicial";
       bgColor = "#FFEBD7";
       break;
+
+    case ROUTES.HOME:
+    case ROUTES.HOME_DRAWER:
+    case ROUTES.PROFILE_SHOW:
+    case ROUTES.PROFILE_SHOW_DRAWER:
+    case ROUTES.PROFILE:
+    case ROUTES.PROFILE_DRAWER:
+    case ROUTES.APPLICATIONS:
+    case ROUTES.APPLICATIONS_DRAWER:
+    case ROUTES.NOTIFICATION:
+    case ROUTES.NOTIFICATION_DRAWER:
+    case ROUTES.SETTING:
+    case ROUTES.SETTING_DRAWER:
     case ROUTES.JOBS:
     case ROUTES.JOBS_DRAWER:
-    case ROUTES.PROFILE_DRAWER:
-    case ROUTES.HOME_DRAWER:
       activeScreen = "Menu User";
-      bgColor = "#B5BCE5";
+      bgColor = COLORS.cardBg;
 
       break;
+    case ROUTES.HOME_RECRUITER_DRAWER:
     case ROUTES.JOBSPOST:
     case ROUTES.JOBSPOST_DRAWER:
     case ROUTES.JOBSEEKERLIST:
     case ROUTES.JOBSEEKERLIST_DRAWER:
-    case ROUTES.HOME_RECRUITER_DRAWER:
       activeScreen = "Menu Recruiter";
-      bgColor = "#F7F6F5";
+      bgColor = COLORS.cardBg;
+      break;
+    default:
+      activeScreen = "Menu inicial";
+      bgColor = "#FFEBD7";
       break;
   }
 
@@ -43,88 +59,17 @@ export const LandingSidebar = ({ navigation, state }) => {
       style={[styles.menuContainer, { backgroundColor: bgColor }]}
     >
       <>
-        <View style={styles.imageContainer}>
-          <Image source={logo} style={styles.image} />
-        </View>
-        <Text style={styles.menuTitle}>{activeScreen}</Text>
-        {activeScreen === "Menu inicial" && (
-          <>
-            <MenuButtonItem
-              text={ROUTES.LANDING}
-              onPress={() => navigation.navigate(ROUTES.LANDING_DRAWER)}
-              icon="home"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={ROUTES.LOGIN}
-              onPress={() => navigation.navigate(ROUTES.LOGIN_DRAWER)}
-              icon="sign-in"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={ROUTES.REGISTER}
-              onPress={() => navigation.navigate(ROUTES.REGISTER_DRAWER)}
-              icon="user-plus"
-              color={COLORS.logoGold}
-            />
-          </>
+        {activeScreen !== "Menu User" && (
+          <View>
+            <View style={styles.imageContainer}>
+              <Image source={logo} style={styles.image} />
+            </View>
+            <Text style={styles.menuTitle}>{activeScreen}</Text>
+          </View>
         )}
-        {activeScreen === "Menu User" && (
-          <>
-            <MenuButtonItem
-              text={ROUTES.HOME}
-              onPress={() => navigation.navigate(ROUTES.HOME_DRAWER)}
-              icon="home"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={ROUTES.PROFILE}
-              onPress={() => navigation.navigate(ROUTES.PROFILE_DRAWER)}
-              icon="gear"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={ROUTES.JOBS}
-              onPress={() => navigation.navigate(ROUTES.JOBS_DRAWER)}
-              icon="briefcase"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={"Cerrar Sesión"}
-              onPress={() => navigation.navigate(ROUTES.LANDING_DRAWER)}
-              icon="sign-out"
-              color={COLORS.logoGold}
-            />
-          </>
-        )}
-        {activeScreen === "Menu Recruiter" && (
-          <>
-            <MenuButtonItem
-              text={ROUTES.HOME_RECRUITER}
-              onPress={() => navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER)}
-              icon="home"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={ROUTES.JOBSPOST}
-              onPress={() => navigation.navigate(ROUTES.JOBSPOST_DRAWER)}
-              icon="wpforms"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={ROUTES.JOBSEEKERLIST}
-              onPress={() => navigation.navigate(ROUTES.JOBSEEKERLIST_DRAWER)}
-              icon="address-book-o"
-              color={COLORS.logoGold}
-            />
-            <MenuButtonItem
-              text={"Cerrar Sesión"}
-              onPress={() => navigation.navigate(ROUTES.LANDING_DRAWER)}
-              icon="sign-out"
-              color={COLORS.logoGold}
-            />
-          </>
-        )}
+        {activeScreen === "Menu inicial" && <LandingMenu />}
+        {activeScreen === "Menu User" && <UserMenu />}
+        {activeScreen === "Menu Recruiter" && <RecruiterMenu />}
       </>
     </DrawerContentScrollView>
   );

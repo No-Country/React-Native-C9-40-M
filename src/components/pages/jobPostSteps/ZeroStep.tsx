@@ -8,15 +8,28 @@ import {
   ScrollView,
 } from "react-native";
 
-import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
-import { SelectDropdown } from "../../common/CustomDropdown";
+
+import { Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { schema } from "../../../utils/validationSchema/jobPost";
+
 import { COLORS } from "../../../constants";
+import { pickImage } from "../../../utils/pickImage";
+import { CustomInput } from "../../common";
+
+const defaultImage =
+  "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png";
 
 type Direction = {
   direction: "next" | "prev";
+};
+
+type FormValues = {
+  company_name: string;
+  job_desc: string;
 };
 
 type Props = {
@@ -26,127 +39,80 @@ type Props = {
 };
 
 export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
+  const [image, setImage] = useState(jobPost.company_avatar || defaultImage);
   const [errorMsg, setErrorMsg] = useState("");
-  const [image, setImage] = useState(null);
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      company_name: jobPost.company_name,
+      job_desc: jobPost.job_desc,
+    },
+    // resolver: yupResolver(schema),
+  });
 
-  let openImage = async () => {
-    let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (permissionRe.granted === false) {
-      alert("Los permisos para acceder a la camara son requeridos");
-      return;
-    }
-
-    const pickRe = await ImagePicker.launchImageLibraryAsync();
-
-    if (pickRe.canceled === true) {
-      return;
-    }
-    setSelectedImage({ localUri: pickRe.uri });
-    console.log(selectedImage);
-  };
-
-  const handleNext = async () => {
-    //if everything right go to next screen
-    const newJobPost = { jobPost };
+  const handleNext = (data) => {
+    const newJobPost = {
+      ...jobPost,
+      company_avatar: image,
+      company_name: data.company_name,
+      job_desc: data.job_desc,
+    };
     setJobPost(newJobPost);
     handleGoTo("next");
-
-    // const respuestaUpdate = await usePostJob(jobPostData);
   };
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.menu}>
+      <ScrollView>
         <View style={styles.header}>
-          <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-          >
-            <Button
-              title="Pick an image from camera roll"
-              onPress={pickImage}
-            />
-            {image && (
-              <Image
-                source={{ uri: image }}
-                style={{ width: 200, height: 200 }}
-              />
-            )}
-          </View>
-          <Text style={styles.title}>Cuentanos sobre tu trabajo</Text>
+          <Text style={styles.title}>Cuentanos sobre la vacante</Text>
+          <Text style={styles.subtitle}>
+            Completa los detalles del puesto requerido para encontrar al
+            candidato ideal..
+          </Text>
           <View style={styles.row}>
-            <Image
-              source={{
-                uri:
-                  selectedImage !== null
-                    ? selectedImage.localUri
-                    : "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
-              }}
-              style={styles.image}
-            />
+            <Image source={{ uri: image }} style={styles.image} />
+            <Ionicons name="folder-outline" size={24} color="#ff000" />
 
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                marginBottom: 20,
-              }}
-            >
-              <Ionicons name="folder-outline" size={27} color="#ff000" />
-
-              <TouchableOpacity onPress={openImage}>
-                <Text
-                  style={{
-                    fontSize: 21,
-                    textDecorationLine: "underline",
-                    fontWeight: "500",
-                  }}
-                >
-                  Cargar foto de perfil
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={() => pickImage(setImage)}>
+              <Text
+                style={{
+                  fontSize: 14,
+                  textDecorationLine: "underline",
+                  fontWeight: "500",
+                  marginLeft: 10,
+                }}
+              >
+                Cargar foto de perfil
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
-
-        <Text style={styles.title}>¿Qué rol estas buscando?</Text>
-        <Text style={styles.subtitle}>
-          Cuéntanos cual es el rol que más te identifica el pérfil que estas
-          búscando
-        </Text>
-        {/* <View style={styles.inputContainer}>
-          <Text style={styles.inputText}>
-            {selectedRol
-              ? `El perfil buscado es ${selectedRol}`
-              : "¿Qué perfil buscas?"}
-          </Text>
-
-          <View>
-            <SelectDropdown
-              value={selectedRol}
-              data={allRol}
-              onSelect={setSelectedRol}
-            />
-          </View>
-
-          {errorMsg && (
-            <View style={styles.errorMsg}>
-              <Text style={styles.errorText}> {errorMsg}</Text>
-            </View>
-          )}
-        </View> */}
+        <CustomInput
+          name="company_name"
+          label="Nombre de la empresa"
+          control={control}
+          placeholder="Escribe el nombre de la empresa"
+        />
+        <CustomInput
+          name="job_desc"
+          label="Describe la posición buscada"
+          control={control}
+          placeholder="Escribe una descripción de la posición"
+          multiline
+        />
       </ScrollView>
-      {/* <View style={styles.buttonContainer}>
-        {selectedRol && (
-          <TouchableOpacity onPress={() => handleNext()}>
-            <View style={styles.buttonStyles}>
-              <Entypo name="arrow-right" size={24} color="white" />
-            </View>
-          </TouchableOpacity>
-        )}
-      </View> */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={handleSubmit(handleNext)}>
+          <View style={styles.buttonStyles}>
+            <Entypo name="arrow-right" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -154,11 +120,11 @@ export const ZeroStep = ({ jobPost, setJobPost, handleGoTo }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 20,
     backgroundColor: COLORS.screenBg,
   },
   header: {
-    backgroundColor: COLORS.dangerLight,
-    padding: 10,
+    marginBottom: 10,
   },
   row: {
     flexDirection: "row",
@@ -166,15 +132,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    height: 100,
-    width: 100,
-    borderRadius: 75,
+    height: 75,
+    width: 75,
+    borderRadius: 45,
     resizeMode: "contain",
-    marginleft: 20,
-    marginBottom: 20,
-  },
-  menu: {
-    flex: 1,
+    marginRight: 20,
   },
   title: {
     fontSize: 24,
@@ -183,9 +145,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "300",
     paddingHorizontal: 10,
+    marginBottom: 10,
   },
 
   inputContainer: {

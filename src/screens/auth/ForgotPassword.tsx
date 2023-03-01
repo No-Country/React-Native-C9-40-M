@@ -38,7 +38,7 @@ export const ForgotPasswordScreen = () => {
     navigation.navigate(ROUTES.RESET_PASSWORD);
   };
   const goToLogin = () => {
-    navigation.navigate(ROUTES.LOGIN_DRAWER);
+    navigation.navigate(ROUTES.LOGIN);
   };
 
   return (

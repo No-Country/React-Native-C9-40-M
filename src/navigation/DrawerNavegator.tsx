@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import { COLORS, ROUTES } from "../constants";
 import {
+  ApplicationsList,
   ForgotPasswordScreen,
   HomeRecuiter,
   HomeScreen,
@@ -14,6 +15,7 @@ import {
   LandingScreen,
   LoginScreen,
   ProfileAdd,
+  ProfileShow,
   RegisterScreen,
   RegisterSuccess,
 } from "../screens";
@@ -28,7 +30,7 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={(props) => <LandingSidebar {...props} />}
       screenOptions={
-        ({ activeTintColor: COLORS.logoBlue },
+        ({ activeTintColor: COLORS.primary },
         {
           headerRight: () => (
             <View style={styles.imageContainer}>
@@ -37,10 +39,10 @@ export const DrawerNavigator = () => {
           ),
         })
       }
-      // initialRouteName={ROUTES.LANDING_DRAWER}
-      initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
+      // initialRouteName={ROUTES.HOME_RECRUITER_DRAWER}
       // initialRouteName={ROUTES.HOME_DRAWER}
     >
+      {/* Rutas mostradas o accesible desde el "Menu inicial" */}
       <Drawer.Screen
         name={ROUTES.LANDING_DRAWER}
         component={LandingScreen}
@@ -48,6 +50,26 @@ export const DrawerNavigator = () => {
           title: ROUTES.LANDING,
           drawerIcon: ({ focused, color, size }) => (
             <Icon name="home-sharp" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.LOGIN}
+        component={LoginScreen}
+        options={{
+          title: ROUTES.LOGIN,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="enter-outline" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.REGISTER}
+        component={RegisterScreen}
+        options={{
+          title: ROUTES.REGISTER,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="person-add" size={18} color={color} />
           ),
         }}
       />
@@ -62,36 +84,6 @@ export const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name={ROUTES.HOME_RECRUITER_DRAWER}
-        component={HomeRecuiter}
-        options={{
-          title: ROUTES.HOME_RECRUITER,
-          drawerIcon: ({ focused, color, size }) => (
-            <Icon name="home-sharp" size={18} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name={ROUTES.LOGIN_DRAWER}
-        component={LoginScreen}
-        options={{
-          title: ROUTES.LOGIN,
-          drawerIcon: ({ focused, color, size }) => (
-            <Icon name="enter-outline" size={18} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name={ROUTES.REGISTER_DRAWER}
-        component={RegisterScreen}
-        options={{
-          title: ROUTES.REGISTER,
-          drawerIcon: ({ focused, color, size }) => (
-            <Icon name="person-add" size={18} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
         name={ROUTES.FORGOT_PASSWORD_DRAWER}
         component={ForgotPasswordScreen}
         options={{
@@ -101,11 +93,62 @@ export const DrawerNavigator = () => {
           ),
         }}
       />
+      {/* Rutas mostradas o accesible desde el "Menu User" */}
       <Drawer.Screen
         name={ROUTES.HOME_DRAWER}
         component={HomeScreen}
         options={{
           title: ROUTES.HOME,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="thumbs-up-sharp" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.PROFILE_SHOW}
+        component={ProfileShow}
+        options={{
+          title: ROUTES.PROFILE_SHOW,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.PROFILE_DRAWER}
+        component={ProfileAdd}
+        options={{
+          title: ROUTES.PROFILE,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.APPLICATIONS}
+        component={ApplicationsList}
+        options={{
+          title: ROUTES.APPLICATIONS,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="thumbs-up-sharp" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.NOTIFICATION}
+        component={HomeScreen}
+        options={{
+          title: ROUTES.NOTIFICATION,
+          drawerIcon: ({ focused, color, size }) => (
+            <Icon name="thumbs-up-sharp" size={18} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name={ROUTES.SETTING}
+        component={HomeScreen}
+        options={{
+          title: ROUTES.SETTING,
           drawerIcon: ({ focused, color, size }) => (
             <Icon name="thumbs-up-sharp" size={18} color={color} />
           ),
@@ -121,13 +164,14 @@ export const DrawerNavigator = () => {
           ),
         }}
       />
+
       <Drawer.Screen
-        name={ROUTES.PROFILE_DRAWER}
-        component={ProfileAdd}
+        name={ROUTES.HOME_RECRUITER_DRAWER}
+        component={HomeRecuiter}
         options={{
-          title: ROUTES.PROFILE,
+          title: ROUTES.HOME_RECRUITER,
           drawerIcon: ({ focused, color, size }) => (
-            <Icon name="" size={18} color={color} />
+            <Icon name="home-sharp" size={18} color={color} />
           ),
         }}
       />

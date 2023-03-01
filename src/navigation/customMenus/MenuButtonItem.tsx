@@ -1,13 +1,13 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 
 export const MenuButtonItem = ({ text, onPress, icon, color }) => {
   return (
     <View style={styles.buttonContainer}>
       <Pressable onPress={onPress} style={styles.optionContainer}>
         <View style={styles.icon}>
-          <FontAwesome name={icon} size={18} color={color} />
+          <Ionicons name={icon} size={20} color={color} />
         </View>
         <Text style={styles.menuItem}> {text}</Text>
       </Pressable>
@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   optionContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 22,
+    height: 22,
   },
   menuItem: {
     margin: 5,

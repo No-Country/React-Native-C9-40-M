@@ -20,7 +20,6 @@ const initialUser = {
   status: null,
   url_github: null,
   url_linkedin: null,
-
   user_rols: [],
   user_tecnologies: [],
   isFreelancer: false,

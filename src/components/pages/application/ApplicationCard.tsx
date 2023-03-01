@@ -1,9 +1,8 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
-import { FontAwesome, Fontisto, Ionicons } from "@expo/vector-icons";
+import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../constants";
 import { useState } from "react";
-import { OffersDetail } from "./OffersDetail";
 import { CARD } from "../../../constants/constants";
 import { formatDate } from "../../../utils/formatDate";
 
@@ -26,13 +25,12 @@ type JobProps = {
   };
 };
 
-export const OffersCard = ({ job }: JobProps) => {
+export const ApplicationCard = ({ job }: JobProps) => {
   const {
     id,
     image,
     title,
     company_id,
-    description,
     company,
     work_place,
     working_day,
@@ -47,12 +45,6 @@ export const OffersCard = ({ job }: JobProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image
-          source={{
-            uri: image,
-          }}
-          style={styles.image}
-        />
         <View>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.company}>
@@ -61,19 +53,10 @@ export const OffersCard = ({ job }: JobProps) => {
         </View>
         <Pressable style={[styles.rowAbsolute]}>
           <Ionicons name="share-social-outline" size={18} color="black" />
-          <Ionicons name="ios-bookmark-outline" size={18} color="black" />
+          <Ionicons name="bookmark" size={18} color="black" />
         </Pressable>
       </View>
       <View style={styles.body}>
-        <Pressable
-          style={styles.detailButton}
-          onPress={() => {
-            setShowModal(true);
-          }}
-        >
-          <Text style={styles.button}>Detalle</Text>
-        </Pressable>
-
         <View style={styles.row}>
           <View style={styles.mr8}>
             <Fontisto name="world-o" size={24} color="black" />
@@ -101,11 +84,10 @@ export const OffersCard = ({ job }: JobProps) => {
           <Text>{formatDate(post_date)}</Text>
         </View>
       </View>
-      <OffersDetail
-        job={job}
-        setShowModal={setShowModal}
-        showModal={showModal}
-      />
+      <View style={[styles.row, styles.end]}>
+        <Text style={styles.full}> {"Status"}</Text>
+        <Ionicons name="trash-outline" size={20} color="black" />
+      </View>
     </View>
   );
 };
@@ -137,6 +119,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 5,
     alignItems: "center",
+  },
+  end: {
+    justifyContent: "flex-end",
+  },
+  full: {
+    flex: 1,
+    flexDirection: "row",
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "500",
   },
   rowAbsolute: {
     flexDirection: "row",
