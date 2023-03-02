@@ -79,10 +79,10 @@ POST https://jobsapi-wtcn.onrender.com/api/v1/jobs
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzYxNTQxMywiZXhwIjoxNjc3OTc1NDEzfQ.yUXkj6fgPNZqnktxXeF6T9SIlkbplnysvSQObVqtW_HYv6Cen1KCPqmw-L7menbb2PXwbzpqtKq7vlKcsLEmMg
 Content-Type: application/json
 
-{ "title":"Front End Developer",
+{ "title":"Programador Java",
   "description":"buenas",
   "image":"",
-  "country":"Venezuela",
+  "country":"Colombia",
   "work_place":"Presencial",
   "working_day":" Full-time",
   "company_name":"La Favorita",
@@ -98,7 +98,7 @@ Content-Type: application/json
 }
 
 ### GET JOBS Get all Jobs with pagination
-GET https://jobsapi-wtcn.onrender.com/api/v1/jobs?page=0&size=1
+GET https://jobsapi-wtcn.onrender.com/api/v1/jobs?page=0&size=25
 
 
 ### GET JOBS Application

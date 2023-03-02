@@ -103,6 +103,7 @@ export const JobPost = (props: Props) => {
           )}
           {step === 4 && (
             <JobPostStep4
+              allRol={allRol}
               rolTec={rolTec}
               jobPost={jobPost}
               setJobPost={setJobPost}

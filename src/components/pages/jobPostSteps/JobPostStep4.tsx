@@ -19,6 +19,7 @@ type Direction = {
 };
 
 type Props = {
+  allRol: [];
   rolTec: [];
   jobPost: CurrentJobPost;
   setJobPost: () => void;
@@ -26,6 +27,7 @@ type Props = {
 };
 
 export const JobPostStep4 = ({
+  allRol,
   rolTec,
   jobPost,
   setJobPost,
@@ -40,14 +42,19 @@ export const JobPostStep4 = ({
 
   const handleNext = async () => {
     if (selectedStack.length > 0) {
-      // const job_requirements = rolTec
-      //   .filter((req) => selectedStack.includes(req.value))
-      //   .map((tec) => ({ id: tec.id, name: tec.value }));
+      const rolsel = allRol.filter((rol) => rol.name === jobPost.job_offered);
 
-      const newJobPost = { ...jobPost, job_requirements: selectedStack };
+      const newJobPost = {
+        ...jobPost,
+        job_offered_id: rolsel[0].id,
+        job_requirements: selectedStack,
+      };
       setJobPost(newJobPost);
 
-      const jobData = { ...jobPost, token: currentUser.token };
+      console.log(newJobPost);
+
+      const jobData = { ...newJobPost, token: currentUser.token };
+
       const jobPostResult = await useJobPost(jobData);
 
       console.log(jobPostResult);

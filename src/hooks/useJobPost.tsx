@@ -16,6 +16,7 @@ type createJobProps = {
   job_country: string;
   job_desc: string;
   job_offered: string;
+  job_offered_id: string;
   job_region: string;
   job_requirements: JobReq[];
   job_work_place: string;
@@ -55,36 +56,39 @@ https://backapijobs-production-ad45.up.railway.app/api/v1/jobs
  */
 
 export const useJobPost = async (jobData: createJobProps) => {
-  console.log("Que viene", jobData.job_requirements);
-
-  const newJobReq = jobData.job_requirements((tec) => {
+  const newJobReq = jobData.job_requirements.map((tec) => {
     return { id_tecno: tec.id, years: 1 };
   });
+
+  console.log(jobData);
+
   const job = {
     title: jobData.job_offered,
     description: jobData.job_desc,
-    image: jobData.company_avatar,
+    image: "",
     country: jobData.job_country,
     work_place: jobData.job_work_place,
     working_day: jobData.job_work_place,
     company_name: jobData.company_name,
     tecnologies_job: newJobReq,
-    rol_job_id: jobData.job_offered[0].rol_id,
+    rol_job_id: jobData.job_offered_id,
     job_salary: {
       price: 0,
     },
   };
 
   try {
+    console.log(job, " esto es lo que se manda");
     const response = await globalThis.fetch(`${URL}jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jobData.token}`,
       },
-      body: JSON.stringify(jobData),
+      body: JSON.stringify(job),
     });
     const a = await response.json();
+    console.log("esto es lo que retorno", a);
     return "ok";
   } catch (error) {
     console.log("hay un error", error);

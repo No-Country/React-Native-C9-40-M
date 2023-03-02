@@ -68,6 +68,10 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
     setShowModal(false);
   };
 
+  const imageDefault =
+    image ||
+    "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png";
+
   return (
     <Modal animationType="slide" visible={showModal}>
       <ScrollView>
@@ -76,7 +80,7 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
             <View style={styles.header}>
               <Image
                 source={{
-                  uri: image,
+                  uri: imageDefault,
                 }}
                 style={styles.image}
               />
@@ -104,7 +108,7 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
                 <View style={styles.mr8}>
                   <Ionicons name="cash-outline" size={24} color="black" />
                 </View>
-                <Text>$ {salaries[0].price}</Text>
+                <Text>$ {salaries[0]?.price}</Text>
               </View>
               <View style={[styles.row]}>
                 <View style={styles.mr8}>
