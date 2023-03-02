@@ -1,12 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
-import { Entypo } from "@expo/vector-icons";
 import { UserContext } from "../../../../GlobalStates/userContext";
 import { SelectDropdown } from "../../../common/CustomSelectDropdown";
 import { CustomTextArea } from "../../../common";
-import { useForm } from "react-hook-form";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS } from "../../../../constants";
 import CustomInputNumber from "../../../common/CustomInputNumber";
@@ -52,7 +49,7 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
         ...currentUser,
         selectedRol,
         experience,
-        description,
+        about_me: description,
         user_rols: [selectedRol],
         user_tecnologies: newUserTecnhology,
       };
@@ -120,6 +117,7 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
                       title=""
                       placeholder="Cuentanos un poco acerca de ti"
                       value={description}
+                      onChangeText={setDescription}
                     />
                   </View>
                 ) : (

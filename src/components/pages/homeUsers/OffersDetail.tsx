@@ -57,14 +57,12 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
 
   const ApplicationJob = async (id) => {
     const applicationData = { job_id: id, token: currentUser.token };
-    console.log(applicationData);
     const result = await useJobAplication(applicationData);
-    console.log(result);
     console.warn("Postulación exitosa");
   };
 
   const handleChoice = (direction: number) => {
-    direction === -1 ? alert("NOPE") : ApplicationJob(id);
+    direction === -1 ? console.warn("Vacante Rechazada") : ApplicationJob(id);
     setShowModal(false);
   };
 

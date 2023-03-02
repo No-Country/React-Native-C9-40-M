@@ -5,27 +5,21 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Keyboard,
   ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Button,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import * as ImagePicker from "expo-image-picker";
-import { Entypo } from "@expo/vector-icons";
-import { SelectList } from "react-native-dropdown-select-list";
+import { pickImage } from "../../../../utils/pickImage";
 import { UserContext } from "../../../../GlobalStates/userContext";
-import logo from "../../../assets/images/logo.png";
-import { CustomInput } from "../../../common/CustomInput";
+import { CustomInput, CustomTextArea } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
-import { CustomTextArea } from "../../../common/CustomTextArea";
 
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
-import { CustomTextInput } from "../../../common/CustomTextInput";
 import CustomNavigateButton from "../../../common/CustomNavigateButton";
+
+const defaultImage =
+  "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png";
 
 type Direction = {
   direction: "next" | "prev";
@@ -38,12 +32,21 @@ type Props = {
 
 export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [image, setImage] = useState(
+    currentUser.company_avatar || defaultImage
+  );
   const [freelancer, setFreelancer] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleNext = (data) => {
+    const newUserData = {
+      ...currentUser,
+      company_avatar: image,
+      company: data.company,
+      description: data.description,
+    };
+
+    setCurrentUser(newUserData);
     handleGoTo("next");
   };
 
@@ -56,8 +59,8 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
   }
 
   type FormValues = {
-    empresa: string;
-    descripcion: string;
+    company: string;
+    description: string;
   };
 
   const {
@@ -66,31 +69,11 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
     formState: { errors: formErrors },
   } = useForm<FormValues>({
     defaultValues: {
-      empresa: currentUser.empresa,
-      descripcion: currentUser.descripcion,
+      company: currentUser.company,
+      description: currentUser.description,
     },
     // resolver: yupResolver(schema),
   });
-
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  let openImage = async () => {
-    let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (permissionRe.granted === false) {
-      alert("Los permisos para acceder a la camara son requeridos");
-      return;
-    }
-
-    const pickRe = await ImagePicker.launchImageLibraryAsync();
-
-    if (pickRe.canceled === true) {
-      return;
-    }
-
-    setSelectedImage({ localUri: pickRe.assets[0].uri });
-    console.log(selectedImage);
-  };
 
   const [text, setText] = useState("");
 
@@ -100,15 +83,7 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
         <View>
           <Text style={styles.titleText}>Nombre de la empresa</Text>
           <View style={styles.empresaContainer}>
-            <Image
-              source={{
-                uri:
-                  selectedImage !== null
-                    ? selectedImage.localUri
-                    : "https://www.pngiteme.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
-              }}
-              style={styles.circleImage}
-            />
+            <Image source={{ uri: image }} style={styles.circleImage} />
             <View
               style={{
                 display: "flex",
@@ -123,7 +98,7 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
                 color="#ff000"
               />
 
-              <TouchableOpacity onPress={openImage}>
+              <TouchableOpacity onPress={() => pickImage(setImage)}>
                 <Text
                   style={{
                     fontSize: 15,
@@ -143,7 +118,7 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
           >
             <View style={{ maxWidth: "98%" }}>
               <CustomInput
-                name="nombre"
+                name="company"
                 label="Nombre de la empresa"
                 control={control}
                 placeholder="Escriba el nombre de la empresa"
@@ -152,10 +127,10 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
 
             <View style={{ marginLeft: 10 }}>
               <CustomTextArea
-                title="Descripción"
+                name="description"
+                label="Descripción"
+                control={control}
                 placeholder="Escribe una breve descripción de la empresa..."
-                value={description}
-                placeholder="Ingrese una descripción"
               />
             </View>
           </View>
@@ -163,7 +138,10 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
           <View style={styles.inputContainer}></View>
         </View>
       </ScrollView>
-      <CustomNavigateButton handleBack={handleBack} handleNext={handleNext} />
+      <CustomNavigateButton
+        handleBack={handleBack}
+        handleNext={handleSubmit(handleNext)}
+      />
     </View>
   );
 };

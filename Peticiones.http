@@ -11,7 +11,7 @@ Content-Type: application/json
 POST https://jobsapi-wtcn.onrender.com/api/v1/auth/login
 Content-Type: application/json
 
-{"email": "tutaguaradigital@gmail.com", "password": "a1a2a3A$"}
+{"email": "eliminar@correo.com", "password": "a1a2a3A$"}
 
 
 ### ALL USERS => (Hook = useGetJobSeekers) 
@@ -43,13 +43,12 @@ Content-Type: application/json
 
 ### UPDATE USER  basic information using toke
 PUT https://jobsapi-wtcn.onrender.com/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzY3ODIzMiwiZXhwIjoxNjc4MDM4MjMyfQ.Hrnc1YvIGt7iMaEb3b2y13SlbbLr69CRSJM8P_AsBEdVYK36uj3dMIeiwW_3X4a1yb7qvZic8jJTez0RhQRbdQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoiZWxpbWluYXJAY29ycmVvLmNvbSIsImlhdCI6MTY3NzczMDc5MSwiZXhwIjoxNjc4MDkwNzkxfQ.iXbGfa8YrJbXAsnQkwRScQ4-ygGzG-bx6vlfBusEQbdXNV6tlndE5MLMbdEi4Cci0KOSdvR-ON3ZRGQlH5dMfA
 Content-Type: application/json
 
 {  
-  "company" : "la favorita", 
-  "about_me": "Tengo 10 años de experiencia como Backend developer, realizando proyectos bajo python con lenguaje principal, tambien domino java, y estoy aprendiendo actualmente react native. Manejo todo tipo de BD, SQL y No SQL. Tambien he realizado proyecto utilizando Java y PHP" 
-
+  "avatar" : null,
+  "status" : null 
 }
 
 ### UPDATE USER add new rol to user using token and rol_id y de URL 
@@ -134,19 +133,19 @@ Content-Type: application/json
 
 
 ### crear tecnologias
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/tecnology
+POST https://jobsapi-wtcn.onrender.com/api/v1/tecnology
 Content-Type: application/json
 
 {
-"name":"C++" 
+"name":"TypeScript" 
 } 
 
 ### crear rol
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol
+POST https://jobsapi-wtcn.onrender.com/api/v1/rol
 Content-Type: application/json
 
 {
-"name":"Data Science" 
+"name":"Data Base Adminitrator" 
 } 
 
 
@@ -155,7 +154,7 @@ POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_and_tecnology
 Content-Type: application/json
 
 {
-"rol_id":3,
-"tecnology_id":17
+"rol_id":1,
+"tecnology_id":11
 } 
 
