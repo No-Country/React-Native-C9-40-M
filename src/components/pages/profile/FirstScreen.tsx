@@ -186,7 +186,8 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
           label="Teléfono *"
           control={control}
           placeholder="¿Cuál es tu número de contacto?"
-          keyboardType="name-phone-pad"
+          keyboardType="numeric"
+
         />
 
         <View style={{ marginBottom: 50 }}>
