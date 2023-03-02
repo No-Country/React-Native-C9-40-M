@@ -14,12 +14,6 @@ export const Footer = ({ handleChoice }) => {
         onPress={() => handleChoice(-1)}
       />
       <RoundButton
-        name="heart-o"
-        size={30}
-        color={COLORS.like}
-        onPress={() => handleChoice(0)}
-      />
-      <RoundButton
         name="thumbs-o-up"
         size={30}
         color={COLORS.like}

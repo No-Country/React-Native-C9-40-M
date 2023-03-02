@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import {
   StyleSheet,
@@ -11,38 +11,54 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { MultipleSelectDropdown } from "../../common/CustomDropdown";
 import { COLORS } from "../../../constants";
+import { UserContext } from "../../../GlobalStates/userContext";
+import { useJobPost } from "../../../hooks/useJobPost";
 
 type Direction = {
   direction: "next" | "prev";
 };
 
 type Props = {
+  allRol: [];
   rolTec: [];
   jobPost: CurrentJobPost;
   setJobPost: () => void;
   handleGoTo: (direction: Direction) => void;
 };
 
-export const SecondStep = ({
+export const JobPostStep4 = ({
+  allRol,
   rolTec,
   jobPost,
   setJobPost,
   handleGoTo,
 }: Props) => {
+  const { currentUser } = useContext(UserContext);
   const [selectedStack, setSelectedStack] = useState(jobPost.job_requirements);
 
   const handleBack = () => {
     handleGoTo("prev");
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (selectedStack.length > 0) {
-      // const job_requirements = rolTec
-      //   .filter((req) => selectedStack.includes(req.value))
-      //   .map((tec) => ({ id: tec.id, name: tec.value }));
+      const rolsel = allRol.filter((rol) => rol.name === jobPost.job_offered);
 
-      const newJobPost = { ...jobPost, job_requirements: selectedStack };
+      const newJobPost = {
+        ...jobPost,
+        job_offered_id: rolsel[0].id,
+        job_requirements: selectedStack,
+      };
       setJobPost(newJobPost);
+
+      console.log(newJobPost);
+
+      const jobData = { ...newJobPost, token: currentUser.token };
+
+      const jobPostResult = await useJobPost(jobData);
+
+      console.log(jobPostResult);
+
       handleGoTo("next");
     }
   };

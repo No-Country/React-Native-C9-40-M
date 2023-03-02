@@ -22,7 +22,7 @@ type Props = {
   handleGoTo: (direction: Direction) => void;
 };
 
-export const FirstStep = ({
+export const JobPostStep3 = ({
   allRol,
   jobPost,
   setJobPost,

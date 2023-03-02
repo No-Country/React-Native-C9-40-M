@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Image,
   Modal,
@@ -10,11 +11,12 @@ import {
 
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../constants";
-import { useEffect, useState } from "react";
 import { Footer } from "./Footer";
 import { CARD } from "../../../constants/constants";
 import { Skills } from "./Skills";
 import { formatDate } from "../../../utils/formatDate";
+import { UserContext } from "../../../GlobalStates/userContext";
+import { useJobAplication } from "../../../hooks/useJobApplication";
 
 type CompanyName = {
   name: string;
@@ -51,21 +53,24 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
     jobs_tecnologies,
   } = job;
 
-  const [textSkills, setTextSkils] = useState("");
+  const { currentUser } = useContext(UserContext);
 
-  useEffect(() => {
-    // getJobReq(company_id);
-    // construir el texto
-  }, []);
+  const ApplicationJob = async (id) => {
+    const applicationData = { job_id: id, token: currentUser.token };
+    console.log(applicationData);
+    const result = await useJobAplication(applicationData);
+    console.log(result);
+    console.warn("Postulación exitosa");
+  };
 
   const handleChoice = (direction: number) => {
-    direction === -1
-      ? alert("NOPE")
-      : direction === 0
-      ? alert("Safe")
-      : alert("LIKE");
+    direction === -1 ? alert("NOPE") : ApplicationJob(id);
     setShowModal(false);
   };
+
+  const imageDefault =
+    image ||
+    "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png";
 
   return (
     <Modal animationType="slide" visible={showModal}>
@@ -75,7 +80,7 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
             <View style={styles.header}>
               <Image
                 source={{
-                  uri: image,
+                  uri: imageDefault,
                 }}
                 style={styles.image}
               />
@@ -103,7 +108,7 @@ export const OffersDetail = ({ job, setShowModal, showModal }: JobProps) => {
                 <View style={styles.mr8}>
                   <Ionicons name="cash-outline" size={24} color="black" />
                 </View>
-                <Text>$ {salaries[0].price}</Text>
+                <Text>$ {salaries[0]?.price}</Text>
               </View>
               <View style={[styles.row]}>
                 <View style={styles.mr8}>

@@ -53,11 +53,12 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
     { label: "Ofrezco Empleo", value: "reclutador" },
     { label: "Busco Empleo", value: "empleado" },
   ];
-  console.log(chosenOption, path);
+
   {
     /*----------------Funcion next-------------- */
   }
   const handleNext = async (data) => {
+    console.log("tipo de usuario", chosenOption);
     if (chosenOption === "reclutador") {
       setPath(1);
     } else {

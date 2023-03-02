@@ -7,7 +7,7 @@ import { COLORS, ROUTES } from "../../../constants";
 
 import panaImage from "../../../../assets/images/jobpost.png";
 
-export const FourStep = ({ setStep, initialValues, setJobPost }) => {
+export const JobPostStep5 = ({ setStep, initialValues, setJobPost }) => {
   const navigation = useNavigation();
 
   const handleSubmit = () => {

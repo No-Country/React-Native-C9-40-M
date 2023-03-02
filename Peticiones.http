@@ -1,7 +1,7 @@
 https://jobsapi-wtcn.onrender.com/
 
 ### REGISTER => sign up a new user (Hook = useRegister)
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/auth/register
+POST https://jobsapi-wtcn.onrender.com/api/v1/auth/register
 Content-Type: application/json
 
 {"email": "a1@correo.com", "password": "a1a2a3A$"}
@@ -15,8 +15,7 @@ Content-Type: application/json
 
 
 ### ALL USERS => (Hook = useGetJobSeekers) 
-GET https://jobsapi-wtcn.onrender.com/api/v1/users/all?page=0&size=10&status=recruiter
-
+GET https://jobsapi-wtcn.onrender.com/api/v1/users/all
 Content-Type: application/json
 
 
@@ -26,7 +25,7 @@ Content-Type: application/json
 
 
 ### GET USER (all information of one user)
-GET https://backapijobs-production-ad45.up.railway.app/api/v1/users
+GET https://jobsapi-wtcn.onrender.com/api/v1/users/
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjUsImVtYWlsIjoianVhbkBjb3JyZW8uY29tIiwiaWF0IjoxNjc2OTg2NzIzLCJleHAiOjE2NzczNDY3MjN9.QudFIJhtnHfa_kkK3mjkBTT_Pf_xQaWwdQWe7aniwvXEyA83H_1cVcdYV6HWz6j-Btg3vdYqt099FeepiPSLlw
 Content-Type: application/json
 
@@ -38,23 +37,24 @@ Content-Type: application/json
 
 
 ### DELETE USER using token
-DELETE https://backapijobs-production-ad45.up.railway.app/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImVtYWlsIjoiU2FudGlhZ29AY29ycmVvLmNvbSIsImlhdCI6MTY3NzM5MTMzMCwiZXhwIjoxNjc3NzUxMzMwfQ.bAMhV55jMrNZ09wUrPTAEnumafx7lWovfcgCoBtu-Dh3EDvO34nQ-TqPFvQ6qQ2eyXkXHjXcxnkZdwoDnH-Elg
+DELETE https://jobsapi-wtcn.onrender.com/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJtYXJ0YUBjb3JyZW8uY29tIiwiaWF0IjoxNjc3NjcwMDIyLCJleHAiOjE2NzgwMzAwMjJ9.slguviiSqFDaFD5zGDBQ5h3e7wd1yoUbxubHsBeCf9hWsk1J_LrVl0msRiFbL3J981ERPLKizsb5Pesao41QoA
 Content-Type: application/json
 
 ### UPDATE USER  basic information using toke
 PUT https://jobsapi-wtcn.onrender.com/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzYwMzczMywiZXhwIjoxNjc3OTYzNzMzfQ.WgFeQ3eUqnvA2mykdUoXAfwrk--3mFWhoViKyJ5gm6DNek5q_C5hFPYFRC5KDqf5H_vVAgT5ub9X4gKptpHArw
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzY3ODIzMiwiZXhwIjoxNjc4MDM4MjMyfQ.Hrnc1YvIGt7iMaEb3b2y13SlbbLr69CRSJM8P_AsBEdVYK36uj3dMIeiwW_3X4a1yb7qvZic8jJTez0RhQRbdQ
 Content-Type: application/json
 
-{   
+{  
+  "company" : "la favorita", 
   "about_me": "Tengo 10 años de experiencia como Backend developer, realizando proyectos bajo python con lenguaje principal, tambien domino java, y estoy aprendiendo actualmente react native. Manejo todo tipo de BD, SQL y No SQL. Tambien he realizado proyecto utilizando Java y PHP" 
 
 }
 
 ### UPDATE USER add new rol to user using token and rol_id y de URL 
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_user/4
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImVtYWlsIjoieXVseWFuYTc3QGhvdG1haWwuY29tIiwiaWF0IjoxNjc3MzkwNzk4LCJleHAiOjE2Nzc3NTA3OTh9.AG9jeLfOXB64osRYcyyVO-hd8aqqEQ420hDAtMyDfH4vOOFlwjEatmKSzcBOYNHicE5KbXL9BKD-Z8ldEM_E4Q
+POST https://jobsapi-wtcn.onrender.com/api/v1/rol_user/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzY4NDA2NywiZXhwIjoxNjc4MDQ0MDY3fQ.yR-b9PVilpdWC4lpQIhvFObYP_fndFmEgoyLZ7IBu-r8Fs6-bUy_TXmv6S6l5E_U1u6n3sRuZ35mj6QzaMG1aQ
 Content-Type: application/json
 
 ### UPDATE USER add new tecnology to user using token and tecnology_id and year in the URL
@@ -66,7 +66,7 @@ Content-Type: application/json
 
 ### CREATE JOB APPLICATION => postularse para un trabajo
 
-POST https://jobsapi-wtcn.onrender.com/api/v1/postulation/user/job/1
+POST https://jobsapi-wtcn.onrender.com/api/v1/postulation/user/job/2
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzYxNTQxMywiZXhwIjoxNjc3OTc1NDEzfQ.yUXkj6fgPNZqnktxXeF6T9SIlkbplnysvSQObVqtW_HYv6Cen1KCPqmw-L7menbb2PXwbzpqtKq7vlKcsLEmMg
 Content-Type: application/json
 
@@ -74,11 +74,35 @@ Content-Type: application/json
 
 
 
+### POST JOBS Create a Job
+POST https://jobsapi-wtcn.onrender.com/api/v1/jobs
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzYxNTQxMywiZXhwIjoxNjc3OTc1NDEzfQ.yUXkj6fgPNZqnktxXeF6T9SIlkbplnysvSQObVqtW_HYv6Cen1KCPqmw-L7menbb2PXwbzpqtKq7vlKcsLEmMg
+Content-Type: application/json
+
+{ "title":"Programador Java",
+  "description":"buenas",
+  "image":"",
+  "country":"Colombia",
+  "work_place":"Presencial",
+  "working_day":" Full-time",
+  "company_name":"La Favorita",
+  "tecnologies_job": [
+    {"id_tecno":1,"years":1}
+    ,
+    {"id_tecno":2,"years":2}
+    ,
+    {"id_tecno":3,"years":3}
+    ],
+  "rol_job_id":1,
+  "job_salary": {"price":600}
+}
+
 ### GET JOBS Get all Jobs with pagination
-GET https://jobsapi-wtcn.onrender.com/api/v1/jobs?page=0&size=5
+GET https://jobsapi-wtcn.onrender.com/api/v1/jobs?page=0&size=25
+
 
 ### GET JOBS Application
-GET https://jobsapi-wtcn.onrender.com/api/v1/postulation/user?page=0&size=5
+GET https://jobsapi-wtcn.onrender.com/api/v1/postulation/user?page=0&size=1
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJ0dXRhZ3VhcmFkaWdpdGFsQGdtYWlsLmNvbSIsImlhdCI6MTY3NzYxNTQxMywiZXhwIjoxNjc3OTc1NDEzfQ.yUXkj6fgPNZqnktxXeF6T9SIlkbplnysvSQObVqtW_HYv6Cen1KCPqmw-L7menbb2PXwbzpqtKq7vlKcsLEmMg
 Content-Type: application/json
 

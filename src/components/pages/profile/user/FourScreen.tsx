@@ -103,7 +103,6 @@ export const FourScreen = ({ handleGoTo }: Props) => {
 
     const resp = await useUpdateUser(userData);
 
-    console.log("carga exitosa se pasan los datos al backend", resp);
     handleNext();
   };
 
