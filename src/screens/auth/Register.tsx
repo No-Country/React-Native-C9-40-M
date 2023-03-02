@@ -69,6 +69,7 @@ export const RegisterScreen = () => {
             <CustomInput
               name="email"
               label="E-Mail"
+              keyboardType="email-address"
               control={control}
               placeholder="Ingrese su Email"
             />

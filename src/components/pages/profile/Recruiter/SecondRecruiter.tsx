@@ -129,19 +129,22 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
                 name="linkedin"
                 label="Linkedin de la empresa"
                 control={control}
-                placeholder="Ponga el linkedin de la empresa"
+                placeholder="LinkedIn de la empresa"
+                keyboardType="url"
               />
               <CustomInput
                 name="web"
                 label="Web de la empresa"
                 control={control}
                 placeholder="Sitio web de la empresa"
+                keyboardType="url"
               />
               <CustomInput
                 name="telefono"
                 label="Teléfono de la empresa"
                 control={control}
-                placeholder="Numero de contacto"
+                placeholder="Número de contacto"
+                keyboardType="numeric"
               />
             </View>
           </View>
