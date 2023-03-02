@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { ScrollView, StyleSheet, Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -7,9 +7,35 @@ import logo from "../../../assets/images/logo.png";
 import landingImage from "../../../assets/images/bro.png";
 import { COLORS, ROUTES } from "../../constants";
 import { CustomButton } from "../../components/common/CustomButton";
+import { UserContext } from "../../GlobalStates/userContext";
+
+const initialUser = {
+  token: null,
+  about_me: null,
+  age: null,
+  article_1: null,
+  avatar: null,
+  country: null,
+  email: null,
+  firstname: null,
+  id: null,
+  is_verify: false,
+  lastname: null,
+  phone: null,
+  projects: [],
+  region: null,
+  repositories: [],
+  status: null,
+  url_github: null,
+  url_linkedin: null,
+  user_rols: [],
+  user_tecnologies: [],
+  isFreelancer: false,
+};
 
 export function LandingScreen() {
   const navigation = useNavigation();
+  const { currentUser, setCurrentUser, setPath } = useContext(UserContext);
 
   const onPressLogin = (): void => {
     navigation.navigate(ROUTES.LOGIN);
@@ -18,6 +44,11 @@ export function LandingScreen() {
   const onPressRegister = (): void => {
     navigation.navigate(ROUTES.REGISTER);
   };
+
+  useEffect(() => {
+    setCurrentUser(initialUser);
+    setPath(0);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

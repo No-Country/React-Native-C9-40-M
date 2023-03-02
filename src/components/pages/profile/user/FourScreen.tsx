@@ -22,6 +22,7 @@ import { UserContext } from "../../../../GlobalStates/userContext";
 import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 
 import logo from "../../assets/images/logo.png";
+import CustomNavigateButton from "../../../common/CustomNavigateButton";
 
 type FormValues = {
   url_portfolio: string;
@@ -115,39 +116,40 @@ export const FourScreen = ({ handleGoTo }: Props) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.header}>
-        <Text style={styles.title}>Completa tu perfil</Text>
-        <Text style={styles.subtitle}>
-          El último paso para que puedas encontrar tu trabajo ideal.
-        </Text>
-      </View>
-      <View style={styles.formContainer}>
-        <View style={styles.field}>
-          <Text style={styles.label}>Adjunta tu CV</Text>
-          <Button title="Seleccionar archivo" onPress={pickDocument} />
-          {fileLoadMsg && (
-            <View style={styles.errorMsg}>
-              <Text style={styles.error}>{fileLoadMsg || "Error"}</Text>
-            </View>
-          )}
-          {file && <Text> {file.name}</Text>}
+    <>
+      <ScrollView>
+        <View style={styles.header}>
+          <Text style={styles.title}>Completa tu perfil</Text>
+          <Text style={styles.subtitle}>
+            El último paso para que puedas encontrar tu trabajo ideal.
+          </Text>
         </View>
+        <View style={styles.formContainer}>
+          <View style={styles.field}>
+            <Text style={styles.label}>Adjunta tu CV</Text>
+            <Button title="Seleccionar archivo" onPress={pickDocument} />
+            {fileLoadMsg && (
+              <View style={styles.errorMsg}>
+                <Text style={styles.error}>{fileLoadMsg || "Error"}</Text>
+              </View>
+            )}
+            {file && <Text> {file.name}</Text>}
+          </View>
 
-        <CustomInput
-          name="url_portfolio"
-          label="LinkedIn"
-          control={control}
-          placeholder="Pega aqui el URL de tu perfil"
-        />
-        <CustomInput
-          name="gitUrl"
-          label="GitHub / Behance"
-          control={control}
-          placeholder="Pega aqui el URL de tu perfil"
-        />
+          <CustomInput
+            name="url_portfolio"
+            label="LinkedIn"
+            control={control}
+            placeholder="Pega aqui el URL de tu perfil"
+          />
+          <CustomInput
+            name="gitUrl"
+            label="GitHub / Behance"
+            control={control}
+            placeholder="Pega aqui el URL de tu perfil"
+          />
 
-        <View>
+          {/* <View>
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleBack}>
               <View style={styles.buttonStyles}>
@@ -161,9 +163,14 @@ export const FourScreen = ({ handleGoTo }: Props) => {
               </View>
             </TouchableOpacity>
           </View>
+        </View> */}
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+      <CustomNavigateButton
+        handleBack={handleBack}
+        handleNext={handleSubmit(handleNext)}
+      />
+    </>
   );
 };
 

@@ -22,6 +22,8 @@ import {
   KeyboardTypeOptions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import { Controller } from "react-hook-form";
 import { COLORS } from "../../constants";
 
@@ -118,7 +120,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   label: {
-
     color: COLORS.input,
 
     marginBottom: 5,
@@ -163,4 +164,67 @@ const styles = StyleSheet.create({
   error: { marginLeft: 5, color: COLORS.danger, alignSelf: "stretch" },
   focus: { backgroundColor: COLORS.logoBlueLight },
   noFocus: { backgroundColor: COLORS.inputBg },
+});
+
+export const CustomTextArea = ({
+  name,
+  label,
+  control,
+  placeholder,
+}: Props) => {
+  return (
+    <Controller
+      control={control}
+      name={name}
+      render={({
+        field: { value, onChange, onBlur },
+        fieldState: { error },
+      }) => (
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles2.title}>{label}</Text>
+          <View style={styles2.container}>
+            <View style={styles2.delete}>
+              <MaterialIcons name="cancel" size={28} color="#27358F" />
+            </View>
+            <TextInput
+              value={value}
+              onChangeText={onChange}
+              style={styles2.textInput}
+              placeholder={placeholder}
+              multiline={true}
+              numberOfLines={5}
+            />
+          </View>
+        </View>
+      )}
+    />
+  );
+};
+
+const styles2 = StyleSheet.create({
+  container: {
+    width: "95%",
+    backgroundColor: COLORS.inputBg,
+    borderRadius: 4,
+    padding: 10,
+    marginTop: 10,
+    position: "relative",
+  },
+  title: {
+    color: COLORS.input,
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  delete: {
+    position: "absolute",
+    right: "3%",
+    top: "5%",
+    zIndex: 10,
+  },
+  textInput: {
+    width: "90%",
+    height: 150,
+    borderRadius: 4,
+    textAlignVertical: "top",
+  },
 });

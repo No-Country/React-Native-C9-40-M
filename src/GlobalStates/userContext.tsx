@@ -14,12 +14,18 @@ const initialUser = {
   is_verify: false,
   lastname: null,
   phone: null,
+  description: null,
+  company: null,
+  company_avatar: null,
   projects: [],
   region: null,
   repositories: [],
   status: null,
   url_github: null,
   url_linkedin: null,
+  company_url_linkedin: null,
+  company_url_web: null,
+  company_phone: null,
   user_rols: [],
   user_tecnologies: [],
   isFreelancer: false,
@@ -99,7 +105,7 @@ export const UserContextProvider = ({ children }) => {
   const [selectedRol, setselectedRol] = useState(null);
   const [selectedStack, setSelectedStack] = useState([]);
   const [experience, setExperience] = useState(0);
-  const [description, setDescription] = useState();
+  const [description, setDescription] = useState("");
 
   function getInfo() {
     fetch("https://node-server-navy-rho.vercel.app/jobs/")

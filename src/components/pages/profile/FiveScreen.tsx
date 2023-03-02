@@ -8,11 +8,12 @@ import { COLORS, ROUTES } from "../../../constants";
 import panaImage from "../../../../assets/images/pana1.png";
 import { UserContext } from "../../../GlobalStates/userContext";
 
-export const FiveScreen = () => {
+export const FiveScreen = ({ setStep }) => {
   const navigation = useNavigation();
   const { path } = useContext(UserContext);
 
   const handleSubmit = () => {
+    setStep(1);
     path === 2
       ? navigation.navigate(ROUTES.HOME_DRAWER)
       : navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);

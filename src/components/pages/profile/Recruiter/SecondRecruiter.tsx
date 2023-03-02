@@ -1,31 +1,26 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   Image,
   TouchableOpacity,
-  Keyboard,
   ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Button,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
-import * as ImagePicker from "expo-image-picker";
-import { Entypo } from "@expo/vector-icons";
-import { SelectList } from "react-native-dropdown-select-list";
 import { UserContext } from "../../../../GlobalStates/userContext";
-import logo from "../../../assets/images/logo.png";
 import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
-import { useUpdateUser } from "../../../../hooks/useUpdateUser";
 import { ROUTES } from "../../../../constants";
 import CustomNavigateButton from "../../../common/CustomNavigateButton";
+
+import { pickImage } from "../../../../utils/pickImage";
+const defaultImage =
+  "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png";
 
 type Direction = {
   direction: "next" | "prev";
@@ -40,8 +35,18 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
   const navigation = useNavigation();
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [image, setImage] = useState(
+    currentUser.company_avatar || defaultImage
+  );
 
   const handleNext = async (data) => {
+    const newUserData = {
+      ...currentUser,
+      company_url_linkedin: data.linkedin,
+      company_url_web: data.web,
+      company_phone: data.telefono,
+    };
+    setCurrentUser(newUserData);
     // navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
     handleGoTo("next1");
   };
@@ -60,8 +65,9 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      empresa: currentUser.empresa,
-      descripcion: currentUser.descripcion,
+      linkedin: currentUser.company_url_linkedin,
+      web: currentUser.company_url_web,
+      telefono: currentUser.company_phone,
     },
 
     // resolver: yupResolver(schema),
@@ -70,25 +76,6 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
   {
     /*---------Funcion para subir imagen  */
   }
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  let openImage = async () => {
-    let permissionRe = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (permissionRe.granted === false) {
-      alert("Los permisos para acceder a la camara son requeridos");
-      return;
-    }
-
-    const pickRe = await ImagePicker.launchImageLibraryAsync();
-
-    if (pickRe.canceled === true) {
-      return;
-    }
-
-    setSelectedImage({ localUri: pickRe.assets[0].uri });
-    console.log(selectedImage);
-  };
 
   const [text, setText] = useState("");
 
@@ -103,15 +90,7 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
           <Text style={styles.titleText}>Cuentanos sobre tu trabajo</Text>
 
           <View style={styles.empresaContainer}>
-            <Image
-              source={{
-                uri:
-                  selectedImage !== null
-                    ? selectedImage.localUri
-                    : "https://www.pngiteme.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png",
-              }}
-              style={styles.circleImage}
-            />
+            <Image source={{ uri: image }} style={styles.circleImage} />
             <View
               style={{
                 display: "flex",
@@ -126,7 +105,7 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
                 color="#ff000"
               />
 
-              <TouchableOpacity onPress={openImage}>
+              <TouchableOpacity onPress={() => pickImage(setImage)}>
                 <Text
                   style={{
                     fontSize: 15,
@@ -169,7 +148,10 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
           <View style={styles.inputContainer}></View>
         </View>
       </ScrollView>
-      <CustomNavigateButton handleBack={handleBack} handleNext={handleNext} />
+      <CustomNavigateButton
+        handleBack={handleBack}
+        handleNext={handleSubmit(handleNext)}
+      />
     </View>
   );
 };

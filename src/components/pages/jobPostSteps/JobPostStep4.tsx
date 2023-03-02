@@ -51,13 +51,9 @@ export const JobPostStep4 = ({
       };
       setJobPost(newJobPost);
 
-      console.log(newJobPost);
-
       const jobData = { ...newJobPost, token: currentUser.token };
 
       const jobPostResult = await useJobPost(jobData);
-
-      console.log(jobPostResult);
 
       handleGoTo("next");
     }

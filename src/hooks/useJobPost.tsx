@@ -78,7 +78,6 @@ export const useJobPost = async (jobData: createJobProps) => {
   };
 
   try {
-    console.log(job, " esto es lo que se manda");
     const response = await globalThis.fetch(`${URL}jobs`, {
       method: "POST",
       headers: {
@@ -88,7 +87,6 @@ export const useJobPost = async (jobData: createJobProps) => {
       body: JSON.stringify(job),
     });
     const a = await response.json();
-    console.log("esto es lo que retorno", a);
     return "ok";
   } catch (error) {
     console.log("hay un error", error);
