@@ -52,7 +52,7 @@ export const ApplicationCard = ({ job }: JobProps) => {
           </Text>
         </View>
         <Pressable style={[styles.rowAbsolute]}>
-          <Ionicons name="share-social-outline" size={18} color="black" />
+          {/* <Ionicons name="share-social-outline" size={18} color="black" /> */}
           <Ionicons name="bookmark" size={18} color="black" />
         </Pressable>
       </View>
@@ -69,7 +69,7 @@ export const ApplicationCard = ({ job }: JobProps) => {
           <View style={styles.mr8}>
             <Ionicons name="cash-outline" size={24} color="black" />
           </View>
-          <Text>$ {salaries[0].price}</Text>
+          {/* <Text>$ {salaries[0].price}</Text> */}
         </View>
         <View style={[styles.row]}>
           <View style={styles.mr8}>

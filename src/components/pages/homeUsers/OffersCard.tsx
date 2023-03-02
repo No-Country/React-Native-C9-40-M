@@ -89,7 +89,7 @@ export const OffersCard = ({ job }: JobProps) => {
           <View style={styles.mr8}>
             <Ionicons name="cash-outline" size={24} color="black" />
           </View>
-          {/* <Text>$ {salaries[0]?.price}</Text> */}
+          <Text>$ {salaries[0]?.price}</Text>
         </View>
         <View style={[styles.row]}>
           <View style={styles.mr8}>

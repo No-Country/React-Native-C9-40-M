@@ -48,7 +48,9 @@ export const FourScreen = ({ handleGoTo }: Props) => {
   const { currentUser } = useContext(UserContext);
   //para probar cuando viene un valor en el currentUser
 
-  const [file, setFile] = useState<DocumentPicker.DocumentResult | null>(null);
+  const [file, setFile] = useState<DocumentPicker.DocumentResult | null>(
+    currentUser.cv
+  );
   const [fileLoadMsg, setFileLoadMsg] = useState("");
   const {
     handleSubmit,
@@ -100,6 +102,7 @@ export const FourScreen = ({ handleGoTo }: Props) => {
     const userData = {
       url_portfolio: data.url_portfolio,
       token: currentUser.token,
+      cv: file,
     };
 
     const resp = await useUpdateUser(userData);

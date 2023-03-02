@@ -59,7 +59,7 @@ export const LandingSidebar = ({ state }) => {
       style={[styles.menuContainer, { backgroundColor: bgColor }]}
     >
       <>
-        {activeScreen !== "Menu User" && (
+        {activeScreen === "Menu inicial" && (
           <View>
             <View style={styles.imageContainer}>
               <Image source={logo} style={styles.image} />

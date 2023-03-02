@@ -85,7 +85,7 @@ export const JobSeekerCard = ({ user }: JobSeekerCardProps) => {
         <View style={styles.body}>
           <Pressable
             style={styles.detailButton}
-            onLongPress={() => alert("ver detall")}
+            onLongPress={() => alert("ver detalle")}
           >
             <Text style={styles.button}>Detalle</Text>
           </Pressable>

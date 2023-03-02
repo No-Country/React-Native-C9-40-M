@@ -15,10 +15,10 @@ import { CustomInput } from "../../../common/CustomInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../../utils/validationSchema/basicUserData";
-import { ROUTES } from "../../../../constants";
 import CustomNavigateButton from "../../../common/CustomNavigateButton";
 
 import { pickImage } from "../../../../utils/pickImage";
+import { COLORS } from "../../../../constants";
 const defaultImage =
   "https://www.pngitem.com/pimgs/m/499-4992374_sin-imagen-de-perfil-hd-png-download.png";
 
@@ -45,9 +45,9 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
       company_url_linkedin: data.linkedin,
       company_url_web: data.web,
       company_phone: data.telefono,
+      company_avatar: image,
     };
     setCurrentUser(newUserData);
-    // navigation.navigate(ROUTES.HOME_RECRUITER_DRAWER);
     handleGoTo("next1");
   };
   const handleBack = () => {
@@ -98,25 +98,26 @@ export const SecondRecruiter = ({ step, handleGoTo }: Props) => {
                 marginLeft: "7%",
               }}
             >
-              <Ionicons
+              <Text
+                style={{
+                  fontSize: 25,
+                  textDecorationLine: "underline",
+                  fontWeight: "500",
+                  marginLeft: 15,
+                  color: COLORS.primary,
+                }}
+              >
+                {currentUser.company}
+              </Text>
+              {/* <Ionicons
                 style={styles.icon}
                 name="folder-outline"
                 size={24}
                 color="#ff000"
-              />
-
+              /> */}
+              {/* 
               <TouchableOpacity onPress={() => pickImage(setImage)}>
-                <Text
-                  style={{
-                    fontSize: 15,
-                    textDecorationLine: "underline",
-                    fontWeight: "500",
-                    marginLeft: 15,
-                  }}
-                >
-                  Cargar foto de perfil
-                </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
 

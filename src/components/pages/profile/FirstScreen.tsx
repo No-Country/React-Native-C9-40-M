@@ -14,7 +14,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../../utils/validationSchema/basicUserData";
 
 import { pickImage } from "../../../utils/pickImage";
-import logo from "../../../../assets/images/logo.png";
 import { CustomButton } from "../../common/CustomButton";
 import { CustomInput } from "../../common/CustomInput";
 import { COLORS } from "../../../constants";
@@ -45,8 +44,7 @@ type Props = {
 };
 
 export const FirstScreen = ({ step, handleGoTo }: Props) => {
-  const { currentUser, setCurrentUser, path, setPath } =
-    useContext(UserContext);
+  const { currentUser, setCurrentUser, setPath } = useContext(UserContext);
 
   const [image, setImage] = useState(currentUser.avatar || defaultImage);
 
@@ -124,10 +122,6 @@ export const FirstScreen = ({ step, handleGoTo }: Props) => {
 
   return (
     <ScrollView>
-      <View style={styles.imagenLogo}>
-        <Image source={logo} style={styles.logo} />
-      </View>
-
       <Text style={styles.titleText}>Cuentanos de tí</Text>
       <View style={styles.ImagePicker}>
         <Image source={{ uri: image }} style={styles.image} />

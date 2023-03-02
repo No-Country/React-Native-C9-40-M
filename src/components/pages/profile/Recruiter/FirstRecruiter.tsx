@@ -45,7 +45,6 @@ export const FirstRecruiter = ({ step, handleGoTo }: Props) => {
       company: data.company,
       description: data.description,
     };
-
     setCurrentUser(newUserData);
     handleGoTo("next");
   };

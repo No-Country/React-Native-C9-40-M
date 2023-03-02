@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { FontAwesome, Fontisto } from "@expo/vector-icons";
-import { COLORS } from "../../../constants";
+import { COLORS, ROUTES } from "../../../constants";
 import { UserContext } from "../../../GlobalStates/userContext";
 
 type Props = {};
 export const Card = (props: Props) => {
+  const navigation = useNavigation();
   const { currentUser } = useContext(UserContext);
   const { region, country, url_linkedin, url_github } = currentUser;
 
@@ -13,7 +15,7 @@ export const Card = (props: Props) => {
     <View style={styles.body}>
       <Pressable
         style={styles.detailButton}
-        onPress={() => alert("Editar Perfil")}
+        onPress={() => navigation.navigate(ROUTES.PROFILE_DRAWER)}
       >
         <Text style={styles.button}>Editar Perfil</Text>
       </Pressable>

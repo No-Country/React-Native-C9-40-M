@@ -18,7 +18,7 @@ export default {
   HOME_DRAWER: "Home Drawer",
   PROFILE_SHOW: "Perfil",
   PROFILE_SHOW_DRAWER: "Profile Show Drawer",
-  PROFILE: "Profile",
+  PROFILE: "Creacion del Perfil",
   PROFILE_DRAWER: "Profile Drawer",
   APPLICATIONS: "Postulaciones",
   APPLICATIONS_DRAWER: "Postulaciones Drawer",
@@ -32,7 +32,7 @@ export default {
   // Rutas mostradas o accesible desde el "Menu User"
   HOME_RECRUITER: "Home - Recruiter",
   HOME_RECRUITER_DRAWER: "Home - Recruiter - Drawer",
-  JOBSPOST: "Jobs Post",
+  JOBSPOST: "Crear Vacante",
   JOBSPOST_DRAWER: "Jobs Post Drawer",
   JOBSEEKERLIST: "Listado de Aspirantes",
   JOBSEEKERLIST_DRAWER: "Listado de Aspirantes Drawer",

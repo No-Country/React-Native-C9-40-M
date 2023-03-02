@@ -25,12 +25,12 @@ export const SecondScreen = ({ step, handleGoTo }: Props) => {
     data,
     experience,
     setExperience,
-    description,
-    setDescription,
     currentUser,
     setCurrentUser,
   } = useContext(UserContext);
   const [error, setError] = useState(false);
+  const [description, setDescription] = useState(currentUser.about_me);
+  console.log(currentUser.about_me);
 
   // Obtenemos los roles
   const rols = data.map((item) => ({ id: item.id, name: item.name }));
