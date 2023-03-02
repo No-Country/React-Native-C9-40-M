@@ -110,7 +110,7 @@ export const MultipleSelectDropdown = ({
         onPress={() => onCloseSelection()}
         activeOpacity={0.7}
       >
-        <Text>{"Seleccionar hasta 4 opciones"}</Text>
+        <Text>{"Seleccionar Habilidades"}</Text>
         <FontAwesome
           name={showOption ? "chevron-up" : "plus-square-o"}
           size={18}
@@ -167,8 +167,7 @@ export const MultipleSelectDropdown = ({
       {/* Donde se muestran los valores seleccionados */}
       {/* {showSelectedItems && ( */}
       <View style={styles.selectedGroup}>
-        <Text> Estos son los valores seleccionados</Text>
-        <Text> hay seleccionados ({valuesSelected.length})</Text>
+        <Text style={styles.textCenter}> Habilidades seleccionadas</Text>
         <View style={styles.itemsContainer}>
           {valuesSelected.map((value) => {
             return (
@@ -254,5 +253,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexWrap: "wrap",
     marginTop: 15,
+  },
+  textCenter: {
+    textAlign: "center",
+    color: COLORS.primary,
   },
 });

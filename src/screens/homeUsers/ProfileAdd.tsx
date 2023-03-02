@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { FirstScreen } from "../../components/pages/profile/user/FirstScreen";
+import { FirstScreen } from "../../components/pages/profile/FirstScreen";
 import { SecondScreen } from "../../components/pages/profile/user/SecondScreen";
 import { ThirdScreen } from "../../components/pages/profile/user/ThirdScreen";
 import { FourScreen } from "../../components/pages/profile/user/FourScreen";
@@ -18,8 +17,6 @@ type Direction = {
 
 export const ProfileAdd = (props: Props) => {
   const { path } = useContext(UserContext);
-  const [rol, setRol] = useState("");
-  const [rolTech, setRolTech] = useState([]);
 
   const [step, setStep] = useState(1);
 
@@ -64,7 +61,7 @@ export const ProfileAdd = (props: Props) => {
           </React.Fragment>
         )}
         {step === 4 && <FourScreen step={step} handleGoTo={handleGoTo} />}
-        {step === 5 && <FiveScreen />}
+        {step === 5 && <FiveScreen setStep={setStep} />}
       </View>
     </>
   );

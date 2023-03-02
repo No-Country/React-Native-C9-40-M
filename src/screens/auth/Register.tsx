@@ -25,6 +25,7 @@ export const RegisterScreen = () => {
   const navigation = useNavigation();
   const {
     handleSubmit,
+    reset,
     control,
     formState: { errors },
   } = useForm<FormValues>({
@@ -40,6 +41,7 @@ export const RegisterScreen = () => {
     const user = { email: data.email, password: data.password };
     const registerResult = await useRegister(user);
     if (registerResult.message === "user created") {
+      reset();
       navigation.navigate(ROUTES.REGISTER_SUCCESS_DRAWER);
     } else {
       setRegisterRes("Correo ya tomado");
@@ -67,6 +69,7 @@ export const RegisterScreen = () => {
             <CustomInput
               name="email"
               label="E-Mail"
+              keyboardType="email-address"
               control={control}
               placeholder="Ingrese su Email"
             />

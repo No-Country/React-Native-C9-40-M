@@ -39,7 +39,6 @@ export const ThirdScreen = ({ step, handleGoTo }: Props) => {
         ...currentUser,
         user_tecnologies: [selectedStack],
       };
-      console.log(newCurrentUser);
       handleGoTo("next");
     }
   };

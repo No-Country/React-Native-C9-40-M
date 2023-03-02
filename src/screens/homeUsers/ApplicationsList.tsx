@@ -25,7 +25,7 @@ export function ApplicationsList() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.title}>Tus posulaciones</Text>
+        <Text style={styles.title}>Tus postulaciones</Text>
         <Text style={styles.text}>
           Aquí puedes ver el estado de tus postulaciones.
         </Text>

@@ -14,7 +14,6 @@ import { CustomButton } from "../../components/common/CustomButton";
 import { useLogin } from "../../hooks/useLogin";
 import { UserContext } from "../../GlobalStates/userContext";
 import { COLORS, ROUTES } from "../../constants";
-import { useGetUserbyId } from "../../hooks/useGetJobSeekers";
 
 type FormValues = {
   password: string;
@@ -29,6 +28,7 @@ export const LoginScreen = () => {
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -43,6 +43,7 @@ export const LoginScreen = () => {
 
     if (currentUser.token) {
       setCurrentUser({ ...currentUser.user, token: currentUser.token });
+      reset();
 
       if (!currentUser.user.status) {
         navigation.navigate(ROUTES.PROFILE_DRAWER);
