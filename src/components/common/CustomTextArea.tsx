@@ -14,6 +14,7 @@ export const CustomTextArea = (props) => {
         <TextInput
           style={styles.textInput}
           placeholder={props.placeholder}
+          value={props.value}
           onChangeText={props.onChangeText}
           multiline={true}
           numberOfLines={5}

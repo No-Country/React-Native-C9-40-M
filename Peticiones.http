@@ -150,11 +150,12 @@ Content-Type: application/json
 
 
 ### crear tecnologia asociada a un rol
-POST https://backapijobs-production-ad45.up.railway.app/api/v1/rol_and_tecnology
+POST https://jobsapi-wtcn.onrender.com/api/v1/rol_and_tecnology
 Content-Type: application/json
 
 {
-"rol_id":1,
-"tecnology_id":11
-} 
+  "rol_id":2,
+  "tecnology_id":[1,3,7,8,9,10,11]
+}
+
 

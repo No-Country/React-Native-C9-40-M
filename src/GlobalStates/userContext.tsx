@@ -29,6 +29,7 @@ const initialUser = {
   user_rols: [],
   user_tecnologies: [],
   isFreelancer: false,
+  cv: null,
 };
 
 const initialJob = [
