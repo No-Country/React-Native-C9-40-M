@@ -62,4 +62,4 @@ The ecommerce preview:
 
 ### Registro
 
-![registro](./assets/images/registro.png)
+![registro](./assets/images/Registro.png)
