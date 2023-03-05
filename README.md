@@ -54,12 +54,101 @@ The ecommerce preview:
 
 ---
 
-### Inicio
+### Paginas Inicio / Ingreso / Registro
+<div style="display:flex">
+    <img src="./assets/images/Inicio.png" alt="LandingSreen" width="180" height="380" />
+    <img src="./assets/images/Ingresar.png" alt="LoginScreen" width="180" height="380" />
+    <img src="./assets/images/Registro.png" alt="RegisterScreen" width="180" height="380" />
+</div>
+---
 
-![inicio](./assets/images/inicio.png)
+### Menu del que busca trabajo  (User Menu)
+<img src="./assets/images/MenuJobSeeker.png" alt="JobSeeker Menu" width="180" height="380" />
+---
+
+
+### Vacantes ( Pagina Vacantes disponible, opcion para postularse las postulaciones de un JonSeeker)
+<div style="display:flex">
+    <img src="./assets/images/Vacantes.png" alt="JobOffersScreen" width="180" height="380" />
+    <img src="./assets/images/postularse.png" alt="ApplicationScreen" width="180" height="380" />
+    <img src="./assets/images/postulaciones.png" alt="ApplicationList" width="180" height="380" />
+</div>
+---
+
+
+### Ver Perfil (Job Seeker Profile)
+<img src="./assets/images/Perfil.png" alt="Profile JobSeeker Screen" width="180" height="380" />
+---
+
+
+### Creación / Actualización del Perfil del JobSeeker
+<div style="display:flex">
+	<img src="./assets/images/UpdatePerfil1.png" alt="Profile update screen 1" width="180" height="380" />
+	<img src="./assets/images/UpdatePerfil2.png" alt="Profile update screen 2" width="180" height="380" />
+	<img src="./assets/images/updatePerfil3.png" alt="Profile update screen 3" width="180" height="380" />
+	<img src="./assets/images/updatePerfil4.png" alt="Profile update screen 4" width="180" height="380" />
+	<img src="./assets/images/msgSuccess.png" alt="Profile update success" width="180" height="380" />
+</div>
+---
+
+### Menu del que busca reclutador  (Recruiter Menu)
+<img src="./assets/images/menuRecruiter.png" alt="Recruiter Menu" width="180" height="380" />
+---
+
+
+### Pagina inicial del reclutador (Recruiter Home)
+<img src="./assets/images/jobSeeker.png" alt="Recruiter Menu" width="180" height="380" />
+---
+
+
+### Creacion de una oferta laboral / Job Post
+<div style="display:flex">
+	<img src="./assets/images/JobPost1.png" alt="Job Post Screen 1" width="180" height="380" />
+	<img src="./assets/images/JobPost2.png" alt="Job Post Screen 2" width="180" height="380" />
+	<img src="./assets/images/JobPost3.png" alt="Job Post Screen 3" width="180" height="380" />
+	<img src="./assets/images/JobPost4.png" alt="Job Post Screen 4" width="180" height="380" />
+	<img src="./assets/images/msgSuccessJP.png" alt="Job Post Screen Success" width="180" height="380" />
+</div>
+---
+
+### Creacion / Actualizacopm Perfil del recrclutador
+<div style="display:flex">
+	<img src="./assets/images/UpdateRecruiter1.png" alt="Job Recruiter Update Profile Page 1" width="180" height="380" />
+	<img src="./assets/images/UpdateRecruiter2.png" alt="Job Recruiter Update Profile Page 2" width="180" height="380" />
+	<img src="./assets/images/UpdateRecruiter3.png" alt="Job Recruiter Update Profile Page 3" width="180" height="380" />
+</div>
+---
+
+
+
+
+
+
+
+
+
+<h2 id="technologies"> 🛠️ Tecnologias utilizadas para el desarrollo del proyecto</h2>
+
+Estas son las tecnologias utilizadas en el Frontend:
+
+- **[React Native](https://reactnative.dev/)**
+- **[Javascript](https://www.javascript.com/)**
+- **[Typecript](https://www.typescriptlang.org/)**
+- **[React Navigation](https://reactnavigation.org/)**
+- **[React Hook Form](https://react-hook-form.com/)**
+- **[Yup](https://github.com/jquense/yup)**
+- **[Expo Document Picker](https://github.com/expo/expo)**
+- **[Expo Image Picker](https://github.com/expo/expo)**
 
 ---
 
-### Registro
+<h2 id="authors"> Autores </h2>
 
-![registro](./assets/images/Registro.png)
+👨‍💻 Equipo de trabajo / Team:
+
+🟢Design UX/UI: Mailen Castañer / Crismar Silva
+
+🟢Back-End: Stiven Perilla / Damian Rondinon / Bryan Sanabria
+
+🟢Front-End: Yuliana Boglione / Santiago Gurevich / Youssef Sabbagh
+
