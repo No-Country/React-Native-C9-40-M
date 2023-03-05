@@ -57,8 +57,10 @@ The ecommerce preview:
 ### Paginas Inicio / Ingreso / Registro
 <div style="display:flex">
     <img src="./assets/images/Inicio.png" alt="LandingSreen" width="180" height="380" />
-    <img src="./assets/images/Ingresar.png" alt="LoginScreen" width="180" height="380" />
     <img src="./assets/images/Registro.png" alt="RegisterScreen" width="180" height="380" />
+    <img src="./assets/images/msgSuccessReg.png" alt="Succes Register Screen" width="180" height="380" />
+    <img src="./assets/images/Ingresar.png" alt="LoginScreen" width="180" height="380" />
+
 </div>
 ---
 
